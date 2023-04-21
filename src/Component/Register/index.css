@@ -30,7 +30,7 @@
 .register-inputs {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 430px;
   margin-bottom: 20px;
   height: 100%;
   justify-content: space-evenly;
