@@ -1,0 +1,109 @@
+.register-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  margin: auto 5%;
+  flex-direction: column;
+}
+
+.register-links {
+  display: flex;
+  justify-content: space-around;
+  width: 400px;
+  margin-bottom: 20px;
+}
+
+.register-links a {
+  color: var(--accent-colors);
+  text-decoration: none;
+  border-bottom: solid 4px var(--accent-colors);
+  line-height: 30px;
+  margin-bottom: 30px;
+}
+
+.register-links a.active {
+  border-bottom: solid 4px var(--primary-color);
+  color: var(--primary-color);
+}
+
+.register-inputs {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin-bottom: 20px;
+  height: 100%;
+  justify-content: space-evenly;
+}
+.input-group {
+  position: relative;
+  width: auto;
+}
+.input-group .input:focus {
+  border-color: var(--primary-color);
+}
+.register-inputs .input-group input {
+  padding: 18px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 14px;
+  width: 100%;
+}
+
+.input:focus ~ .input-label,
+.input:valid ~ .input-label {
+  top: -9px;
+  left: 10px;
+  color: #aaa;
+  font-size: 13px;
+  position: absolute;
+  pointer-events: none;
+  transition: all 0.2s ease-out;
+  background-color: white;
+  padding: 3px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: red;
+}
+
+.input-label {
+  position: absolute;
+  left: 10px;
+  top: 19px;
+  color: #aaa;
+  transition: all 0.2s ease-out;
+}
+
+.register-buttons {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.register-buttons button {
+  width: 100%;
+  padding: 15px;
+  letter-spacing: 1px;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--button);
+}
+
+.error {
+  color: red;
+  font-size:x-small;
+  margin-bottom: 20px;
+
+}
+
+.showing-password {
+  position: absolute;
+  left: 90%;
+  top: 18px;
+}
