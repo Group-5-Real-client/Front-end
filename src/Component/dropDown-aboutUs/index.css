@@ -1,0 +1,93 @@
+
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+}
+
+.dropdown-selected-option {
+  cursor: pointer;
+}
+
+.dropdown-selected-option .nav-link-dropdown{
+  margin: -20px;
+  padding: -20px;
+} 
+
+
+
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.dropdown-option {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  position: relative;
+  /* margin-top: 60px; */
+  margin-left: 40px;
+  
+}
+
+.dropdown-option:hover {
+  background-color: var(--buttons);
+  color: white;
+
+}
+
+/* .dropdown-option:hover .nav-link-dropdown {
+  color: black;
+  border-bottom: none;
+  text-align: center;
+} */
+
+
+.dropdown-selected-option{
+  color: var(--buttons);
+}
+
+.nav-link-dropdown {
+  position: relative;
+  /* bottom: 100%; */
+  /* margin-top: 12px; */
+  text-decoration: none;
+  list-style: none;
+  background-color: var(--buttons);
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.dropdown-option .nav-link-dropdown{
+position: absolute;
+left: 50px;
+}
+
+#dropping-link-aboutUs::before{
+  content: "";
+  position: absolute ;
+  background-color: var(--primary-color);
+  width: 180px;
+  height: 220px;
+  top:64px;
+  left: 10px;
+  z-index: -1;
+
+}
+
+.dropdown-option .nav-link-dropdown{
+  margin-left: -50px;
+  padding: -10px;
+  margin-bottom: -10px;
+}
+
+

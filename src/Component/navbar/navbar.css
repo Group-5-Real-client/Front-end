@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap'); 
+
+
+#nav-whole-nav .nav-links-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 10%;
+  width: 100%;
+}
+
+#nav-whole-nav:hover{
+  background-color: var(--accent-colors);
+  transition: all 0.3s ease 0s;
+}
+
+.login-shop-icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.nav-logo{
+  cursor: pointer;
+}
+
+.nav-link{
+  font-weight: 500;
+  color: var(--button);
+  padding: 0 10px;
+  font-size: 14px;
+  list-style: none;
+  text-decoration: none;
+  transition: all 2s ease 0s;
+}
+
+
+
+.nav-navigation > .nav-link:hover{
+  border-bottom: 1px solid var(--accent-colors);
+  opacity: 0.7;
+}
+
+
+.nav-title{
+  font-size: 42px;
+  font-family: 'Gochi Hand', cursive;   
+
+}
+
+#nav-Contact {
+  transition: 2s all ease-in-out ;
+}
+
+.nav-logo-title{
+  font-weight: 500;
+  color: var(--button);
+  padding: 0 10px;
+  font-size: 14px;
+  list-style: none;
+  text-decoration: none;
+  transition: all 2s ease 0s;
+}
+
+#nav-container {
+  display: none;
+}
+
+
+/* ============================== */
+@media screen and (max-width: 768px) {
+  #nav-whole-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    box-shadow: 0px 5px 15px 0px rgba(10, 10, 10, 0.1);
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(10, 10, 10, 0.1);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(10, 10, 10, 0.1);
+    padding-right: 2%;
+    padding-left: 2%;
+  }
+
+  .nav-vertical {
+    box-shadow: none;
+  }
+
+  .nav-navigation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  .nav-logo-title {
+    margin: auto;
+  }
+
+  #nav-container {
+    display: inline-block;
+    cursor: pointer;
+    margin: auto;
+    padding: 10px;
+  }
+
+  .nav-bar1,
+  .nav-bar2,
+  .nav-bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: var(--button);
+    margin: 6px 0;
+    transition: 0.3s;
+  }
+
+  .nav-change .nav-bar1 {
+    transform: translate(0, 11px) rotate(-45deg);
+  }
+
+  .nav-change .nav-bar2 {
+    opacity: 0;
+  }
+
+  .nav-change .nav-bar3 {
+    transform: translate(0, -11px) rotate(45deg);
+  }
+
+  .nav-navigation {
+    display: none;
+  }
+
+  .nav-show {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    z-index: 1;
+    background-color: var(--accent-colors);
+    margin: 0;
+    height: 91vh;
+  }
+
+ 
+
+
+}
+
+
+/* == */
+
+/* == */
+/* -=======================================- */
+/*                     old                   */
+/* -=======================================- */
+/* @media screen and (max-width: 960px) {
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-top: 1pxsolid #fff;
+    position: absolute;
+    top: 80px;
+    left: -110%;
+    opacity: 1;
+    transition: all 0.5s ease;
+  }
+
+  .nav-menu.active {
+    background: #1f5156;
+    left: 0px;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+  .nav-item .active {
+    color: #ffdd40;
+    border: none;
+  }
+  .nav-links {
+    padding: 1.5rem;
+    width: 100%;
+    display: table;
+  }
+
+  .nav-icon {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 60%);
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #ffdd40;
+  }
+} */
+
+/* =========================================================
+============================================================== */
+/* @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');  
+  
+  .nav-link {
+      text-decoration: none;
+      color: var(--buttons);
+    }
+    
+    .nav-whole-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-wrap: nowrap;
+      padding: 40px 0;
+      z-index: -2;
+      background-color: yellowgreen;   
+      overflow: hidden;  
+    }
+
+    .nav-navigation{
+      margin-left: 10px;
+    }
+
+   
+
+ 
+
+   
+   
+    .nav-logo-title {
+      font-family: 'Gochi Hand', cursive;   
+      margin:0 200px;  
+      overflow: hidden;       
+      
+    }
+
+    .login-shop-icon{
+      margin-left: 80px;
+    }
+    
+    .nav-title {
+      margin-left: 1pc;
+      font-size: xxx-large;
+      text-decoration: none;
+      color: var(--buttons);
+      font-weight: 700;
+    }
+
+  
+    .nav-navigation > .nav-link {
+      padding: 10px;
+
+    }
+    
+    .nav-navigation > .nav-link:hover {
+      border-bottom: 1px solid var(--accent-colors);
+      opacity: 0.7;
+    }
+    
+    .nav-navigation > .nav-link:hover:focus {
+      border-bottom: 2px solid var(--accent-colors);
+      opacity: 1;
+    }
+    
+    .active {
+      border-bottom: 2px solid var(--accent-colors);
+      opacity: 1;
+    }
+    
+    #nav-Contact {
+      transition: 0.3s all ease-in-out;
+    }
+    
+ 
+    
+  #nav-Login{
+  color: var(--buttons);
+  }
+  
+    
+    .nav-title{
+      margin-right: 40px;
+  }
+  
+    .nav-container {
+      display: none;
+    }
+    
+  .login-shop-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  } */
+    
+  
+  
+
+ 
+
+
+
+
+
+
+ 
+  
+   
+    
