@@ -1,89 +1,102 @@
+import "./navbar.css";
 import React from "react";
+import { useState, useEffect } from "react";
 import Logo from "../../images/shopBag.jpg";
 import { NavLink, Link } from "react-router-dom";
-import "./navbar.css";
-import Dropdown from "../Dropdown/Dropdown";
+import DropdownShop from "../dropDown-shop/dropDown-shop";
+import DropdownAboutUs from "../dropDown-aboutUs/dropDown-aboutUs";
 import SearchBar from "../search/search";
 
+
+
+
+
 function Navbar() {
-  // const menuButton = () => {
-  //   document.getElementsByClassName("nav-container")[0].classList.toggle("nav-change");
-  //   document.getElementsByClassName("nav-navigation")[0].classList.toggle("nav-show");
-  //   document.getElementsByClassName("nav-whole-nav")[0].classList.toggle("nav-vertical");
-  // };
+
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [navLinksOpen, setNavLinksOpen] = useState(false);
 
   const menuButton = () => {
-    console.log("menuButton clicked");
-    document
-      .getElementsByClassName("nav-container")[0]
-      .classList.toggle("nav-change");
-    document
-      .getElementsByClassName("nav-navigation")[0]
-      .classList.toggle("nav-show");
-    document
-      .getElementsByClassName("nav-whole-nav")[0]
-      .classList.toggle("nav-vertical");
-    document
-      .getElementsByClassName("nav-whole-nav")[0]
-      .classList.toggle("nav-responsive");
-    console.log("nav-responsive class toggled");
+    setMenuOpen(!menuOpen);
   };
 
+  const navLinksButton = () => {
+    setNavLinksOpen(!navLinksOpen);
+  };
+
+  const navContainerClasses = ["nav-container"];
+  const navNavigationClasses = ["nav-navigation"];
+  const navWholeNavClasses = ["nav-whole-nav"];
+
+  if (menuOpen) {
+    navContainerClasses.push("nav-change");
+    navNavigationClasses.push("nav-show");
+    navWholeNavClasses.push("nav-vertical");
+  }
+
+  if (navLinksOpen) {
+    navNavigationClasses.push("nav-links-show");
+  }
+
   return (
-    <nav className="nav-whole-nav">
-      <div className="nav-navigation">
-        <NavLink to="/" className="nav-link" onClick={menuButton}>
-          Home
-        </NavLink>
-        <NavLink to="/about" className="nav-link" onClick={menuButton}>
-          About
+
+    
+    
+    <nav id="nav-whole-nav"  className={navWholeNavClasses.join(" ")}>
+
+
+
+        <div id="nav-container" className={navContainerClasses.join(" ")} onClick={menuButton}>
+                <div className="nav-bar1"></div>
+                <div className="nav-bar2"></div>
+                <div className="nav-bar3"></div>
+        </div>
+
+    
+      <div className="nav-links-container   nav-navigation" onClick={navLinksButton}>
+
+      <div className={navNavigationClasses.join(" ")}>
+       
+
+        <NavLink className="nav-link " onClick={menuButton}>
+          <DropdownShop className="dropDown-shop" />
         </NavLink>
 
-        <Dropdown />
-        <NavLink to="/event" className="nav-link" onClick={menuButton}>
-          Event
+        <NavLink className="nav-link" onClick={menuButton}>
+          <DropdownAboutUs className="dropDown-about" />
         </NavLink>
 
-        <Link
-          to="/Contact"
-          id="nav-Contact"
-          className="nav-link"
-          onClick={menuButton}>
-          Contact us
+        <NavLink to="/event" className="nav-link  navEvent"onClick={menuButton}>
+          Events
+        </NavLink>
+
+        <Link to="/Contact" id="nav-Contact" className="nav-link"onClick={menuButton}>
+          Contact
         </Link>
       </div>
 
       <div className="nav-logo">
-        <Link className="nav-logo-title nav-link" to="/">
-          <span className="nav-title">Bent el day3aa</span>
+        <Link className="nav-logo-title " to="/">
+          <span className="nav-title">Rooted</span>
         </Link>
       </div>
 
       <div className="login-shop-icon">
         <SearchBar className="searchBar" />
-        <Link
-          to="/Login"
-          id="nav-Login"
-          className="nav-link"
-          onClick={menuButton}>
+        <Link to="/Login" id="nav-Login" className="nav-link" onClick={menuButton}>
           Login
         </Link>
         <img
           className="shop-icon"
           src={Logo}
-          width="40"
-          height="40"
+          width="30"
+          height="30"
           alt="shop icon"
         />
       </div>
 
-      <div className="nav-menu">
-        <div className="nav-container" onClick={menuButton}>
-          <div className="nav-bar1"></div>
-          <div className="nav-bar2"></div>
-          <div className="nav-bar3"></div>
-        </div>
       </div>
+ 
     </nav>
   );
 }
