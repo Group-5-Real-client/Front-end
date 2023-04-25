@@ -1,8 +1,11 @@
-function Login(){
-    return(
-        <div>
-            Login
-        </div>
-    )
+import Signin from "../../Component/Signin/index.js";
+
+
+function Login() {
+  return (
+    <div>
+      <Signin />
+    </div>
+  );
 }
-export default Login
+export default Login;

@@ -16,7 +16,6 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-
       <Routes>
         <Route path="About" element={<AboutUs />} />
         <Route path="Event" element={<Event />} />
