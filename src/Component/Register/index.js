@@ -101,8 +101,8 @@ const Register = () => {
   return (
     <div className="register-form">
       <div className="register-links">
-        <NavLink to="/Register">Sign up</NavLink>
         <NavLink to="/login">Sign in</NavLink>
+        <NavLink to="/Register">Sign up</NavLink>
       </div>
       <form className="register-inputs" onSubmit={handleSubmit}>
         {errors.username && <p className="error">{errors.username}</p>}
