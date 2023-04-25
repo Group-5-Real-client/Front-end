@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  min-height: 65vh;
   margin: auto 5%;
   flex-direction: column;
 }
@@ -10,7 +10,7 @@
 .register-links {
   display: flex;
   justify-content: space-around;
-  width: 400px;
+  width: 430px;
   margin-bottom: 20px;
 }
 
