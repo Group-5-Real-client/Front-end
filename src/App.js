@@ -11,24 +11,26 @@ import Product from "./Pages/Product/Product";
 import Login from "./Pages/Login/Login";
 import Home from "./Pages/Home/Home";
 import Signup from "./Pages/Signup";
+import Dashboard from "./Pages/Dashboard/dashboard.js";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="About" element={<AboutUs />} />
-        <Route path="Event" element={<Event />} />
-        <Route path="Contact" element={<ContactUs />} />
-        <Route path="Category" element={<Category />} />
-        <Route path="Product" element={<Product />} />
-        <Route path="Login" element={<Login />} />
-        <Route path="Home" element={<Home />} />
-        <Route path="Register" element={<Signup />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <Header />
+            <Routes>
+                <Route path="About" element={<AboutUs />} />
+                <Route path="Event" element={<Event />} />
+                <Route path="Contact" element={<ContactUs />} />
+                <Route path="Category" element={<Category />} />
+                <Route path="Product" element={<Product />} />
+                <Route path="Login" element={<Login />} />
+                <Route path="Home" element={<Home />} />
+                <Route path="Register" element={<Signup />} />
+                <Route path="dashboard" element={<Dashboard />} />
+            </Routes>
+            <Footer />
+        </BrowserRouter>
+    );
 }
 
 export default App;
