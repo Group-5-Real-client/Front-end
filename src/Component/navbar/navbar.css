@@ -1,32 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap'); 
+@import url("https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap");
 
-
-#nav-whole-nav .nav-links-container{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 50px 10%;
-  width: 100%;
+.nav-links-container {
+  position: relative;
 }
 
-#nav-whole-nav:hover{
-  background-color: var(--accent-colors);
+.dropDown-shop {
+  position: relative;
+}
+.navs__links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.navs__links .nav__nav {
+  list-style: none;
+  text-decoration: none;
   transition: all 0.3s ease 0s;
 }
 
-.login-shop-icon{
+#nav-whole-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 50px 10%;
+  width: 100%;
+  border-bottom: 1px solid var(--accent-colors);
+}
+
+#nav-whole-nav:hover {
+  background-color: var(--accent-colors);
+  transition: all 3s ease 0s;
+}
+
+.login-shop-icon {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-
-
-.nav-logo{
+.nav-logo {
   cursor: pointer;
 }
 
-.nav-link{
+.nav-link {
   font-weight: 500;
   color: var(--button);
   padding: 0 10px;
@@ -36,25 +55,36 @@
   transition: all 2s ease 0s;
 }
 
-
-
-.nav-navigation > .nav-link:hover{
+.navs__links > .nav-link:hover  {
   border-bottom: 1px solid var(--accent-colors);
   opacity: 0.7;
 }
 
+.navEvent:hover{
+  border-bottom: 1px solid var(--accent-colors);
+  transition: all 2s ease 0s;
+  opacity: 0.7;
+}
 
-.nav-title{
+.shop___link {
+  position: absolute;
+  left: 0;
+}
+
+.menu__box {
+  position: relative;
+}
+
+.nav-title {
   font-size: 42px;
-  font-family: 'Gochi Hand', cursive;   
-
+  font-family: "Gochi Hand", cursive;
 }
 
 #nav-Contact {
-  transition: 2s all ease-in-out ;
+  transition: 2s all ease-in-out;
 }
 
-.nav-logo-title{
+.nav-logo-title {
   font-weight: 500;
   color: var(--button);
   padding: 0 10px;
@@ -64,24 +94,58 @@
   transition: all 2s ease 0s;
 }
 
-#nav-container {
+
+
+.hamburger-menu {
   display: none;
 }
 
 
-/* ============================== */
+
 @media screen and (max-width: 768px) {
   #nav-whole-nav {
+    position: relative;
+    bottom: 25px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     box-shadow: 0px 5px 15px 0px rgba(10, 10, 10, 0.1);
     -webkit-box-shadow: 0px 5px 15px 0px rgba(10, 10, 10, 0.1);
     -moz-box-shadow: 0px 5px 15px 0px rgba(10, 10, 10, 0.1);
     padding-right: 2%;
     padding-left: 2%;
+  }
+
+  .nav-title {
+    margin-left: 45px;
+  }
+
+  .navs__links {
+    display: none;
+  }
+
+  .menu__btn {
+    margin-top: -25px;
+  }
+
+  #nav-Login {
+    display: none;
+  }
+
+  ._persone_link_icon {
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+  }
+
+  .menu_icon_link {
+    position: absolute;
+    left: 25px;
+    top: 12%;
+    display: block;
+    font-size: 35px;
   }
 
   .nav-vertical {
@@ -99,6 +163,104 @@
     margin: auto;
   }
 
+  /* ======= */
+
+  #menu__toggle {
+    opacity: 0;
+    margin-top: 40px;
+  }
+
+  #menu__toggle:checked ~ .menu__btn > span {
+    transform: rotate(45deg);
+  }
+  #menu__toggle:checked ~ .menu__btn > span::before {
+    top: 0;
+    transform: rotate(0);
+  }
+  #menu__toggle:checked ~ .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+  }
+  #menu__toggle:checked ~ .menu__box {
+    visibility: visible;
+    left: 0;
+  }
+  .hamburger-menu {
+    display: block;
+  }
+
+  .menu__btn {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 64px;
+    left: 20px;
+
+    width: 26px;
+    height: 26px;
+
+    cursor: pointer;
+    z-index: 5;
+  }
+
+  .menu__btn > span,
+  .menu__btn > span::before,
+  .menu__btn > span::after {
+    display: block;
+    position: absolute;
+
+    width: 100%;
+    height: 2px;
+
+    background-color: #616161;
+
+    transition-duration: 0.25s;
+  }
+  .menu__btn > span::before {
+    content: "";
+    top: -8px;
+  }
+  .menu__btn > span::after {
+    content: "";
+    top: 8px;
+  }
+
+  .menu__box {
+    display: block;
+    position: fixed;
+    visibility: hidden;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    height: 100%;
+    margin: 0;
+    padding: 80px 0;
+    list-style: none;
+    background-color: #eceff1;
+    box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
+    transition-duration: 0.25s;
+    z-index: 2;
+  }
+
+  .menu__item {
+    display: block;
+    padding: 12px 24px;
+
+    color: #333;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition-duration: 0.25s;
+  }
+  .menu__item:hover {
+    background-color: #cfd8dc;
+  }
+  /* ======== */
+
   #nav-container {
     display: inline-block;
     cursor: pointer;
@@ -106,204 +268,112 @@
     padding: 10px;
   }
 
-  .nav-bar1,
-  .nav-bar2,
-  .nav-bar3 {
-    width: 35px;
-    height: 5px;
-    background-color: var(--button);
-    margin: 6px 0;
-    transition: 0.3s;
-  }
-
-  .nav-change .nav-bar1 {
-    transform: translate(0, 11px) rotate(-45deg);
-  }
-
-  .nav-change .nav-bar2 {
-    opacity: 0;
-  }
-
-  .nav-change .nav-bar3 {
-    transform: translate(0, -11px) rotate(45deg);
-  }
-
   .nav-navigation {
     display: none;
   }
 
-  .nav-show {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    width: 100%;
-    left: 0;
-    z-index: 1;
-    background-color: var(--accent-colors);
-    margin: 0;
-    height: 91vh;
+  .nav-link {
+    font-size: 14px;
   }
-
- 
-
-
 }
 
+.links___navs_toggle {
+  font-size: 14px;
+}
 
-/* == */
+.nav-btn {
+  height: 50px; 
+  width: 50px; 
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-/* == */
-/* -=======================================- */
-/*                     old                   */
-/* -=======================================- */
-/* @media screen and (max-width: 960px) {
-  .nav-menu {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border-top: 1pxsolid #fff;
-    position: absolute;
-    top: 80px;
-    left: -110%;
-    opacity: 1;
-    transition: all 0.5s ease;
-  }
+.nav-btn span {
+  width: 40px; 
+  height: 5px; 
+  margin-bottom: -14px; 
+  background-color: black;
+  transition: transform 0.5s; 
+}
 
-  .nav-menu.active {
-    background: #1f5156;
-    left: 0px;
-    opacity: 1;
-    transition: all 0.5s ease;
-    z-index: 1;
-  }
-  .nav-item .active {
-    color: #ffdd40;
-    border: none;
-  }
-  .nav-links {
-    padding: 1.5rem;
-    width: 100%;
-    display: table;
-  }
+.nav-on span:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
 
-  .nav-icon {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(-100%, 60%);
-    font-size: 1.8rem;
-    cursor: pointer;
-    color: #ffdd40;
-  }
-} */
+.nav-on span:nth-child(2) {
+  opacity: 0;
+}
 
-/* =========================================================
-============================================================== */
-/* @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');  
-  
-  .nav-link {
-      text-decoration: none;
-      color: var(--buttons);
-    }
-    
-    .nav-whole-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-      flex-wrap: nowrap;
-      padding: 40px 0;
-      z-index: -2;
-      background-color: yellowgreen;   
-      overflow: hidden;  
-    }
+.nav-on span:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
 
-    .nav-navigation{
-      margin-left: 10px;
-    }
+.nav-btn {
+  width: 50px;
+  height: 50px;
+  box-sizing: border-box;
+  display: block;
 
-   
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 999999;
+}
 
- 
+.nav-btn span {
+  display: block;
+  position: absolute;
+  top: calc(50% / 2 - 5px / 2);
+  bottom: calc(50% / 2 - 5px / 2);
+  left: calc((50px - 40px) / 2);
+  right: calc((50px - 40px) / 2);
+  background: darkCyan;
+  transition: all 0s;
+  transition-delay: 0.5s;
+}
 
-   
-   
-    .nav-logo-title {
-      font-family: 'Gochi Hand', cursive;   
-      margin:0 200px;  
-      overflow: hidden;       
-      
-    }
+.nav-btn span::before,
+.nav-btn span::after {
+  content: "";
+  width: 100%;
+  height: 5px;
+  display: block;
+  position: absolute;
+  left: 0;
+  background: darkCyan;
+  transition-duration: 0.5s, 0.5s, 1s;
+  transition-delay: 0.5s, 0s, 0s;
+}
 
-    .login-shop-icon{
-      margin-left: 80px;
-    }
-    
-    .nav-title {
-      margin-left: 1pc;
-      font-size: xxx-large;
-      text-decoration: none;
-      color: var(--buttons);
-      font-weight: 700;
-    }
+.nav-btn span::before {
+  top: -14px;
+  transition-property: top, transform, background;
+}
 
-  
-    .nav-navigation > .nav-link {
-      padding: 10px;
+.nav-btn span::after {
+  bottom: -14px;
+  transition-property: bottom, transform, background;
+}
 
-    }
-    
-    .nav-navigation > .nav-link:hover {
-      border-bottom: 1px solid var(--accent-colors);
-      opacity: 0.7;
-    }
-    
-    .nav-navigation > .nav-link:hover:focus {
-      border-bottom: 2px solid var(--accent-colors);
-      opacity: 1;
-    }
-    
-    .active {
-      border-bottom: 2px solid var(--accent-colors);
-      opacity: 1;
-    }
-    
-    #nav-Contact {
-      transition: 0.3s all ease-in-out;
-    }
-    
- 
-    
-  #nav-Login{
-  color: var(--buttons);
-  }
-  
-    
-    .nav-title{
-      margin-right: 40px;
-  }
-  
-    .nav-container {
-      display: none;
-    }
-    
-  .login-shop-icon{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  } */
-    
-  
-  
+.nav-btn.nav-on span {
+  background: none;
+}
 
- 
+.nav-btn.nav-on span::before,
+.nav-btn.nav-on span::after {
+  transition-delay: 0s, 0.5s, 0.5s;
+}
 
+.nav-btn.nav-on span::before {
+  top: 0;
+  transform: rotate(45deg);
+  background: crimson;
+}
 
-
-
-
-
- 
-  
-   
-    
+.nav-btn.nav-on span::after {
+  bottom: 0;
+  transform: rotate(-45deg);
+  background: crimson;
+}

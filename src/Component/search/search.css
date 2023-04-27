@@ -1,0 +1,39 @@
+.searchIcon{
+
+  color: var(--button);
+  font-size: 14px;
+  display: none;
+ }
+
+
+@media screen and (max-width: 768px) {
+
+    .searchIcon{
+     display: block;
+     position: absolute;
+     left: 60px;
+     top: 70px;
+     color: var(--button);
+     font-size: 14px;
+
+    
+
+    }
+
+    .fa-search{
+      display: none;
+      
+    }
+
+
+  }
+
+  @media screen and (min-width: 769px) {
+
+  #search-button .fa-search{
+    display: none;
+  }
+ 
+
+
+  }
