@@ -7,11 +7,14 @@ import DropdownShop from "../dropDown-shop/dropDown-shop";
 import DropdownAboutUs from "../dropDown-aboutUs/dropDown-aboutUs";
 import SearchBar from "../search/search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
   return (
     <nav id="nav-whole-nav" className="nav-links-container">
+      {/* === */}
+
+      {/* ===== */}
       <div class="hamburger-menu">
         <input id="menu__toggle" type="checkbox" />
         <label class="menu__btn" for="menu__toggle">
@@ -42,22 +45,31 @@ function Navbar() {
               Contact
             </Link>
           </li>
+
+          <li className="_persone_link_icon">
+            <FontAwesomeIcon icon={faUser} />
+
+            <Link to="/Login" id="nav-Login_mobile" className="nav-link">
+              Login
+            </Link>
+          </li>
         </ul>
       </div>
+
       <section className="navs__links ">
-        <NavLink className="nav-link ">
+        <NavLink className="nav__nav">
           <DropdownShop className="dropDown-shop" />
         </NavLink>
 
-        <NavLink className="nav-link">
+        <NavLink className="nav__nav">
           <DropdownAboutUs className="dropDown-about" />
         </NavLink>
 
-        <NavLink to="/event" className="nav-link  navEvent">
+        <NavLink to="/event" className="nav__nav nav-link  navEvent">
           Events
         </NavLink>
 
-        <Link to="/Contact" id="nav-Contact" className="nav-link">
+        <Link to="/Contact" id="nav-Contact" className="nav__nav  nav-link">
           Contact
         </Link>
       </section>
@@ -70,9 +82,10 @@ function Navbar() {
 
       <div className="login-shop-icon">
         <SearchBar className="searchBar" />
-        <Link to="/Login" id="nav-Login" className="nav-link">
+        <Link to="/Login" id="nav-Login" className="nav__nav  nav-link">
           Login
         </Link>
+
         <img
           className="shop-icon"
           src={Logo}
