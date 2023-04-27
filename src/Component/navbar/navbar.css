@@ -4,10 +4,6 @@
   position: relative;
 }
 
-/* .navs__links{
-  position: relative;
-} */
-
 .dropDown-shop {
   position: relative;
 }
@@ -59,8 +55,14 @@
   transition: all 2s ease 0s;
 }
 
-.navs__links > .nav-link:hover {
+.navs__links > .nav-link:hover  {
   border-bottom: 1px solid var(--accent-colors);
+  opacity: 0.7;
+}
+
+.navEvent:hover{
+  border-bottom: 1px solid var(--accent-colors);
+  transition: all 2s ease 0s;
   opacity: 0.7;
 }
 
@@ -92,87 +94,13 @@
   transition: all 2s ease 0s;
 }
 
-/*
- .menu_icon_link {
-  color: var(--button);
-  display: none;
-  position: relative;
-} */
 
-/* @media screen and (max-width: 768px) {
-  .menu_icon_link:hover + .navs__links,
-  .menu_icon_link:hover .navs__links {
-    display: block;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    position: absolute;
-    left: 35%;
 
-  } */
-
-/* .navs__links {
-    display: none;
-  } */
-
-/* .navs__links {
-    bottom: -105%;
-    position: absolute;
-    animation: linear ease;
-    animation-name: run;
-    animation-duration: 2s;
-    background-color: black;
-    width: 70%;
-    height: 1000px;
-    color: white;
-    right: 30px;
-  }
-  @keyframes run {
-    0% {
-      left: 0;
-    }
-    50% {
-      left: 40%;
-    }
-
-  } */
-
-/* .menu_icon_link::before{
-    content: "";
-    position: absolute;
-    top: -15px;
-    width:600px ;
-    overflow: hidden;
-    height: 250px;
-    background-color: var(--accent-colors);
-    z-index: -1;
-  }
-
-   .menu_icon_link::after{
-    content: "";
-    position: absolute;
-    top: -150px;
-    width:800px ;
-    overflow: hidden;
-    height: 450px;
-    background-color: transparent;
-    z-index: 81;
-    left: -220px;
-  }
-
-  .navs__links .nav-link{
-    padding-top: 25px;
-  }
-
-} */
-
-/* code pen */
 .hamburger-menu {
   display: none;
 }
 
-/* code pen */
+
 
 @media screen and (max-width: 768px) {
   #nav-whole-nav {
@@ -352,11 +280,10 @@
 .links___navs_toggle {
   font-size: 14px;
 }
-/* ============================== */
 
 .nav-btn {
-  height: 50px; /* $btn-height */
-  width: 50px; /* $btn-width */
+  height: 50px; 
+  width: 50px; 
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -364,11 +291,11 @@
 }
 
 .nav-btn span {
-  width: 40px; /* $bar-width */
-  height: 5px; /* $bar-height */
-  margin-bottom: -14px; /* $bar-distance */
+  width: 40px; 
+  height: 5px; 
+  margin-bottom: -14px; 
   background-color: black;
-  transition: transform 0.5s; /* $nav-tog-dur */
+  transition: transform 0.5s; 
 }
 
 .nav-on span:nth-child(1) {

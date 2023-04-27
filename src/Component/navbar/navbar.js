@@ -65,7 +65,7 @@ function Navbar() {
           <DropdownAboutUs className="dropDown-about" />
         </NavLink>
 
-        <NavLink to="/event" className="nav__nav nav-link  navEvent">
+        <NavLink to="/event" className="nav__nav  nav-link  navEvent">
           Events
         </NavLink>
 
