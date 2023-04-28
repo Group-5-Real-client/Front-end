@@ -132,10 +132,14 @@
 @media screen and (max-width: 1000px) {
 
 
+  .about_child_container{
+    margin-top: 30px;
+  }
+
+
   .about_img:hover {
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.5) 10px 10px 20px;
-    transform: scale(1.1);
     transition: 0.3s;
   }
 
@@ -159,7 +163,7 @@
 
   
 
-  @keyframes bouncing {
+  /* @keyframes bouncing {
     from,
     to {
       transform: scale(0.7, 0.7);
@@ -172,8 +176,8 @@
     }
     75% {
       transform: scale(0.7, 0.9);
-    }
-  }
+    } */
+  /* } */
 
   .ourBloc_title {
     font-size: 24px;
@@ -321,7 +325,7 @@
 
   .about_img:hover {
     box-shadow: rgba(0, 0, 0, 0.5) 20px 20px 30px;
-    transform: scale(1.2);
+    /* transform: scale(1.2); */
     transition: 0.3s;
     z-index: 1;
   }
@@ -342,7 +346,7 @@
     overflow: hidden;
   }
 
-  @keyframes bouncing {
+  /* @keyframes bouncing {
     from,
     to {
       transform: scale(0.7, 0.7);
@@ -356,7 +360,7 @@
     75% {
       transform: scale(0.7, 0.9);
     }
-  }
+  } */
 
   .mission_box {
     margin-right: 20px;

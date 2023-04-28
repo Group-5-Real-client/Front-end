@@ -11,8 +11,8 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
   return (
-    <nav className="parentNavbar">
-      <section  id="nav-whole-nav" className="nav-links-container">
+    <section className="parentNavbar">
+      <nav  id="nav-whole-nav" className="nav-links-container">
         <main class="hamburger-menu">
           <input id="menu__toggle" type="checkbox" />
           <label class="menu__btn" for="menu__toggle">
@@ -92,8 +92,8 @@ function Navbar() {
             alt="shop icon"
           />
         </div>
-      </section>
-    </nav>
+      </nav>
+    </section>
   );
 }
 

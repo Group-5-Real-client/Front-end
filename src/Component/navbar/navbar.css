@@ -22,7 +22,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
+  position: absolute;
   padding: 50px 10%;
   width: 100%;
   border-bottom: 1px solid var(--accent-colors);
@@ -60,6 +60,7 @@ color: var(--button);
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .nav-logo {
@@ -207,17 +208,17 @@ color: var(--button);
   .hamburger-menu {
     display: block;
   }
-
   .menu__btn {
     display: flex;
     align-items: center;
-    position: fixed;
+    position: absolute;/* the toggle icon it was position fixed change it to absolute */
     top: 88px;
     left: 20px;
     width: 26px;
     height: 26px;
     cursor: pointer;
     z-index: 5;
+    color: var(--button);
   }
 
   .menu__btn > span,
