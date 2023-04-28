@@ -1,7 +1,7 @@
 const images = [
     {
       imgURL:
-        "https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+        "https://c0.wallpaperflare.com/preview/74/701/282/textures-flatlay-craft-diy-sewing.jpg",
       imgAlt: "img-1"
     },
     {
@@ -16,7 +16,7 @@ const images = [
     },
     {
       imgURL:
-        "https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+        "https://p0.pxfuel.com/preview/565/155/820/soda-clothes-peg-glass-bottle-cork.jpg",
       imgAlt: "img-4"
     }
   ];
