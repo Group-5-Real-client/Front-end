@@ -28,10 +28,10 @@ function HeroSectionHome() {
 
           <div className="home_wrap_bottom">
             <p className="home_hero_text">welcome to our community</p>
-            <div>
+            <div className="">
               <Link
                 to="/register"
-                className="home_hero_link home_hero_link_button">
+                className="home_hero_link     home_hero_link_button">
                 Join Today
               </Link>
             </div>
