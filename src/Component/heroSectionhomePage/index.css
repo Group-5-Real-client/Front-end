@@ -94,7 +94,7 @@
 
     .home_hero_text{
       font-size: 20px;
-      top: -1pc;
+      top: -2pc;
       color: black;
     }
     .home_wrap_bottom{
@@ -148,7 +148,7 @@
   
     .home_hero_link {
       position: block;
-      top: 0.7pc;
+      top: -1pc;
       text-decoration: none;
       color: var(--primary-color);
       background-color: var(--accent-colors);
