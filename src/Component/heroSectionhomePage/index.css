@@ -1,42 +1,44 @@
 
 
 
-.slider-container {
-  position: relative;
-  margin-top: -100px;
-  z-index: 1;
-}
-
-
-.slider-wrapper {
-  position: relative;
-}
-
-.slider-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 .home_hero_body{
   position: relative;
 }
 
-.navbarchild{
+.home_wrap_bottom{
   position: absolute;
+  top: 50%;
+  right: 10%;
+}
+
+ .home_hero_text{
+  color: black;
+  font-weight: bold;
+  margin-top: 0;
+  font-size: 5pc;
+  text-align: center;
+}
+
+.home_wrap_bottom .home_hero_link{
+ background-color: var(--button);
+ color: var(--accent-colors);
+}
+
+.home_hero_link {
+  position: relative;
+  top: 6pc;
+  text-decoration: none;
+  color: var(--primary-color);
+  background-color: var();
+  border-radius: 5px;
+  padding: 9px 2pc;
+  transition: 0.3s all ease-in-out;
+}
+
+
+
+.home_hero_link:hover {
+  opacity: 0.7;
 }
 
 .slick-slide img {
@@ -46,12 +48,6 @@
   }
   
 
-.home_hero_title {
-    margin-top: 0;
-    font-size: 5pc;
-    text-align: center;
-  }
-  
   .home_hero_accent_one {
     color: var(--primary-color);
   }
@@ -83,29 +79,25 @@
     top: 5pc;
   }
   
-  .home_hero_link {
-    position: relative;
-    top: 6pc;
-    text-decoration: none;
-    color: var(--primary-color);
-    background-color: var();
-    border-radius: 5px;
-    padding: 9px 2pc;
-    transition: 0.3s all ease-in-out;
-  }
   
-  .home_hero_link:hover {
-    opacity: 0.7;
-  }
+  
+
   
   .home_hero_link:hover:focus {
     opacity: 1;
   }
+
+ 
   
   @media screen and (max-width: 1000px) {
+
+
+    .home_wrap_bottom{
+      position: absolute;
+      bottom: 0;
+    }
     .home_hero_title {
       margin-top: auto;
-      font-size: xxx-large;
     }
   
     .home_hero_accent_one {
@@ -142,14 +134,18 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
     }
+
+
   
     .home_hero_text {
-      color: var(--primary-color);
-      font-size: large;
-      position: inline-block;
+      /* color: var(--primary-color); */
+      font-size: 14px;
+      /* position: inline-block; */
       top: 0pc;
-      text-align: center;
+      text-align: start;
+      margin-left: 25px;
     }
   
     .home_hero_link {
