@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from "react";
+import Navbar from "../navbar/navbar";
+import React from "react";
 import Slider from "react-slick";
+import { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import "./index.css";
 import img1 from "../../images/pic_1.jpg";
-import img2 from "../../images/pic_2.jpg";
-import img3 from "../../images/pic_3.jpg";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import img2 from "../../images/pic_1.jpg";
+import img3 from "../../images/pic_1.jpg";
 
-
+function HeroSectionHome() {
 
   return (
-    <div className="hero-container">
-      <div className="hero-section">
-        {/* <Navbar className="navbarchild" /> */}
-        <main>
+    <>
+      <section className="home_hero_body">
+
+        <main className="">
           <section className="home_hero_section">
+
             <div className="home_hero_container home_hero_row">
               <div className="home_hero_wrap_top">
                 <h1 className="home_hero_title">
@@ -28,8 +29,7 @@ import "slick-carousel/slick/slick-theme.css";
                 <div>
                   <Link
                     to="/register"
-                    className="home_hero_link home_hero_link_button"
-                  >
+                    className="home_hero_link  home_hero_link_button">
                     Join Today
                   </Link>
                 </div>
@@ -37,36 +37,34 @@ import "slick-carousel/slick/slick-theme.css";
             </div>
           </section>
         </main>
-      </div>
-
-     
-    </div>
+      </section>
+    </>
   );
 }
 
 export default HeroSectionHome;
 
-
-// import Navbar from "../navbar/navbar";
-// import React from "react";
+// import React, { useState, useEffect } from "react";
 // import Slider from "react-slick";
-// import { useState, useEffect } from "react";
 // import { NavLink, Link } from "react-router-dom";
 // import "./index.css";
 // import img1 from "../../images/pic_1.jpg";
-// import img2 from "../../images/pic_1.jpg";
-// import img3 from "../../images/pic_1.jpg";
+// import img2 from "../../images/pic_2.jpg";
+// import img3 from "../../images/pic_3.jpg";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 
 // function HeroSectionHome() {
 
 //   return (
-//     <>
-//       <section className="home_hero_body">
-//         <Navbar className="navbarchild" />
 
-//         <main className="">
+
+//   return (
+//     <div className="hero-container">
+//       <div className="hero-section">
+//         {/* <Navbar className="navbarchild" /> */}
+//         <main>
 //           <section className="home_hero_section">
-
 //             <div className="home_hero_container home_hero_row">
 //               <div className="home_hero_wrap_top">
 //                 <h1 className="home_hero_title">
@@ -79,7 +77,8 @@ export default HeroSectionHome;
 //                 <div>
 //                   <Link
 //                     to="/register"
-//                     className="home_hero_link  home_hero_link_button">
+//                     className="home_hero_link home_hero_link_button"
+//                   >
 //                     Join Today
 //                   </Link>
 //                 </div>
@@ -87,9 +86,14 @@ export default HeroSectionHome;
 //             </div>
 //           </section>
 //         </main>
-//       </section>
-//     </>
+//       </div>
+
+     
+//     </div>
 //   );
 // }
 
 // export default HeroSectionHome;
+
+
+
