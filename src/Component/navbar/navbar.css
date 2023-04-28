@@ -1,12 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap");
 
-.nav-links-container {
+.parentNavbar{
   position: relative;
 }
 
-.dropDown-shop {
-  position: relative;
-}
+
 .navs__links {
   display: flex;
   align-items: center;
@@ -28,11 +26,34 @@
   padding: 50px 10%;
   width: 100%;
   border-bottom: 1px solid var(--accent-colors);
+  z-index: 1;
 }
 
 #nav-whole-nav:hover {
   background-color: var(--accent-colors);
-  transition: all 3s ease 0s;
+  transition: all 1s ease 0s;
+  z-index: 9;
+  color: var(--button);
+  
+}
+
+#nav-whole-nav:hover  .nav-title  {
+color: var(--button);
+}
+#nav-whole-nav:hover  .nav-link  {
+  color: var(--button);
+  }
+  
+
+.nav__nav{
+  color: var(--accent-colors);
+}
+.nav-link{
+  color: var(--button);
+}
+
+#nav-whole-nav:hover  .nav__nav{
+  color: var(--button);
 }
 
 .login-shop-icon {
@@ -47,7 +68,7 @@
 
 .nav-link {
   font-weight: 500;
-  color: var(--button);
+  color: var(--accent-colors);
   padding: 0 10px;
   font-size: 14px;
   list-style: none;
@@ -78,6 +99,7 @@
 .nav-title {
   font-size: 42px;
   font-family: "Gochi Hand", cursive;
+  color: var(--accent-colors);
 }
 
 #nav-Contact {
@@ -105,7 +127,6 @@
 @media screen and (max-width: 768px) {
   #nav-whole-nav {
     position: relative;
-    bottom: 25px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -114,8 +135,6 @@
     box-shadow: 0px 5px 15px 0px rgba(10, 10, 10, 0.1);
     -webkit-box-shadow: 0px 5px 15px 0px rgba(10, 10, 10, 0.1);
     -moz-box-shadow: 0px 5px 15px 0px rgba(10, 10, 10, 0.1);
-    padding-right: 2%;
-    padding-left: 2%;
   }
 
   .nav-title {
@@ -193,12 +212,10 @@
     display: flex;
     align-items: center;
     position: fixed;
-    top: 64px;
+    top: 88px;
     left: 20px;
-
     width: 26px;
     height: 26px;
-
     cursor: pointer;
     z-index: 5;
   }
@@ -316,7 +333,7 @@
   box-sizing: border-box;
   display: block;
 
-  position: fixed;
+  position: relative;
   top: 15px;
   left: 15px;
   z-index: 999999;

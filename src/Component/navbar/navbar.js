@@ -11,89 +11,88 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
   return (
-    <nav id="nav-whole-nav" className="nav-links-container">
-      {/* === */}
+    <nav className="parentNavbar">
+      <section  id="nav-whole-nav" className="nav-links-container">
+        <main class="hamburger-menu">
+          <input id="menu__toggle" type="checkbox" />
+          <label class="menu__btn" for="menu__toggle">
+            <span></span>
+          </label>
 
-      {/* ===== */}
-      <div class="hamburger-menu">
-        <input id="menu__toggle" type="checkbox" />
-        <label class="menu__btn" for="menu__toggle">
-          <span></span>
-        </label>
+          <ul class="menu__box">
+            <li className="">
+              <NavLink className="nav-link ">
+                <DropdownShop className="dropDown-shop    menu__item" />
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="nav-link menu__item">
+                <DropdownAboutUs className="dropDown-about" />
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/event" className="nav-link  navEvent menu__item">
+                Events
+              </NavLink>
+            </li>
+            <li>
+              <Link
+                to="/Contact"
+                id="nav-Contact"
+                className="nav-link menu__item">
+                Contact
+              </Link>
+            </li>
 
-        <ul class="menu__box">
-          <li className="">
-            <NavLink className="nav-link ">
-              <DropdownShop className="dropDown-shop    menu__item" />
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className="nav-link menu__item">
-              <DropdownAboutUs className="dropDown-about" />
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/event" className="nav-link  navEvent menu__item">
-              Events
-            </NavLink>
-          </li>
-          <li>
-            <Link
-              to="/Contact"
-              id="nav-Contact"
-              className="nav-link menu__item">
-              Contact
-            </Link>
-          </li>
+            <li className="_persone_link_icon">
+              <FontAwesomeIcon icon={faUser} />
 
-          <li className="_persone_link_icon">
-            <FontAwesomeIcon icon={faUser} />
+              <Link to="/Login" id="nav-Login_mobile" className="nav-link">
+                Login
+              </Link>
+            </li>
+          </ul>
+        </main>
 
-            <Link to="/Login" id="nav-Login_mobile" className="nav-link">
-              Login
-            </Link>
-          </li>
-        </ul>
-      </div>
+        <section className="navs__links  ">
+          <NavLink className="nav__nav">
+            <DropdownShop className="dropDown-shop" />
+          </NavLink>
 
-      <section className="navs__links ">
-        <NavLink className="nav__nav">
-          <DropdownShop className="dropDown-shop" />
-        </NavLink>
+          <NavLink className="nav__nav">
+            <DropdownAboutUs className="dropDown-about" />
+          </NavLink>
 
-        <NavLink className="nav__nav">
-          <DropdownAboutUs className="dropDown-about" />
-        </NavLink>
+          <NavLink to="/event" className="nav__nav  nav-link  navEvent">
+            Events
+          </NavLink>
 
-        <NavLink to="/event" className="nav__nav  nav-link  navEvent">
-          Events
-        </NavLink>
+          <Link to="/Contact" id="nav-Contact" className="nav__nav  nav-link">
+            Contact
+          </Link>
+        </section>
 
-        <Link to="/Contact" id="nav-Contact" className="nav__nav  nav-link">
-          Contact
-        </Link>
+        <div className="nav-logo">
+          <Link className="nav-logo-title " to="/">
+            <span className="nav-title">Rooted</span>
+          </Link>
+        </div>
+
+        <div className="login-shop-icon">
+          <SearchBar className="searchBar" />
+          <Link to="/Login" id="nav-Login" className="nav__nav  nav-link">
+            Login
+          </Link>
+
+          <img
+            className="shop-icon"
+            src={Logo}
+            width="25"
+            height="25"
+            alt="shop icon"
+          />
+        </div>
       </section>
-
-      <div className="nav-logo">
-        <Link className="nav-logo-title " to="/">
-          <span className="nav-title">Rooted</span>
-        </Link>
-      </div>
-
-      <div className="login-shop-icon">
-        <SearchBar className="searchBar" />
-        <Link to="/Login" id="nav-Login" className="nav__nav  nav-link">
-          Login
-        </Link>
-
-        <img
-          className="shop-icon"
-          src={Logo}
-          width="25"
-          height="25"
-          alt="shop icon"
-        />
-      </div>
     </nav>
   );
 }
