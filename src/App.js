@@ -7,10 +7,11 @@ import AboutUs from "./Pages/AboutUs/index";
 import ContactUs from "./Pages/ContactUs/index";
 import Event from "./Pages/Event/index";
 import Category from "./Pages/Category/Category";
-import Product from "./Pages/Product/Product";
+import Products from "./Pages/Products/Product";
 import Login from "./Pages/Login/Login";
 import Home from "./Pages/Home/Home";
 import Signup from "./Pages/Signup";
+import  ProductPage from './Pages/product/index'
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
         <Route path="Event" element={<Event />} />
         <Route path="Contact" element={<ContactUs />} />
         <Route path="Category" element={<Category />} />
-        <Route path="Product" element={<Product />} />
+        <Route path="Product" element={<Products />} />
+        <Route path="OneProduct" element={<ProductPage />} />
         <Route path="Login" element={<Login />} />
         <Route path="Home" element={<Home />} />
         <Route path="Register" element={<Signup />} />
