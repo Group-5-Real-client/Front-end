@@ -1,0 +1,49 @@
+/* .Review{
+    display: grid;
+    width: 100%;
+} */
+
+
+.spr-review {
+    width: 100%;
+    min-height: 250px;
+    display: inline-block;
+    padding: 20px 25px ;
+    margin-bottom: 25px t;
+    margin-top: 25px;
+    border: 1px solid var(--button);
+    border-radius: 12px;
+  margin-bottom: 50px;
+  
+  }
+  
+  #shopify-product-reviews .spr-review-header-title {
+    display: block;
+    /* margin: 20px; */
+    align-items: center;
+    color: var(--primary-color);
+  }
+
+  .review-card{
+    padding-right: 20px;
+  }
+ 
+  .spr-review-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+  
+
+ .spr-review-content-body{
+    color: #AAAA;
+ }
+
+ 
+  .slick-arrow {
+    background-color:white;
+    display: none;
+  }
