@@ -1,0 +1,179 @@
+/* Overall page style */
+/* body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+  } */
+  
+  /* Main container with flex layout */
+  .contact-us {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 900px;
+    padding: 50px 0;
+    
+  }
+  
+  /* Left section with animation */
+  .contact-us__left {
+    animation: slide-left 1s ease-out forwards;
+    flex-basis: 50%;
+    padding: 30px 60px;
+ 
+  }
+  
+  /* Right section with animation */
+  .contact-us__right {
+    animation: slide-right 1s ease-out forwards;
+    flex-basis: 50%;
+    padding: 0 60px;
+  }
+  
+  /* Title style */
+  .contact-us__title {
+    color: #333;
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-shadow: 1px -1px 20px var(--accent-colors);
+  }
+  
+  /* Content style */
+  .contact-us__content {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+  .contact-us__detail{
+    display: flex;
+  }
+  /* Social icons style */
+  .contact-us__social {
+    display: flex;
+  color: var(--button);
+    margin-bottom: 40px;
+  }
+  
+  .contact-us__icon {
+    color:var(--button);
+    font-size: 24px;
+    margin: 0 10px;
+    transition: color 0.2s ease-out;
+  }
+ 
+  .contact-us__icon:hover {
+    color: #333;
+  }
+  
+  /* Form style */
+  .contact-us__form {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px var(--accent-colors);
+    padding: 40px;
+    border-radius: 20px;
+  }
+  
+  /* Input group style */
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  /* Input label style */
+  .input-label {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 10px;
+    transition: color 0.2s ease-out;
+  }
+  
+  /* Input field style */
+  .input {
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    padding: 10px;
+  }
+  
+  /* Submit button style */
+  button[type="submit"] {
+    background-color: #333;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 10px 20px;
+    transition: background-color 0.2s ease-out;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #555;
+  }
+  
+  /* Animations */
+  @keyframes slide-left {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slide-right {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+/* For screens smaller than 600px */
+@media (max-width: 600px) {
+  .contact-us {
+    flex-direction: column;
+    padding: 20px;
+  }
+  .contact-us__left,
+  .contact-us__right {
+    flex-basis: 100%;
+    padding: 20px;
+  }
+}
+
+/* For screens larger than 600px */
+@media (min-width: 600px) {
+  .contact-us {
+    padding: 50px 0;
+  }
+  .contact-us__left,
+  .contact-us__right {
+    flex-basis: 50%;
+    padding: 0 50px;
+  }
+}
+
+/* Adjustments for all screen sizes */
+.contact-us__icon {
+  font-size: 20px;
+}
+.contact-us__form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.input {
+  width: 100%;
+  max-width: 400px;
+}
