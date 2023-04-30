@@ -5,6 +5,7 @@ import Logo from "../../images/shopBag.jpg";
 import { NavLink, Link } from "react-router-dom";
 import DropdownShop from "../dropDown-shop/dropDown-shop";
 import DropdownAboutUs from "../dropDown-aboutUs/dropDown-aboutUs";
+import DropdownContact from "../dropDown-contact/dropDown-contact";
 import SearchBar from "../search/search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -40,7 +41,7 @@ function Navbar() {
                 to="/Contact"
                 id="nav-Contact"
                 className="nav-link menu__item">
-                Contact
+                 <DropdownContact className="dropDown-contact" />
               </Link>
             </li>
 
@@ -67,8 +68,8 @@ function Navbar() {
             Events
           </NavLink>
 
-          <Link to="/Contact" id="nav-Contact" className="nav__nav  nav-link">
-            Contact
+          <Link to="/Contact" id="nav-Contact" className="nav__nav  ">
+          <DropdownContact className="dropDown-contact" />
           </Link>
         </section>
 

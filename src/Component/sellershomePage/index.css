@@ -61,7 +61,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 20px;
+  margin: 20px 0px;
 }
 .about_mission_container-seller {
   display: flex;
@@ -80,7 +80,7 @@
   justify-content: center;
   flex-direction: column;
   margin-top: 20px;
-  margin-bottom: -10px;
+  margin-bottom: 10px;
 }
 
 .pay-value-seller {
@@ -89,6 +89,8 @@
   padding: 10px;
   border-radius: 5px;
   font-weight: bold;
+  background-color: var(--button);
+  color: white;
 }
 
 /* animation */
@@ -101,10 +103,34 @@
 
 /* ======================= */
 @media screen and (max-width: 1000px) {
-  .about_mission_container-seller
+  /* .about_mission_container-seller
     .mission_box-seller:hover
     .percentage-value-seller {
     display: block;
+  } */
+
+  /* .mission_box-seller .about_img-seller:hover + .boxes___container-seller .percentage-value-seller {
+    display: block;
+  } */
+
+  .mission_box-seller:hover .about_img-seller ~ .boxes___container-seller .percentage-value-seller {
+    display: block;
+  }
+  
+  
+  .pay-value-seller {
+    color: black;
+    margin-bottom: 20px;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    background-color: var(--button);
+    color: white;
+  }
+  .boxes___container-seller{
+    margin-top: 0px;
+    line-height: 0;
   }
 
   .boxes___container-seller {
@@ -160,7 +186,7 @@
     left: 2px;
     text-align: center;
     font-size: 14px;
-    padding: 10px 0px;
+    padding: 18px 0px;
     border-radius: 50%;
     width: 40px;
     height: 40px;

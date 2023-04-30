@@ -197,7 +197,7 @@
   
   .slider__item img {
     width: 100%;
-    height: auto;
+    height: calc(100vh - 9.5vh);
   }
   
   
@@ -205,8 +205,10 @@
     transform: translateX(-300%);
   }
   
-  .slider__item img {
-    width: 100%;
-    height: auto;
+  @media screen and (max-width: 1000px) {
+    .slider__item img{
+      height: calc(100vh - 35vh);
+    }
+
   }
-  
+

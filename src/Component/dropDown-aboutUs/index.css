@@ -18,9 +18,9 @@
   margin-left: 40px;
 }
 
-.dropdown-selected-option-about {
+/* .dropdown-selected-option-about {
   color: var(--buttons);
-}
+} */
 
 .about-nav-link-dropdown {
   position: relative;
@@ -37,7 +37,7 @@
 }
 
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
 
   .accordion-icon-about {
     display: none;
@@ -60,6 +60,11 @@
   }
 
 }
+
+
+
+
+
 @media screen and (min-width: 769px) {
 
  
@@ -81,7 +86,18 @@
     left: 25px;
     top: -80px;
     padding-bottom: 45px;
-    z-index: 2;
+    z-index: 1;
+  }
+  .accordion-content-about::after {
+    content: "";
+    position: absolute;
+    background-color: white;
+    width: 120px;
+    height: 20px;
+    left: 25px;
+    top: -14px;
+    padding-bottom: 45px;
+    z-index: 1;
   }
 
   .accordion-icon-about {
@@ -120,14 +136,14 @@
 
   .accordion-header-about:hover {
     border-bottom: 1px solid var(--accent-colors);
-    transition: all 2s ease 0s;
+    transition: all 5s ease 0s;
     opacity: 0.7;
   }
 
   .Our-story__link {
     position: absolute;
-    top: 110px;
-    color: var(--buttons);
+    top: 100px;
+    /* color: var(--buttons); */
     font-size: 14px;
     z-index: 2;
   }
@@ -184,16 +200,16 @@
     opacity: 0.7;
   }
 
-  .Our-Commitment__link {
+  /* .Our-Commitment__link {
     list-style: none;
   }
   .Our-Commitment__link:hover {
     opacity: 0.7;
-  }
-
+  } */
+/* 
   .FAQ__link:hover {
     opacity: 0.7;
-  }
+  } */
 
   .accordion-option-about {
     list-style: none;

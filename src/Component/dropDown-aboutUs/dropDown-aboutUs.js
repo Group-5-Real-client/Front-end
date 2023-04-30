@@ -65,7 +65,7 @@ function DropdownAboutUs() {
             </NavLink>
           </li>
 
-          <li className="accordion-option-about">
+          {/* <li className="accordion-option-about">
             <NavLink
               to="/Our-Commitment"
               className="about-nav-link-accordion Our-Commitment__link"
@@ -73,9 +73,9 @@ function DropdownAboutUs() {
             >
               Our Commitment
             </NavLink>
-          </li>
+          </li> */}
 
-          <li className="accordion-option-about">
+          {/* <li className="accordion-option-about">
             <NavLink
               to="/FAQ"
               className="about-nav-link-accordion FAQ__link"
@@ -83,7 +83,7 @@ function DropdownAboutUs() {
             >
               FAQ's
             </NavLink>
-          </li>
+          </li> */}
         </ul>
       )}
     </div>

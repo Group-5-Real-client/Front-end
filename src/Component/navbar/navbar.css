@@ -32,7 +32,7 @@
 #nav-whole-nav:hover {
   background-color: var(--accent-colors);
   transition: all 1s ease 0s;
-  z-index: 9;
+  /* z-index: 1; */
   color: var(--button);
   
 }
@@ -78,14 +78,14 @@ color: var(--button);
 }
 
 .navs__links > .nav-link:hover  {
-  border-bottom: 1px solid var(--accent-colors);
+  /* border-bottom: 1px solid var(--accent-colors); */
   opacity: 0.7;
 }
 
 .navEvent:hover{
   border-bottom: 1px solid var(--accent-colors);
-  transition: all 2s ease 0s;
-  opacity: 0.7;
+  transition: all 5s ease 0s;
+  opacity: 0.8;
 }
 
 .shop___link {
@@ -103,9 +103,9 @@ color: var(--button);
   color: var(--accent-colors);
 }
 
-#nav-Contact {
+/* #nav-Contact {
   transition: 2s all ease-in-out;
-}
+} */
 
 .nav-logo-title {
   font-weight: 500;
@@ -125,6 +125,9 @@ color: var(--button);
 
 
 
+
+
+
 @media screen and (max-width: 768px) {
   #nav-whole-nav {
     position: relative;
@@ -139,7 +142,8 @@ color: var(--button);
   }
 
   .nav-title {
-    margin-left: 45px;
+    margin-left: 18px;
+
   }
 
   .navs__links {
