@@ -95,8 +95,8 @@
     background-color: white;
     width: 100px;
     height: 20px;
-    left: 20px;
-    top: -14px;
+    left: 8px;
+    top: -15px;
     padding-bottom: 45px;
     z-index: 1;
   }
@@ -115,7 +115,7 @@
       text-decoration: none;
       color: var(--buttons);
       font-weight: bold;
-      margin-left: 50px;
+      margin-left: 0px;
       margin-top: -90px;
       width: 150px;
     }
