@@ -112,6 +112,11 @@
   /* .mission_box-seller .about_img-seller:hover + .boxes___container-seller .percentage-value-seller {
     display: block;
   } */
+  .about_img-seller:hover {
+    overflow: hidden;
+    box-shadow: none;
+    transition: 0.3s;
+  }
 
   .mission_box-seller:hover .about_img-seller ~ .boxes___container-seller .percentage-value-seller {
     display: block;
