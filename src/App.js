@@ -16,7 +16,7 @@ import Dashboard from "./Pages/Dashboard/dashboard.js";
 function App() {
     return (
         <BrowserRouter>
-            <Header />
+            {/* <Header /> */}
             <Routes>
                 <Route path="About" element={<AboutUs />} />
                 <Route path="Event" element={<Event />} />
@@ -26,9 +26,9 @@ function App() {
                 <Route path="Login" element={<Login />} />
                 <Route path="Home" element={<Home />} />
                 <Route path="Register" element={<Signup />} />
-                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="/dashboard/product" element={<Dashboard />} />
             </Routes>
-            <Footer />
+            {/* <Footer /> */}
         </BrowserRouter>
     );
 }

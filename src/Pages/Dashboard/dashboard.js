@@ -1,9 +1,10 @@
-import sideBar from "../../Component/sideBar/sideBar.js";
+import Sidebar from "../../Component/navBarDashboard/navBarDashboard.jsx";
+import "./dashboard.css";
 
 function dashboard() {
     return (
         <div>
-            <sideBar />
+            <Sidebar />
         </div>
     );
 }
