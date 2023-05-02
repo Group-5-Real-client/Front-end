@@ -4,10 +4,29 @@ import { Pagination } from "antd";
 
 function ProductTable() {
     const [products, setProducts] = useState([
-        { id: 1, name: "Product 1", category: "Category 1", price: 10 },
-        { id: 2, name: "Product 2", category: "Category 2", price: 20 },
-        { id: 3, name: "Product 3", category: "Category 1", price: 15 },
+        {
+            id: 1,
+            name: "Product 1",
+            category: "Category 1",
+            price: 10,
+            adminName: "",
+        },
+        {
+            id: 2,
+            name: "Product 2",
+            category: "Category 2",
+            price: 20,
+            adminName: "",
+        },
+        {
+            id: 3,
+            name: "Product 3",
+            category: "Category 1",
+            price: 15,
+            adminName: "",
+        },
     ]);
+
     const [editingProduct, setEditingProduct] = useState(null);
     const [searchFilter, setSearchFilter] = useState("");
     const [priceFilter, setPriceFilter] = useState("");
@@ -18,12 +37,17 @@ function ProductTable() {
             name: "New Product",
             category: "New Category",
             price: 0,
+            adminName: "Admin Name", // Replace "Admin Name" with the actual admin name
         };
         setProducts([...products, newProduct]);
     };
 
     const handleEditProduct = (product) => {
-        setEditingProduct(product);
+        if (product) {
+            setEditingProduct(product);
+        } else {
+            setEditingProduct(null);
+        }
     };
 
     const handleSaveProduct = (editedProduct) => {
@@ -109,7 +133,14 @@ function ProductTable() {
                                     ) : (
                                         product.name
                                     )}
+                                    {editingProduct?.id !== product.id &&
+                                        product.adminName !== "" && (
+                                            <span className="admin-name">
+                                                (Added by {product.adminName})
+                                            </span>
+                                        )}
                                 </td>
+
                                 <td>
                                     {editingProduct?.id === product.id ? (
                                         <input
