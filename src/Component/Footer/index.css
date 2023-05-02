@@ -44,7 +44,6 @@
   color:#B6BFA3
 } */
 
-
 .parent_container {
   /* display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -53,20 +52,18 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: yellowgreen;
-
-
+  background-color: var(--accent-colors);
 }
 
-.footer-container1 .location_{
+.footer-container1 .location_ {
   margin-top: 20px;
 }
 
-.footer-container1 .copyright{
+.footer-container1 .copyright {
   margin: 20px 0;
 }
 
- .footer-container1 a{
+.footer-container1 a {
   margin-top: 20px;
 }
 
@@ -77,10 +74,10 @@
   /* padding-left: 20%; */
 }
 
-.footer-container1{
+.footer-container1 {
   display: flex;
   align-items: center;
-  padding: 60px  0;
+  padding: 60px 0;
 }
 .footer-container1 a {
   text-decoration: none;
@@ -95,14 +92,14 @@
 
 .copyright {
   font-size: small;
-  color: var(--accent-colors);
+  color: var(--button);
 }
 
 .footer-container1 a.active {
   color: var(--secondary-color);
 }
 
-._location__box{
+._location__box {
   margin-bottom: 15px;
 }
 .social-icons-container {
@@ -121,13 +118,11 @@
   color: #b6bfa3;
 }
 
-
-
 @media screen and (max-width: 768px) {
-    .parent_container{
-      display: grid;
-      grid-template-columns: repeat(2 , 1fr);
-      font-size: 14px;
+  .parent_container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 14px;
     /* display: flex;
     align-items: center;
     justify-content: space-around;
@@ -137,39 +132,40 @@
     margin: 0; */
   }
 
+ .Email{
+  font-size: 12px;
+ }
+
   /* ._location__box{
     margin-bottom:5px ;
   } */
 
   .footer-container1 .location_ {
     margin-top: 0px;
-}
+  }
 
-  .footer-container1{
+  .footer-container1 {
     margin-bottom: 0;
     line-height: 2;
     padding: 0;
-
   }
-  .footer-container1{
+  .footer-container1 {
     padding: 15px 0;
-    }
+  }
 
-   .links{
+  .links {
     margin-top: 10px;
   }
 
-  .footer-container1 a{
+  .footer-container1 a {
     margin-top: 10px;
   }
 
-  .footer-container1 .copyright{
+  .footer-container1 .copyright {
     margin: 0 0;
   }
 
-  .footer-container1 .links{
+  .footer-container1 .links {
     margin: 0;
   }
-
-
 }

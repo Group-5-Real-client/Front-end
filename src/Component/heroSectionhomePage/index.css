@@ -49,7 +49,7 @@
   color: black;
   font-weight: bold;
   position: relative;
-  top: 15pc;
+  top: 8pc;
   text-decoration: none;
   color: var(--primary-color);
   background-color: var();
@@ -102,7 +102,7 @@
     font-weight: bold;
     font-size: 2pc;
     position: relative;
-    top: 10pc;
+    top: 5pc;
     align-items: center;
   }
   

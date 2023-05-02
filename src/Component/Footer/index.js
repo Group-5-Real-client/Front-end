@@ -14,7 +14,7 @@ function Footer() {
       <div className="parent_container">
 
 
-        <div className="footer-container1">
+        <div className="footer-container1  boxReverse">
           {/* <img
             src="https://www.figma.com/file/8WOK9IiiJJFwH4mokwCJwH/eCommerce?node-id=2-193&t=53eWlZkaC4YKoDmI-4"
             alt="logo"
@@ -49,7 +49,7 @@ function Footer() {
           <NavLink to="/" className="links">Recycling </NavLink>
           <NavLink to="/"  className="links">Hygienic </NavLink>
         </div>
-        <div className="footer-container1">
+        <div className="footer-container1   boxReverse">
           <h3>COMPANY</h3>
           <NavLink to="/About" className="links">About Us</NavLink>
           <NavLink to="/Event" className="links">Events</NavLink>
@@ -61,7 +61,7 @@ function Footer() {
           <p className="location_">
             Phone: <a href="tel:7129406">7129406</a>
           </p>
-          <p className="location_">
+          <p className="location_  Email">
             Email: <a href="mailto:shop@gmail.com">shop@gmail.com</a>
           </p>
         </div>

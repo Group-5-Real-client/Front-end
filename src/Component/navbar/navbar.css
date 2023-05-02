@@ -142,7 +142,7 @@ color: var(--button);
   }
 
   .nav-title {
-    margin-left: 18px;
+    margin-left: 0;
 
   }
 
@@ -150,9 +150,14 @@ color: var(--button);
     display: none;
   }
 
+  /* button X */
+
   .menu__btn {
+    position: absolute;
     margin-top: -25px;
   }
+
+  /* icon X */
 
   #nav-Login {
     display: none;
@@ -248,6 +253,7 @@ color: var(--button);
   }
 
   .menu__box {
+    position: relative;
     display: block;
     position: fixed;
     visibility: hidden;

@@ -2,7 +2,7 @@
 
   color: var(--button);
   font-size: 14px;
-  display: none;
+  /* display: none; */
  }
 
  
@@ -11,7 +11,7 @@
 @media screen and (max-width: 768px) {
 
     .searchIcon{
-     display: block;
+     /* display: block; */
      position: absolute;
      left: 60px;
      top: 70px;

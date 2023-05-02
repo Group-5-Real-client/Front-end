@@ -197,7 +197,7 @@
   
   .slider__item img {
     width: 100%;
-    height: calc(100vh - 9.5vh);
+    height: calc(90vh);
   }
   
   
@@ -207,7 +207,7 @@
   
   @media screen and (max-width: 1000px) {
     .slider__item img{
-      height: calc(100vh - 35vh);
+      height: 50vh;
     }
 
   }
