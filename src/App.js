@@ -18,7 +18,7 @@ import Hygienic from "./Pages/Hygienic";
 function App() {
   return (
     <BrowserRouter>
-      {/* <Header /> */}
+      <Header />
       <Routes>
         <Route path="About" element={<AboutUs />} />
         <Route path="Event" element={<Event />} />
@@ -33,7 +33,7 @@ function App() {
         <Route path="Recycling" element={<Recycling />} />
         <Route path="Hygienic" element={<Hygienic/>} />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </BrowserRouter>
   );
 }
