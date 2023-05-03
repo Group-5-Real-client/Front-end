@@ -325,3 +325,285 @@
     opacity: 1.4;
   }
 }
+
+
+
+/* Start Blog CSS part */
+  /* Part 3: Blog section */
+  .aboutUs-section.aboutUs-blog {
+    background-color: #f9f9f9;
+    padding: 4rem;
+    text-align: center;
+  }
+  
+  .aboutUs-section.aboutUs-blog h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .aboutUs-section.aboutUs-blog p {
+    font-size: 1.2rem;
+    color: #888;
+  }
+  
+  .aboutUs-blog {
+    padding: 60px 0;
+    background-color: #f8f8f8;
+    text-align: center;
+  }
+  
+  .aboutUs-blog h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .aboutUs-blog p {
+    font-size: 18px;
+    /* margin-bottom: 50px; */
+  }
+  .btn-readmore{
+    width: 81%;
+    padding: 5px;
+    letter-spacing: 1px;
+    color: #fff;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: var(--button);
+  }
+  .btn-readmore:hover{
+    background: var(--accent-colors);
+   
+  }
+  
+  @media only screen and (max-width: 576px) {
+    .aboutUs-section.aboutUs-blog {
+      padding: 2rem;
+    }
+    
+    .aboutUs-section.aboutUs-blog h2 {
+      font-size: 1.5rem;
+    }
+    
+    .aboutUs-section.aboutUs-blog p {
+      font-size: 1rem;
+    }
+    
+    .aboutUs-blog h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+    
+    .aboutUs-blog p {
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+  }
+  /* Part 4: Three cards */
+  .aboutUs-section.aboutUs-card-container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .aboutUs-card1 {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 300px;
+    height: auto;
+    margin: 20px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .aboutUs-card1 h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .aboutUs-card1 h4 {
+    font-size: 1.2rem;
+    color: #888;
+    margin-bottom: 1rem;
+  }
+  
+  .aboutUs-card1 p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  @media (max-width: 768px) {
+    .aboutUs-section.aboutUs-card-container1 {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .aboutUs-card1 {
+      width: 80%;
+      height: auto;
+      margin: 20px 0;
+    }
+  }
+  .aboutUs-card1 {
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Delay the animation for each card */
+  .aboutUs-card1:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+  
+  .aboutUs-card1:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+  
+  .aboutUs-card1:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+  
+  /* team session */
+  /* Team section */
+  .aboutUs-section.aboutUs-team {
+    padding: 4rem;
+    text-align: center;
+  }
+  
+  .aboutUs-section.aboutUs-team h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  } 
+
+  .aboutUs-section.aboutUs-team p {
+  font-size: 18px;
+  margin-bottom: 50px;
+}
+
+/* Card container */
+.aboutUs-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Card */
+.aboutUs-card {
+  width: 300px;
+  height: 400px;
+  margin: 30px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: linear-gradient(306deg, var(--secondary-color), var(--primary-color));
+  border-radius: 20px;
+}
+
+.aboutUs-card img {
+  width: 90%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+  border-radius: 20px;
+}
+
+.aboutUs-card h3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  margin: 0;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 24px;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.aboutUs-card p {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  margin: 0;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 18px;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+/* Hover effect */
+.aboutUs-card:hover img {
+  transform: scale(1.1);
+}
+
+.aboutUs-card:hover h3,
+.aboutUs-card:hover p {
+  opacity: 1;
+}
+
+@media (min-width: 576px) {
+  .aboutUs-card-container {
+    flex-direction: row;
+    align-items: center;
+  }
+
+
+
+  .aboutUs-card h3 {
+    font-size: 20px;
+    padding: 10px;
+  }
+
+  .aboutUs-card p {
+    font-size: 16px;
+    padding: 10px;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .aboutUs-card-container {
+    justify-content: space-between;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .aboutUs-card {
+    width: 30%;
+    height: 400px;
+    margin: 30px 0;
+  }
+}
+
+
+@media (min-width: 992px) {
+  .aboutUs-card {
+    width: 25%;
+    height: 400px;
+    margin: 30px;
+  }
+}
+
+
+/* End Blog CSS part  */
