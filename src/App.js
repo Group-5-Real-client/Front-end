@@ -11,12 +11,14 @@ import Products from "./Pages/Products/Product";
 import Login from "./Pages/Login/Login";
 import Home from "./Pages/Home/Home";
 import Signup from "./Pages/Signup";
-import  ProductPage from './Pages/product/index'
-
+import  ProductPage from './Pages/Singleproduct/index'
+import FoodPage from "./Pages/FoodPage";
+import Recycling  from "./Pages/Recycling";
+import Hygienic from "./Pages/Hygienic";
 function App() {
   return (
     <BrowserRouter>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route path="About" element={<AboutUs />} />
         <Route path="Event" element={<Event />} />
@@ -27,8 +29,11 @@ function App() {
         <Route path="Login" element={<Login />} />
         <Route path="Home" element={<Home />} />
         <Route path="Register" element={<Signup />} />
+        <Route path="FoodProduct" element={<FoodPage />} />
+        <Route path="Recycling" element={<Recycling />} />
+        <Route path="Hygienic" element={<Hygienic/>} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 }
