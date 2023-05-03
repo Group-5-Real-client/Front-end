@@ -12,6 +12,7 @@ import Login from "./Pages/Login/Login";
 import Home from "./Pages/Home/Home";
 import Signup from "./Pages/Signup";
 import Dashboard from "./Pages/Dashboard/dashboard.js";
+import ProductTable from "./Component/productTableDash/productTableDash";
 
 function App() {
     return (
@@ -26,9 +27,14 @@ function App() {
                 <Route path="Login" element={<Login />} />
                 <Route path="Home" element={<Home />} />
                 <Route path="Register" element={<Signup />} />
-                <Route path="/dashboard/product" element={<Dashboard />} />
             </Routes>
             {/* <Footer /> */}
+            <Routes>
+                <Route path="/dashboard" element={<Dashboard />} >
+                    <Route path="/dashboard/Product" element={<ProductTable/>} />
+                    
+                </Route>
+            </Routes>
         </BrowserRouter>
     );
 }

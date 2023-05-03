@@ -1,31 +1,54 @@
 import React from "react";
 import "./sideBar.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Sidebar() {
+    const link = [{
+        path:"/dashboard/category",
+        name:"product",
+        icon:""
+    },{
+        path:"/dashboard/Product",
+        name:"product",
+        icon:""
+    },{
+        path:"/dashboard/review",
+        name:"product",
+        icon:""
+    },{
+        path:"/dashboard/contact",
+        name:"product",
+        icon:""
+    },{
+        path:"/dashboard/aboutUs",
+        name:"product",
+        icon:""
+    },{
+        path:"/dashboard/admin",
+        name:"product",
+        icon:""
+    }]
+
+    let activeStyle = {
+        backgroundColor:"#024034",
+        borderRadius: "25px",
+        
+    }
     return (
         <>
             <div className="sidebar">
-                <ul className="sidebar-main">
-                    <li>
-                        <Link to="/dashboard/category">Categories</Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/product">Products</Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/review">Reviews</Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/contact">Contact</Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/aboutUs">About Us</Link>
-                    </li>
-                    <li>
-                        <Link to="/dashboard/event">Events</Link>
-                    </li>
-                </ul>
+                
+                    {link.map((e)=>{
+                        return (
+                            <ul className="sidebar-main">
+                            <li>
+                            <NavLink  style={({isActive})=>(isActive? activeStyle:undefined)} to={e.path} className="link-name">{e.name}</NavLink>
+                            </li>
+                            </ul>
+                        )
+                     })
+                    }
+                
                 <ul className="sidebar-end">
                     <li>
                         <Link to="#">Logout</Link>
