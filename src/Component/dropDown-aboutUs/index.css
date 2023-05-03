@@ -178,8 +178,8 @@
 
 @media screen and (max-width: 768px) {
   .accordion-header-about {
-    margin-bottom: 10px;
-    margin-left: -18px;
+    margin-top: 50px;
+    margin-left: 18px;
   }
 
   .accordion-option-about {
@@ -232,7 +232,11 @@
 
   .accordion-icon-about {
     position: absolute;
-    right: 20px;
+    right: 25%;
+    margin-top: -10px;
+    color: var(--buttons);
+    font-size: 30px;
+    font-weight: bold;
   }
 
  
@@ -240,6 +244,7 @@
     text-decoration: none;
     color: var(--buttons);
     font-weight: bold;
+    margin-left: 15px;
   }
 }
 

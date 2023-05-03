@@ -98,7 +98,7 @@ function Categories() {
                     </figure>
                     <h4 className="slide-name">{category.name}</h4>
                     <div className="custom-line"></div>
-                    <div className="row">
+                    <div className="row   rowBox">
                       <p className="numberName">{category.numberName}</p>
                       <p className="numberPrice">{category.number}</p>
                     </div>
