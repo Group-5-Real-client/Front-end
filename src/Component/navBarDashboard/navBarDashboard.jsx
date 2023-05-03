@@ -1,7 +1,6 @@
 import React from "react";
 import Sidebar from "../../Component/sideBar/sideBar.jsx";
 import "./navBarDashboard.css";
-import ProductTable from "../productTableDash/productTableDash.jsx";
 import { Outlet } from "react-router-dom";
 
 function NavBar({ dashboardName, adminName, adminAvatar }) {
@@ -20,7 +19,6 @@ function NavBar({ dashboardName, adminName, adminAvatar }) {
             </div>
             <div className="trying-table">
                 <Sidebar />
-                {/* <ProductTable /> */}
                 <Outlet/>
             </div>
         </>

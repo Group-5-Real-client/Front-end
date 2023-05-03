@@ -13,6 +13,7 @@ import Home from "./Pages/Home/Home";
 import Signup from "./Pages/Signup";
 import Dashboard from "./Pages/Dashboard/dashboard.js";
 import ProductTable from "./Component/productTableDash/productTableDash";
+import CategoryTable from "./Component/categogryTableDash/categoryTableDash";
 
 function App() {
     return (
@@ -30,9 +31,15 @@ function App() {
             </Routes>
             {/* <Footer /> */}
             <Routes>
-                <Route path="/dashboard" element={<Dashboard />} >
-                    <Route path="/dashboard/Product" element={<ProductTable/>} />
-                    
+                <Route path="/dashboard" element={<Dashboard />}>
+                    <Route
+                        path="/dashboard/Product"
+                        element={<ProductTable />}
+                    />
+                    <Route
+                        path="/dashboard/Categories"
+                        element={<CategoryTable />}
+                    />
                 </Route>
             </Routes>
         </BrowserRouter>

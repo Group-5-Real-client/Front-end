@@ -7,16 +7,19 @@
     background-color: var(--accent-color);
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    align-items: center;
 }
 
 .sidebar-main {
-    height: 20px;
-
+    height: 55vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    text-align: center;
     color: var(--primary-color);
+}
+
+.sidebar-end {
+    text-align: center;
 }
 .sidebar-main ul li a {
     color: var(--primary-color);
@@ -48,4 +51,20 @@
     background-color: var(--accent-colors);
     border-radius: 25px;
     transition: all 0.3s ease-in;
+}
+
+.ant-pagination .ant-pagination-item-active a {
+    color: var(--button);
+}
+
+.ant-pagination .ant-pagination-item-active {
+    border-color: var(--button);
+}
+
+.ant-pagination .ant-pagination-item-active:hover a {
+    color: var(--button);
+}
+
+.ant-pagination .ant-pagination-item-active:hover {
+    border-color: var(--button);
 }

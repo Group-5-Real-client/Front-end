@@ -3,52 +3,68 @@ import "./sideBar.css";
 import { Link, NavLink } from "react-router-dom";
 
 function Sidebar() {
-    const link = [{
-        path:"/dashboard/category",
-        name:"product",
-        icon:""
-    },{
-        path:"/dashboard/Product",
-        name:"product",
-        icon:""
-    },{
-        path:"/dashboard/review",
-        name:"product",
-        icon:""
-    },{
-        path:"/dashboard/contact",
-        name:"product",
-        icon:""
-    },{
-        path:"/dashboard/aboutUs",
-        name:"product",
-        icon:""
-    },{
-        path:"/dashboard/admin",
-        name:"product",
-        icon:""
-    }]
+    const link = [
+        {
+            path: "/dashboard/categories",
+            name: "Categories",
+            icon: "",
+        },
+        {
+            path: "/dashboard/Product",
+            name: "Products",
+            icon: "",
+        },
+        {
+            path: "/dashboard/review",
+            name: "Reviews",
+            icon: "",
+        },
+        {
+            path: "/dashboard/contact",
+            name: "Contact",
+            icon: "",
+        },
+        {
+            path: "/dashboard/aboutUs",
+            name: "About Us",
+            icon: "",
+        },
+        {
+            path: "/dashboard/admin",
+            name: "Admins",
+            icon: "",
+        },
+    ];
 
     let activeStyle = {
-        backgroundColor:"#024034",
+        backgroundColor: "#b6bfa3",
         borderRadius: "25px",
-        
-    }
+        transition: "all 0.3s ease-in",
+        width: "200px",
+    };
     return (
         <>
             <div className="sidebar">
-                
-                    {link.map((e)=>{
+                <div className="sidebar-main">
+                    {link.map((e) => {
                         return (
-                            <ul className="sidebar-main">
-                            <li>
-                            <NavLink  style={({isActive})=>(isActive? activeStyle:undefined)} to={e.path} className="link-name">{e.name}</NavLink>
-                            </li>
+                            <ul>
+                                <li>
+                                    <NavLink
+                                        style={({ isActive }) =>
+                                            isActive ? activeStyle : undefined
+                                        }
+                                        to={e.path}
+                                        className="link-name"
+                                    >
+                                        {e.name}
+                                    </NavLink>
+                                </li>
                             </ul>
-                        )
-                     })
-                    }
-                
+                        );
+                    })}
+                </div>
+
                 <ul className="sidebar-end">
                     <li>
                         <Link to="#">Logout</Link>
