@@ -47,8 +47,7 @@ function DropdownShop() {
           setIsCollapsed(true);
         }
       }}
-      onClick={handleClick}
-    >
+      onClick={handleClick}>
       <div className="accordion-header-shop">
         {selectedOption}
         <span className="accordion-icon-shop">{isCollapsed ? "+" : "-"}</span>
@@ -59,8 +58,7 @@ function DropdownShop() {
             <NavLink
               to="/Home_made"
               className="shop-nav-link-accordion  Home_made__link"
-              onClick={() => handleOptionChange("Shop")}
-            >
+              onClick={() => handleOptionChange("Shop")}>
               Home-made
             </NavLink>
           </li>
@@ -69,8 +67,7 @@ function DropdownShop() {
             <NavLink
               to="/Recycle"
               className="shop-nav-link-accordion Recycle__link"
-              onClick={() => handleOptionChange("Shop")}
-            >
+              onClick={() => handleOptionChange("Shop")}>
               Recycle
             </NavLink>
           </li>
@@ -79,8 +76,7 @@ function DropdownShop() {
             <NavLink
               to="/Hygiene"
               className="shop-nav-link-accordion  Hygiene__link"
-              onClick={() => handleOptionChange("Shop")}
-            >
+              onClick={() => handleOptionChange("Shop")}>
               Hygiene
             </NavLink>
           </li>
@@ -91,10 +87,6 @@ function DropdownShop() {
 }
 
 export default DropdownShop;
-
-
-
-
 
 // import React, { useState } from "react";
 // import { NavLink, Link } from "react-router-dom";
@@ -121,7 +113,6 @@ export default DropdownShop;
 //       </div>
 //       {!isCollapsed && (
 
-        
 //         <ul className="accordion-content-shop">
 //           <li className="accordion-option-shop">
 //             <NavLink
@@ -163,10 +154,4 @@ export default DropdownShop;
 
 // export default DropdownShop;
 
-
-
-
 // ========+++++++++++===============//
-
-
-

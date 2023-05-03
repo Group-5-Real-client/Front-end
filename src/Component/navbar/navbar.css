@@ -1,12 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap");
 
-.nav-links-container {
+.parentNavbar{
   position: relative;
 }
 
-.dropDown-shop {
-  position: relative;
-}
+
 .navs__links {
   display: flex;
   align-items: center;
@@ -28,17 +26,41 @@
   padding: 50px 10%;
   width: 100%;
   border-bottom: 1px solid var(--accent-colors);
+  z-index: 1;
 }
 
 #nav-whole-nav:hover {
   background-color: var(--accent-colors);
-  transition: all 3s ease 0s;
+  transition: all 1s ease 0s;
+  /* z-index: 1; */
+  color: var(--button);
+  
+}
+
+#nav-whole-nav:hover  .nav-title  {
+color: var(--button);
+}
+#nav-whole-nav:hover  .nav-link  {
+  color: var(--button);
+  }
+  
+
+.nav__nav{
+  color: var(--accent-colors);
+}
+.nav-link{
+  color: var(--button);
+}
+
+#nav-whole-nav:hover  .nav__nav{
+  color: var(--button);
 }
 
 .login-shop-icon {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .nav-logo {
@@ -47,7 +69,7 @@
 
 .nav-link {
   font-weight: 500;
-  color: var(--button);
+  color: var(--accent-colors);
   padding: 0 10px;
   font-size: 14px;
   list-style: none;
@@ -56,14 +78,14 @@
 }
 
 .navs__links > .nav-link:hover  {
-  border-bottom: 1px solid var(--accent-colors);
+  /* border-bottom: 1px solid var(--accent-colors); */
   opacity: 0.7;
 }
 
 .navEvent:hover{
   border-bottom: 1px solid var(--accent-colors);
-  transition: all 2s ease 0s;
-  opacity: 0.7;
+  transition: all 5s ease 0s;
+  opacity: 0.8;
 }
 
 .shop___link {
@@ -78,11 +100,12 @@
 .nav-title {
   font-size: 42px;
   font-family: "Gochi Hand", cursive;
+  color: var(--accent-colors);
 }
 
-#nav-Contact {
+/* #nav-Contact {
   transition: 2s all ease-in-out;
-}
+} */
 
 .nav-logo-title {
   font-weight: 500;
@@ -102,10 +125,12 @@
 
 
 
+
+
+
 @media screen and (max-width: 768px) {
   #nav-whole-nav {
     position: relative;
-    bottom: 25px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -114,21 +139,25 @@
     box-shadow: 0px 5px 15px 0px rgba(10, 10, 10, 0.1);
     -webkit-box-shadow: 0px 5px 15px 0px rgba(10, 10, 10, 0.1);
     -moz-box-shadow: 0px 5px 15px 0px rgba(10, 10, 10, 0.1);
-    padding-right: 2%;
-    padding-left: 2%;
   }
 
   .nav-title {
-    margin-left: 45px;
+    margin-left: 0;
+
   }
 
   .navs__links {
     display: none;
   }
 
+  /* button X */
+
   .menu__btn {
+    position: absolute;
     margin-top: -25px;
   }
+
+  /* icon X */
 
   #nav-Login {
     display: none;
@@ -188,19 +217,17 @@
   .hamburger-menu {
     display: block;
   }
-
   .menu__btn {
     display: flex;
     align-items: center;
-    position: fixed;
-    top: 64px;
+    position: absolute;/* the toggle icon it was position fixed change it to absolute */
+    top: 88px;
     left: 20px;
-
     width: 26px;
     height: 26px;
-
     cursor: pointer;
     z-index: 5;
+    color: var(--button);
   }
 
   .menu__btn > span,
@@ -226,6 +253,7 @@
   }
 
   .menu__box {
+    position: relative;
     display: block;
     position: fixed;
     visibility: hidden;
@@ -316,7 +344,7 @@
   box-sizing: border-box;
   display: block;
 
-  position: fixed;
+  position: relative;
   top: 15px;
   left: 15px;
   z-index: 999999;

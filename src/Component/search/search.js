@@ -19,7 +19,7 @@ function SearchBar() {
           Search
         </Link>
 
-        <FontAwesomeIcon icon={faSearch} className="searchIcon" />
+        {/* <FontAwesomeIcon icon={faSearch} className="searchIcon" /> */}
 
       
       </div>

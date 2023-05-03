@@ -50,6 +50,36 @@
   width: 100%;
 }
 
+@media screen and (max-width: 768px) {
+  .input-group {
+    width: 100%;
+}
+
+.register-inputs{
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+.register-links{
+  width: 100%;
+}
+
+
+.register-form{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto auto;
+  padding: 35px 0;
+}
+
+
+
+}
+
 .input:focus ~ .input-label,
 .input:valid ~ .input-label {
   top: -9px;
@@ -97,9 +127,8 @@
 
 .error {
   color: red;
-  font-size:x-small;
+  font-size: x-small;
   margin-bottom: 20px;
-
 }
 
 .showing-password {

@@ -27,13 +27,13 @@ function App() {
         <Route path="Product" element={<Products />} />
         <Route path="OneProduct" element={<ProductPage />} />
         <Route path="Login" element={<Login />} />
-        <Route path="Home" element={<Home />} />
+        <Route path="" element={<Home />} />
         <Route path="Register" element={<Signup />} />
         <Route path="FoodProduct" element={<FoodPage />} />
         <Route path="Recycling" element={<Recycling />} />
         <Route path="Hygienic" element={<Hygienic/>} />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </BrowserRouter>
   );
 }
