@@ -6,7 +6,7 @@ import { NavLink, Link } from "react-router-dom";
 import DropdownShop from "../dropDown-shop/dropDown-shop";
 import DropdownAboutUs from "../dropDown-aboutUs/dropDown-aboutUs";
 import DropdownContact from "../dropDown-contact/dropDown-contact";
-import SearchBar from "../search/search";
+// import SearchBar from "../search/search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
@@ -80,7 +80,7 @@ function Navbar() {
         </div>
 
         <div className="login-shop-icon">
-          <SearchBar className="searchBar" />
+          {/* <SearchBar className="searchBar" /> */}
           <Link to="/Login" id="nav-Login" className="nav__nav  nav-link">
             Login
           </Link>
