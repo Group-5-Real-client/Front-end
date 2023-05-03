@@ -109,6 +109,12 @@ const ContactUs = () => {
             Email:
           </label>
         </div>
+                <div className="input-group">
+          <input type="tel" id="phone" name="phone" className="input" required />
+          <label htmlFor="phone" className="input-label">
+            Phone:
+          </label>
+        </div>
         <div className="input-group">
           <textarea id="message" name="message" rows="5" className="input" required></textarea>
           <label htmlFor="message" className="input-label">
