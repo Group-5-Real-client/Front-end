@@ -117,6 +117,15 @@
   left: 0;
 }
 @media screen and (max-width: 768px) {
+
+  .icon_face_login{
+    margin-left:20px
+  }
+
+
+  .iconFace{
+    margin-left:-4px;
+  }
   #nav-whole-nav {
     position: relative;
     display: flex;
@@ -402,7 +411,8 @@
   .iconFace {
     display: block;
     position: absolute;
-    bottom: 15px;
+    bottom: 14px;
+    left: 45px;
   }
 
   .login {
@@ -442,6 +452,8 @@
   .mobile-menu.open {
     transform: translateX(0);
     margin-top: 0;
+    width : 275px;
+    font-size: 14px;
   }
 
   .nav-links-container {
@@ -482,7 +494,8 @@
 
   .mobile-menu .mobile-menu__item {
     margin-top: 50px;
-    margin-left: 30px;
+    margin-left: -4px;
+    font-size: 14px;
   }
 
   .mobile-menu {
@@ -492,6 +505,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     margin-bottom: 150px;
+    background-color: var(--accent-colors);
   }
 
   .mobile-menu__item {

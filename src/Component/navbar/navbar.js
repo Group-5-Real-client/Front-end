@@ -109,14 +109,16 @@ function Navbar() {
             onClick={handleLinkClick}>
             <DropdownContact />
           </Link>
-          <FontAwesomeIcon className="iconFace" icon={faUser} />
+          <div className="icon_face_login">
+            <FontAwesomeIcon className="iconFace" icon={faUser} />
 
-          <Link
-            to="/Login"
-            className="mobile-menu__item nav-link   login"
-            onClick={handleLinkClick}>
-            Login
-          </Link>
+            <Link
+              to="/Login"
+              className="mobile-menu__item nav-link   login"
+              onClick={handleLinkClick}>
+              Login
+            </Link>
+          </div>
         </div>
       </div>
     </section>

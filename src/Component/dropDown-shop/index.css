@@ -179,7 +179,7 @@
 @media screen and (max-width: 768px) {
   .accordion-header-shop {
     margin-top: 50px;
-    margin-left: 18px;
+    margin-left: -12px;
   }
 
   .accordion-option-shop {
@@ -232,10 +232,10 @@
 
   .accordion-icon-shop {
     position: absolute;
-    right: 25%;
-    margin-top: -10px;
+    right: 11%;
+    margin-top: 0px;
     color: var(--buttons);
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
   }
 

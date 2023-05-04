@@ -36,9 +36,7 @@
   z-index: 33;
 }
 
-
 @media screen and (min-width: 769px) {
-
   .accordion-icon-about {
     display: none;
   }
@@ -58,16 +56,9 @@
     color: var(--buttons);
     font-weight: bold;
   }
-
 }
 
-
-
-
-
 @media screen and (min-width: 769px) {
-
- 
   .accordion-header-about {
     margin-right: 15px;
     margin-left: 25px;
@@ -179,7 +170,7 @@
 @media screen and (max-width: 768px) {
   .accordion-header-about {
     margin-top: 50px;
-    margin-left: 18px;
+    margin-left: -14px;
   }
 
   .accordion-option-about {
@@ -206,7 +197,7 @@
   .Our-Commitment__link:hover {
     opacity: 0.7;
   } */
-/* 
+  /* 
   .FAQ__link:hover {
     opacity: 0.7;
   } */
@@ -228,18 +219,15 @@
     z-index: 2;
   }
 
- 
-
   .accordion-icon-about {
     position: absolute;
-    right: 25%;
-    margin-top: -10px;
+    right: 11%;
+    margin-top: -4px;
     color: var(--buttons);
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
   }
 
- 
   .about-nav-link-accordion {
     text-decoration: none;
     color: var(--buttons);
@@ -247,5 +235,3 @@
     margin-left: 15px;
   }
 }
-
-
