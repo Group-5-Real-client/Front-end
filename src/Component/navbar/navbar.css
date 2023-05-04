@@ -394,37 +394,33 @@
   display: none;
 }
 
-.iconFace{
+.iconFace {
   display: none;
 }
 
 @media (max-width: 768px) {
-.iconFace{
-  display: block;
-  position: absolute;
-  bottom: 15px;
-}
+  .iconFace {
+    display: block;
+    position: absolute;
+    bottom: 15px;
+  }
 
+  .login {
+    position: absolute;
+    bottom: 0;
+  }
 
-.login{
-  position: absolute;
-  bottom: 0;
-}
-
-.parentNavbar.open::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
-}
-
-
-
+  .parentNavbar.open::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+  }
 
   .mobile-menu {
     position: fixed;
@@ -442,8 +438,6 @@
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
   }
-
-
 
   .mobile-menu.open {
     transform: translateX(0);

@@ -94,32 +94,30 @@ function Navbar() {
           )}
         </button>
         <div className={`mobile-menu__items ${isOpen ? "" : "hidden"}`}>
+          <DropdownShop />
+          <DropdownAboutUs />
+          <Link
+            to="/event"
+            className="mobile-menu__item nav-link navEvent"
+            onClick={handleLinkClick}>
+            Events
+          </Link>
+          <Link
+            to="/Contact"
+            id="nav-Contact"
+            className="mobile-menu__item nav-link"
+            onClick={handleLinkClick}>
+            <DropdownContact />
+          </Link>
+          <FontAwesomeIcon className="iconFace" icon={faUser} />
 
-        <DropdownShop />
-        <DropdownAboutUs />
-        <Link
-          to="/event"
-          className="mobile-menu__item nav-link navEvent"
-          onClick={handleLinkClick}>
-          Events
-        </Link>
-        <Link
-          to="/Contact"
-          id="nav-Contact"
-          className="mobile-menu__item nav-link"
-          onClick={handleLinkClick}>
-          <DropdownContact />
-        </Link>
-        <FontAwesomeIcon className="iconFace" icon={faUser} />
-
-        <Link
-          to="/Login"
-          className="mobile-menu__item nav-link   login"
-          onClick={handleLinkClick}>
-          Login
-        </Link>
-      </div>
-
+          <Link
+            to="/Login"
+            className="mobile-menu__item nav-link   login"
+            onClick={handleLinkClick}>
+            Login
+          </Link>
+        </div>
       </div>
     </section>
   );
