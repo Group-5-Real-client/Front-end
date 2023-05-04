@@ -78,7 +78,7 @@
     }
   
    
-  .accordion-content-contact::before {
+  /* .accordion-content-contact::before {
     content: "";
     position: absolute;
     background-color: transparent;
@@ -88,8 +88,8 @@
     top: -80px;
     padding-bottom: 45px;
     z-index: 1;
-  }
-  .accordion-content-contact::after {
+  } */
+  /* .accordion-content-contact::after {
     content: "";
     position: absolute;
     background-color: white;
@@ -100,7 +100,7 @@
     padding-bottom: 45px;
     z-index: 1;
   }
-  
+   */
     .accordion-icon-contact {
       display: none;
     }

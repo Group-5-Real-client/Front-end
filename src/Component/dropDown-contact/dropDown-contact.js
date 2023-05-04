@@ -51,11 +51,11 @@ function DropdownContact() {
     >
       <div className="accordion-header-contact">
         {selectedOption}
-        <span className="accordion-icon-contact">{isCollapsed ? "+" : "-"}</span>
+        {/* <span className="accordion-icon-contact">{isCollapsed ? "+" : "-"}</span> */}
       </div>
       {!isCollapsed && (
         <ul className="accordion-content-contact">
-         <li className="accordion-option-contact">
+         {/* <li className="accordion-option-contact">
             <NavLink
               to="/FAQ"
               className="contact-nav-link-accordion       __FAQ__link"
@@ -63,7 +63,7 @@ function DropdownContact() {
             >
               FAQ's
             </NavLink>
-          </li>
+          </li> */}
 
        
         </ul>

@@ -36,7 +36,7 @@ function Product() {
         "https://static-assets.glossier.com/production/spree/images/attachments/000/003/755/portrait_normal/LashSlick.jpg?1556563261",
     },
     {
-      id:" 4",
+      id: " 4",
       name: "Homemade",
       price: "4",
       Category: "Homemade",
@@ -65,7 +65,7 @@ function Product() {
       price: "9",
       Category: "Homemade",
       image:
-      "https://static-assets.glossier.com/production/spree/images/attachments/000/003/755/portrait_normal/LashSlick.jpg?1559593291" ,
+        "https://static-assets.glossier.com/production/spree/images/attachments/000/003/755/portrait_normal/LashSlick.jpg?1559593291",
     },
     {
       id: "8",
@@ -76,7 +76,7 @@ function Product() {
         "https://static-assets.glossier.com/production/spree/images/attachments/000/003/755/portrait_normal/LashSlick.jpg?1556563261",
     },
   ];
- 
+
   const [products, setProducts] = useState(data);
   const getAllData = () => {
     setProducts(data);
@@ -115,10 +115,10 @@ function Product() {
   // // const handleSearchChange = (event) => {
   // //   setSearchTerm(event.target.value);
   // // };
- const  handleCategoryChange = (event)=> {
+  const handleCategoryChange = (event) => {
     const selectedValue = event.target.value;
     window.location.href = selectedValue;
-  }
+  };
 
   const getSortedProducts = () => {
     let sortedProducts = [...data];
@@ -154,18 +154,21 @@ function Product() {
       <div className="products">
         <h1>Products</h1>
         <div className="categories-sort">
-        <div className="Categories-links">
-        <NavLink to="/Product" onClick={getAllData}> All Products</NavLink>
-      <NavLink to="/FoodProduct" onClick={getHomemadeData}>
-        HomeMade
-      </NavLink>
-      <NavLink to="/Recycling" onClick={getRecyclingData}>
-        Recycling
-      </NavLink>
-      <NavLink to="/Hygienic" onClick={getHygienicData}>
-        Hygienic
-      </NavLink>
-      </div>
+          <div className="Categories-links">
+            <NavLink to="/Product" onClick={getAllData}>
+              {" "}
+              All Products
+            </NavLink>
+            <NavLink to="/FoodProduct" onClick={getHomemadeData}>
+              HomeMade
+            </NavLink>
+            <NavLink to="/Recycling" onClick={getRecyclingData}>
+              Recycling
+            </NavLink>
+            <NavLink to="/Hygienic" onClick={getHygienicData}>
+              Hygienic
+            </NavLink>
+          </div>
           <div className="Categories-dropdown">
             <select id="categorySelect" onChange={handleCategoryChange}>
               <option value="/Product" style={{ display: "none" }}>
@@ -197,36 +200,35 @@ function Product() {
         </div>
 
         <div className="product-container">
-        <div className="product-gallery">
-   {getSortedProducts().map((product) => (
-    <div className="item" key={product.id}>
-      <div className="thumbnail">
-        <img
-          className="group"
-          src={product.image}
-          alt={product.name}
-          width="363"
-          height="363"
-        />
-        <div className="caption">
-          <h4 className="group-inner">{product.name}</h4>
-          <p className="lead">${product.price}</p>
-        </div>
-        <div className="btn-group">
-          <NavLink to="/OneProduct" className="btn btn-details">
-            View
-          </NavLink>
-          <NavLink to="/" className="btn btn-success">
-            Add to Cart
-          </NavLink>
-        </div>
-        <NavLink to="/" className="btn btn-icon">
-          <FontAwesomeIcon icon={faCartShopping} />
-        </NavLink>
-      </div>
-    </div>
-  ))}
-
+          <div className="product-gallery">
+            {getSortedProducts().map((product) => (
+              <div className="item" key={product.id}>
+                <div className="thumbnail">
+                  <img
+                    className="group"
+                    src={product.image}
+                    alt={product.name}
+                    width="363"
+                    height="363"
+                  />
+                  <div className="caption">
+                    <h4 className="group-inner">{product.name}</h4>
+                    <p className="lead">${product.price}</p>
+                  </div>
+                  <div className="btn-group">
+                    <NavLink to="/OneProduct" className="btn btn-details">
+                      View
+                    </NavLink>
+                    <NavLink to="/" className="btn btn-success">
+                      Add to Cart
+                    </NavLink>
+                  </div>
+                  <NavLink to="/" className="btn btn-icon">
+                    <FontAwesomeIcon icon={faCartShopping} />
+                  </NavLink>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
         <div className="pagination">
