@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Pagination } from "antd";
 
 function CategoryTable() {
-    const [products, setProducts] = useState([
+    const [categories, setCategories] = useState([
         {
             id: 1,
             name: "Product 1",
@@ -31,13 +31,13 @@ function CategoryTable() {
 
     const handleAddProduct = () => {
         const newProduct = {
-            id: products.length + 1,
+            id: categories.length + 1,
             name: "New Product",
             category: "New Category",
             price: 0,
             adminName: "Admin Name", // Replace "Admin Name" with the actual admin name
         };
-        setProducts([...products, newProduct]);
+        setCategories([...categories, newProduct]);
     };
 
     const handleEditProduct = (product) => {
@@ -49,8 +49,8 @@ function CategoryTable() {
     };
 
     const handleSaveProduct = (editedProduct) => {
-        setProducts(
-            products.map((product) =>
+        setCategories(
+            categories.map((product) =>
                 product.id === editedProduct.id ? editedProduct : product
             )
         );
@@ -59,10 +59,10 @@ function CategoryTable() {
     };
 
     const handleDeleteProduct = (productId) => {
-        setProducts(products.filter((product) => product.id !== productId));
+        setCategories(categories.filter((product) => product.id !== productId));
     };
 
-    const filteredProducts = products.filter((product) => {
+    const filteredProducts = categories.filter((product) => {
         if (
             filter &&
             !(
@@ -85,7 +85,7 @@ function CategoryTable() {
             <div className="dash-main">
                 <h2>Categories List</h2>
                 <div>
-                    <button onClick={handleAddProduct}>Add Product</button>
+                    <button onClick={handleAddProduct}>Add Category</button>
                     <input
                         type="text"
                         placeholder="Search by name, category or price"

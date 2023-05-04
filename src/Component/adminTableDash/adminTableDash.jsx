@@ -2,76 +2,69 @@ import React, { useState } from "react";
 import { Pagination } from "antd";
 
 function AdminTable() {
-    const [products, setProducts] = useState([
+    const [admins, setAdmins] = useState([
         {
             id: 1,
-            name: "Product 1",
-            category: "Category 1",
-            price: 10,
-            adminName: "",
+            name: "Admin 1",
+            email: "admin1@example.com",
+            role: "Manager",
         },
         {
             id: 2,
-            name: "Product 2",
-            category: "Category 2",
-            price: 20,
-            adminName: "",
+            name: "Admin 2",
+            email: "admin2@example.com",
+            role: "Editor",
         },
         {
             id: 3,
-            name: "Product 3",
-            category: "Category 1",
-            price: 15,
-            adminName: "",
+            name: "Admin 3",
+            email: "admin3@example.com",
+            role: "Viewer",
         },
     ]);
 
-    const [editingProduct, setEditingProduct] = useState(null);
+    const [editingAdmin, setEditingAdmin] = useState(null);
     const [filter, setFilter] = useState("");
 
-    const handleAddProduct = () => {
-        const newProduct = {
-            id: products.length + 1,
-            name: "New Product",
-            category: "New Category",
-            price: 0,
-            adminName: "Admin Name", // Replace "Admin Name" with the actual admin name
+    const handleAddAdmin = () => {
+        const newAdmin = {
+            id: admins.length + 1,
+            name: "New Admin",
+            email: "newadmin@example.com",
+            role: "Viewer",
         };
-        setProducts([...products, newProduct]);
+        setAdmins([...admins, newAdmin]);
     };
 
-    const handleEditProduct = (product) => {
-        if (product) {
-            setEditingProduct(product);
+    const handleEditAdmin = (admin) => {
+        if (admin) {
+            setEditingAdmin(admin);
         } else {
-            setEditingProduct(null);
+            setEditingAdmin(null);
         }
     };
 
-    const handleSaveProduct = (editedProduct) => {
-        setProducts(
-            products.map((product) =>
-                product.id === editedProduct.id ? editedProduct : product
+    const handleSaveAdmin = (editedAdmin) => {
+        setAdmins(
+            admins.map((admin) =>
+                admin.id === editedAdmin.id ? editedAdmin : admin
             )
         );
-        setEditingProduct(null);
+        setEditingAdmin(null);
         setFilter("");
     };
 
-    const handleDeleteProduct = (productId) => {
-        setProducts(products.filter((product) => product.id !== productId));
+    const handleDeleteAdmin = (adminId) => {
+        setAdmins(admins.filter((admin) => admin.id !== adminId));
     };
 
-    const filteredProducts = products.filter((product) => {
+    const filteredAdmins = admins.filter((admin) => {
         if (
             filter &&
             !(
-                product.name.toLowerCase().includes(filter.toLowerCase()) ||
-                product.category.toLowerCase().includes(filter.toLowerCase()) ||
-                product.price
-                    .toString()
-                    .toLowerCase()
-                    .includes(filter.toLowerCase())
+                admin.name.toLowerCase().includes(filter.toLowerCase()) ||
+                admin.email.toLowerCase().includes(filter.toLowerCase()) ||
+                admin.role.toLowerCase().includes(filter.toLowerCase())
             )
         ) {
             return false;
@@ -85,10 +78,10 @@ function AdminTable() {
             <div className="dash-main">
                 <h2>Admins List</h2>
                 <div>
-                    <button onClick={handleAddProduct}>Add Product</button>
+                    <button onClick={handleAddAdmin}>Add Admin</button>
                     <input
                         type="text"
-                        placeholder="Search by name, category or price"
+                        placeholder="Search by name, email or role"
                         value={filter}
                         onChange={(e) => setFilter(e.target.value)}
                     />
@@ -97,76 +90,67 @@ function AdminTable() {
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Category</th>
-                            <th>Price</th>
+                            <th>Email</th>
+                            <th>Role</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredProducts.map((product) => (
-                            <tr key={product.id}>
+                        {filteredAdmins.map((admin) => (
+                            <tr key={admin.id}>
                                 <td>
-                                    {editingProduct?.id === product.id ? (
+                                    {editingAdmin?.id === admin.id ? (
                                         <input
                                             type="text"
-                                            value={editingProduct.name}
+                                            value={editingAdmin.name}
                                             onChange={(e) =>
-                                                setEditingProduct({
-                                                    ...editingProduct,
+                                                setEditingAdmin({
+                                                    ...editingAdmin,
                                                     name: e.target.value,
                                                 })
                                             }
                                         />
                                     ) : (
-                                        product.name
+                                        admin.name
                                     )}
-                                    {editingProduct?.id !== product.id &&
-                                        product.adminName !== "" && (
-                                            <span className="admin-name">
-                                                (Added by {product.adminName})
-                                            </span>
-                                        )}
                                 </td>
-
                                 <td>
-                                    {editingProduct?.id === product.id ? (
+                                    {editingAdmin?.id === admin.id ? (
+                                        <input
+                                            type="email"
+                                            value={editingAdmin.email}
+                                            onChange={(e) =>
+                                                setEditingAdmin({
+                                                    ...editingAdmin,
+                                                    email: e.target.value,
+                                                })
+                                            }
+                                        />
+                                    ) : (
+                                        admin.email
+                                    )}
+                                </td>
+                                <td>
+                                    {editingAdmin?.id === admin.id ? (
                                         <input
                                             type="text"
-                                            value={editingProduct.category}
+                                            value={editingAdmin.admin}
                                             onChange={(e) =>
-                                                setEditingProduct({
-                                                    ...editingProduct,
-                                                    category: e.target.value,
+                                                setEditingAdmin({
+                                                    ...editingAdmin,
+                                                    role: e.target.value,
                                                 })
                                             }
                                         />
                                     ) : (
-                                        product.category
+                                        admin.role
                                     )}
                                 </td>
                                 <td>
-                                    {editingProduct?.id === product.id ? (
-                                        <input
-                                            type="number"
-                                            value={editingProduct.price}
-                                            onChange={(e) =>
-                                                setEditingProduct({
-                                                    ...editingProduct,
-                                                    price: e.target.value,
-                                                })
-                                            }
-                                        />
-                                    ) : (
-                                        `$${product.price}`
-                                    )}
-                                </td>
-                                <td>
-                                    {editingProduct?.id === product.id ? (
+                                    {editingAdmin?.id === admin.id ? (
                                         <button
                                             onClick={() =>
-                                                handleSaveProduct(
-                                                    editingProduct
-                                                )
+                                                handleSaveAdmin(editingAdmin)
                                             }
                                         >
                                             Save
@@ -175,16 +159,14 @@ function AdminTable() {
                                         <>
                                             <button
                                                 onClick={() =>
-                                                    handleEditProduct(product)
+                                                    handleEditAdmin(admin)
                                                 }
                                             >
                                                 Edit
                                             </button>
                                             <button
                                                 onClick={() =>
-                                                    handleDeleteProduct(
-                                                        product.id
-                                                    )
+                                                    handleDeleteAdmin(admin.id)
                                                 }
                                             >
                                                 Delete
