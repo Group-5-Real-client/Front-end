@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import "./productTableDash.css";
 import { Pagination } from "antd";
 
-function ProductTable() {
+function ReviewTable() {
     const [products, setProducts] = useState([
         {
             id: 1,
@@ -84,7 +83,7 @@ function ProductTable() {
     return (
         <>
             <div className="dash-main">
-                <h2>Products List</h2>
+                <h2>Reviews List</h2>
                 <div>
                     <button onClick={handleAddProduct}>Add Product</button>
                     <input
@@ -203,4 +202,4 @@ function ProductTable() {
     );
 }
 
-export default ProductTable;
+export default ReviewTable;

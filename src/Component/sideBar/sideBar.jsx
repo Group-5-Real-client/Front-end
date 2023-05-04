@@ -15,22 +15,22 @@ function Sidebar() {
             icon: "",
         },
         {
-            path: "/dashboard/review",
+            path: "/dashboard/Reviews",
             name: "Reviews",
             icon: "",
         },
         {
-            path: "/dashboard/contact",
+            path: "/dashboard/ContactUs",
             name: "Contact",
             icon: "",
         },
         {
-            path: "/dashboard/aboutUs",
+            path: "/dashboard/AboutUs",
             name: "About Us",
             icon: "",
         },
         {
-            path: "/dashboard/admin",
+            path: "/dashboard/Admin",
             name: "Admins",
             icon: "",
         },

@@ -14,6 +14,10 @@ import Signup from "./Pages/Signup";
 import Dashboard from "./Pages/Dashboard/dashboard.js";
 import ProductTable from "./Component/productTableDash/productTableDash";
 import CategoryTable from "./Component/categogryTableDash/categoryTableDash";
+import ReviewTable from "./Component/reviewTableDash/reviewTableDash";
+import ContactTable from "./Component/contactTableDash/contactTableDash";
+import AboutTable from "./Component/aboutTableDash/aboutTableDash";
+import AdminTable from "./Component/adminTableDash/adminTableDash";
 
 function App() {
     return (
@@ -40,6 +44,16 @@ function App() {
                         path="/dashboard/Categories"
                         element={<CategoryTable />}
                     />
+                    <Route
+                        path="/dashboard/Reviews"
+                        element={<ReviewTable />}
+                    />
+                    <Route
+                        path="/dashboard/ContactUs"
+                        element={<ContactTable />}
+                    />
+                    <Route path="/dashboard/AboutUs" element={<AboutTable />} />
+                    <Route path="/dashboard/Admin" element={<AdminTable />} />
                 </Route>
             </Routes>
         </BrowserRouter>
