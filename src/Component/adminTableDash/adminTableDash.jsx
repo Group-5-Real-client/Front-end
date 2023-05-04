@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Pagination } from "antd";
+import { Pagination, Button, Modal } from "antd";
 
 function AdminTable() {
     const [admins, setAdmins] = useState([
@@ -22,6 +22,19 @@ function AdminTable() {
             role: "Viewer",
         },
     ]);
+
+    const [open, setOpen] = useState(false);
+    const showModal = () => {
+        setOpen(true);
+    };
+    const handleOk = (e) => {
+        console.log(e);
+        setOpen(false);
+    };
+    const handleCancel = (e) => {
+        console.log(e);
+        setOpen(false);
+    };
 
     const [editingAdmin, setEditingAdmin] = useState(null);
     const [filter, setFilter] = useState("");
@@ -78,7 +91,25 @@ function AdminTable() {
             <div className="dash-main">
                 <h2>Admins List</h2>
                 <div>
-                    <button onClick={handleAddAdmin}>Add Admin</button>
+                    <Button type="primary" onClick={showModal}>
+                        Add Admin
+                    </Button>
+                    <Modal
+                        title="Basic Modal"
+                        open={open}
+                        onOk={handleOk}
+                        onCancel={handleCancel}
+                        okButtonProps={{
+                            disabled: true,
+                        }}
+                        cancelButtonProps={{
+                            disabled: true,
+                        }}
+                    >
+                        <p>Some contents...</p>
+                        <p>Some contents...</p>
+                        <p>Some contents...</p>
+                    </Modal>
                     <input
                         type="text"
                         placeholder="Search by name, email or role"

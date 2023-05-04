@@ -1,46 +1,54 @@
 import React from "react";
 import "./sideBar.css";
 import { Link, NavLink } from "react-router-dom";
+import { BiCategory } from "react-icons/bi";
+import { RiAdminFill } from "react-icons/ri";
+import { FaProductHunt } from "react-icons/fa";
+import { MdRateReview, MdOutlineLogout, MdDescription } from "react-icons/md";
+import { AiOutlineMessage } from "react-icons/ai";
 
 function Sidebar() {
     const link = [
         {
             path: "/dashboard/categories",
             name: "Categories",
-            icon: "",
+            icon: <BiCategory />,
         },
         {
             path: "/dashboard/Product",
             name: "Products",
-            icon: "",
+            icon: <FaProductHunt />,
         },
         {
             path: "/dashboard/Reviews",
             name: "Reviews",
-            icon: "",
+            icon: <MdRateReview />,
         },
         {
             path: "/dashboard/ContactUs",
             name: "Contact",
-            icon: "",
+            icon: <AiOutlineMessage />,
         },
         {
             path: "/dashboard/AboutUs",
             name: "About Us",
-            icon: "",
+            icon: <MdDescription />,
         },
         {
             path: "/dashboard/Admin",
             name: "Admins",
-            icon: "",
+            icon: <RiAdminFill />,
         },
     ];
 
     let activeStyle = {
-        backgroundColor: "#b6bfa3",
-        borderRadius: "25px",
+        backgroundColor: "#bf681b",
+        color: "#fff",
+        borderRadius: "5px",
         transition: "all 0.3s ease-in",
         width: "200px",
+        boxShadow: "0px 1px 5px #bf681b",
+        fontWeight: "bold",
     };
     return (
         <>
@@ -57,6 +65,7 @@ function Sidebar() {
                                         to={e.path}
                                         className="link-name"
                                     >
+                                        {e.icon}
                                         {e.name}
                                     </NavLink>
                                 </li>
@@ -67,7 +76,10 @@ function Sidebar() {
 
                 <ul className="sidebar-end">
                     <li>
-                        <Link to="#">Logout</Link>
+                        <Link to="#">
+                            <MdOutlineLogout />
+                            Logout
+                        </Link>
                     </li>
                 </ul>
             </div>
