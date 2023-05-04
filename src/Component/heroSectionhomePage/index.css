@@ -17,8 +17,8 @@
 	white-space: nowrap;
 	overflow: hidden;
 	border-right: 4px solid #212121;
-	animation: cursor 1s step-start infinite, 
-    text 6s steps(18) alternate infinite;
+	animation: cursor 4s step-start infinite, 
+    text 2s steps(15) alternate infinite;
 }
 
 @keyframes cursor {

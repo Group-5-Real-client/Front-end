@@ -55,7 +55,7 @@
   object-fit: cover;
 }
 
-.slider-container .slider .slider-item:hover .row.custom-row > a {
+.slider-container .slider .slider-item:hover .row-category.custom-row > a {
   background-color: #fff;
   color: #ffbc43;
 }
@@ -87,7 +87,7 @@
   border: 1px solid #efefef;
 }
 
-.row {
+.row-category {
   width: 80%;
   display: flex;
   justify-content: space-between;
