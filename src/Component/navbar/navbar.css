@@ -83,6 +83,11 @@
   opacity: 0.8;
 }
 
+.iconStore {
+  margin-bottom: 0px;
+  color: var(--button);
+}
+
 /* .shop___link {
   position: absolute;
   left: 0;
@@ -117,14 +122,17 @@
   left: 0;
 }
 @media screen and (max-width: 768px) {
-
-  .icon_face_login{
-    margin-left:20px
+  .iconStore {
+    margin-bottom: 15px;
+    color: var(--button);
   }
 
+  .icon_face_login {
+    margin-left: 20px;
+  }
 
-  .iconFace{
-    margin-left:-4px;
+  .iconFace {
+    margin-left: -4px;
   }
   #nav-whole-nav {
     position: relative;
@@ -452,7 +460,7 @@
   .mobile-menu.open {
     transform: translateX(0);
     margin-top: 0;
-    width : 275px;
+    width: 275px;
     font-size: 14px;
   }
 
@@ -505,7 +513,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     margin-bottom: 150px;
-    background-color: var(--accent-colors);
+    background-color: white;
   }
 
   .mobile-menu__item {
