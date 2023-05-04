@@ -77,6 +77,8 @@
 .footer-container1 {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   padding: 60px 0;
 }
 .footer-container1 a {
@@ -118,31 +120,39 @@
   color: #b6bfa3;
 }
 
+
 @media screen and (max-width: 768px) {
+  .social-mediaBox {
+    width: 190px;
+    padding: 0;
+  }
+
+  ._location__box {
+    width: 190px;
+    padding: 0;
+  }
+
+  .companyBox {
+    width: 190px;
+    padding: 0;
+  }
+
+  .productBox {
+    width: 200px;
+    padding: 0;
+  }
   .parent_container {
+    padding: 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     flex-wrap: wrap;
-    /* grid-template-columns: repeat(2, 1fr); */
     font-size: 14px;
     text-align: start;
-    /* display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    flex-direction: column-reverse;
-    padding: 0;
-    margin: 0; */
   }
 
   .Email {
     font-size: 12px;
   }
-
-  /* ._location__box{
-    margin-bottom:5px ;
-  } */
 
   .footer-container1 .location_ {
     margin-top: 0px;
@@ -154,7 +164,7 @@
     padding: 0;
   }
   .footer-container1 {
-    padding: 60px 0;
+    padding: 35px 25px;
   }
 
   .links {
@@ -172,9 +182,8 @@
   .footer-container1 .links {
     margin: 0;
   }
-  
 
-  .boxReverseSocial{
+  .boxReverseSocial {
     margin-left: 20px;
   }
 }

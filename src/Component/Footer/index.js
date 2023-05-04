@@ -11,29 +11,8 @@ import {
 function Footer() {
   return (
     <footer>
-      {/* <div className="parent_container">
-        <div className="footer-container1  boxReverse">
-          <img src="http://placekitten.com/g/50/50" alt="logo" />
-          <p className="copyright">Copyright @ 2023</p>
-
-          <div className="social-icons-container">
-            <a href="https://www.facebook.com/">
-              <FontAwesomeIcon icon={faFacebook} size="2x" />
-            </a>
-            <a href="https://www.instagram.com/">
-              <FontAwesomeIcon icon={faInstagram} size="2x" />
-            </a>
-            <a href="https://twitter.com/">
-              <FontAwesomeIcon icon={faTwitter} size="2x" />
-            </a>
-            <a href="https://whatsapp.com/">
-              <FontAwesomeIcon icon={faWhatsapp} size="2x" />
-            </a>
-          </div>
-        </div> */}
-
       <div className="parent_container">
-        <div className="footer-container1">
+        <div className="footer-container1  productBox">
           <h3>PRODUCTS</h3>
           <NavLink to="/HomeMade Food " className="links">
             HomeMade Food{" "}
@@ -68,7 +47,7 @@ function Footer() {
           </p>
         </div>
 
-        <div className="footer-container1  boxReverseSocial">
+        <div className="footer-container1  boxReverse">
           <img src="http://placekitten.com/g/50/50" alt="logo" />
           <p className="copyright">Copyright @ 2023</p>
 
