@@ -7,7 +7,7 @@ import { Link, NavLink } from "react-router-dom";
 import DropdownShop from "../dropDown-shop/dropDown-shop";
 import DropdownAboutUs from "../dropDown-aboutUs/dropDown-aboutUs";
 import DropdownContact from "../dropDown-contact/dropDown-contact";
-import AddtoCard from "../card/card";
+import AddtoCard from "../card/Card";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
@@ -76,7 +76,15 @@ function Navbar() {
             onClick={handleLinkClick}>
             Login
           </Link>
-          <AddtoCard/
+
+          <div className="nav-logo">
+            <Link className="store-icon" to="/card" onClick={handleLinkClick}>
+              <span className="nav-addtoCardicon">
+                <AddtoCard />
+              </span>
+            </Link>
+          </div>
+
           {/* <img
             className="shop-icon"
             src={Logo}
