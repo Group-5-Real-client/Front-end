@@ -1,77 +1,66 @@
 import React, { useState } from "react";
-import { Pagination } from "antd";
+import { Button, Modal, Pagination } from "antd";
 
 function ContactTable() {
-    const [products, setProducts] = useState([
+    const [contacts, setContacts] = useState([
         {
             id: 1,
-            name: "Product 1",
-            category: "Category 1",
-            price: 10,
-            adminName: "",
+            email: "example1@gmail.com",
+            message: "Message 1",
+            phone: 1234567890,
         },
         {
             id: 2,
-            name: "Product 2",
-            category: "Category 2",
-            price: 20,
-            adminName: "",
+            email: "example2@gmail.com",
+            message: "Message 2",
+            phone: 2345678901,
         },
         {
             id: 3,
-            name: "Product 3",
-            category: "Category 1",
-            price: 15,
-            adminName: "",
+            email: "example3@gmail.com",
+            message: "Message 3",
+            phone: 3456789012,
         },
     ]);
 
-    const [editingProduct, setEditingProduct] = useState(null);
+    const [editingContact, setEditingContact] = useState(null);
     const [filter, setFilter] = useState("");
 
-    const handleAddProduct = () => {
-        const newProduct = {
-            id: products.length + 1,
-            name: "New Product",
-            category: "New Category",
-            price: 0,
-            adminName: "Admin Name", // Replace "Admin Name" with the actual admin name
+    const handleAddContact = () => {
+        const newContact = {
+            id: contacts.length + 1,
+            email: "",
+            message: "",
+            phone: null,
         };
-        setProducts([...products, newProduct]);
+        setContacts([...contacts, newContact]);
+        setEditingContact(newContact);
     };
 
-    const handleEditProduct = (product) => {
-        if (product) {
-            setEditingProduct(product);
-        } else {
-            setEditingProduct(null);
-        }
+    const handleEditContact = (contact) => {
+        setEditingContact(contact);
     };
 
-    const handleSaveProduct = (editedProduct) => {
-        setProducts(
-            products.map((product) =>
-                product.id === editedProduct.id ? editedProduct : product
+    const handleSaveContact = (editedContact) => {
+        setContacts(
+            contacts.map((contact) =>
+                contact.id === editedContact.id ? editedContact : contact
             )
         );
-        setEditingProduct(null);
-        setFilter("");
+        setEditingContact(null);
     };
 
-    const handleDeleteProduct = (productId) => {
-        setProducts(products.filter((product) => product.id !== productId));
+    const handleDeleteContact = (contactId) => {
+        setContacts(contacts.filter((contact) => contact.id !== contactId));
     };
 
-    const filteredProducts = products.filter((product) => {
+    const filteredContacts = contacts.filter((contact) => {
         if (
             filter &&
             !(
-                product.name.toLowerCase().includes(filter.toLowerCase()) ||
-                product.category.toLowerCase().includes(filter.toLowerCase()) ||
-                product.price
-                    .toString()
-                    .toLowerCase()
-                    .includes(filter.toLowerCase())
+                contact.email.toLowerCase().includes(filter.toLowerCase()) ||
+                contact.message.toLowerCase().includes(filter.toLowerCase()) ||
+                contact.phone.toString().includes(filter.toLowerCase())
             )
         ) {
             return false;
@@ -83,120 +72,186 @@ function ContactTable() {
     return (
         <>
             <div className="dash-main">
-                <h2>Categories List</h2>
-                <div>
-                    <button onClick={handleAddProduct}>Add Product</button>
+                <h2>Contact List</h2>
+                <div className="add-button">
+                    <Button type="primary" onClick={handleAddContact}>
+                        Add Contact
+                    </Button>
+                    <Modal
+                        title={
+                            editingContact
+                                ? `Editing Contact ${editingContact.id}`
+                                : "Add Contact"
+                        }
+                        open={!!editingContact}
+                        onCancel={() => setEditingContact(null)}
+                        footer={[
+                            <Button
+                                key="cancel"
+                                onClick={() => setEditingContact(null)}
+                            >
+                                Cancel
+                            </Button>,
+                            <Button
+                                key="save"
+                                type="primary"
+                                onClick={() =>
+                                    handleSaveContact(editingContact)
+                                }
+                            >
+                                Save
+                            </Button>,
+                        ]}
+                    >
+                        <div>
+                            <label>Email:</label>
+                            <input
+                                type="email"
+                                value={editingContact?.email || ""}
+                                onChange={(e) =>
+                                    setEditingContact({
+                                        ...editingContact,
+                                        email: e.target.value,
+                                    })
+                                }
+                            />
+                        </div>
+                        <div>
+                            <label>Message:</label>
+                            <input
+                                type="text"
+                                value={editingContact?.message || ""}
+                                onChange={(e) =>
+                                    setEditingContact({
+                                        ...editingContact,
+                                        message: e.target.value,
+                                    })
+                                }
+                            />
+                        </div>
+                        <div>
+                            <label>Phone:</label>
+                            <input
+                                type="tel"
+                                value={editingContact?.phone || ""}
+                                onChange={(e) =>
+                                    setEditingContact({
+                                        ...editingContact,
+                                        phone: e.target.value,
+                                    })
+                                }
+                            />
+                        </div>
+                    </Modal>
                     <input
                         type="text"
-                        placeholder="Search by name, category or price"
+                        placeholder="Search by name, email or role"
                         value={filter}
                         onChange={(e) => setFilter(e.target.value)}
                     />
                 </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredProducts.map((product) => (
-                            <tr key={product.id}>
-                                <td>
-                                    {editingProduct?.id === product.id ? (
-                                        <input
-                                            type="text"
-                                            value={editingProduct.name}
-                                            onChange={(e) =>
-                                                setEditingProduct({
-                                                    ...editingProduct,
-                                                    name: e.target.value,
-                                                })
-                                            }
-                                        />
-                                    ) : (
-                                        product.name
-                                    )}
-                                    {editingProduct?.id !== product.id &&
-                                        product.adminName !== "" && (
-                                            <span className="admin-name">
-                                                (Added by {product.adminName})
-                                            </span>
-                                        )}
-                                </td>
-
-                                <td>
-                                    {editingProduct?.id === product.id ? (
-                                        <input
-                                            type="text"
-                                            value={editingProduct.category}
-                                            onChange={(e) =>
-                                                setEditingProduct({
-                                                    ...editingProduct,
-                                                    category: e.target.value,
-                                                })
-                                            }
-                                        />
-                                    ) : (
-                                        product.category
-                                    )}
-                                </td>
-                                <td>
-                                    {editingProduct?.id === product.id ? (
-                                        <input
-                                            type="number"
-                                            value={editingProduct.price}
-                                            onChange={(e) =>
-                                                setEditingProduct({
-                                                    ...editingProduct,
-                                                    price: e.target.value,
-                                                })
-                                            }
-                                        />
-                                    ) : (
-                                        `$${product.price}`
-                                    )}
-                                </td>
-                                <td>
-                                    {editingProduct?.id === product.id ? (
-                                        <button
-                                            onClick={() =>
-                                                handleSaveProduct(
-                                                    editingProduct
-                                                )
-                                            }
-                                        >
-                                            Save
-                                        </button>
-                                    ) : (
-                                        <>
-                                            <button
-                                                onClick={() =>
-                                                    handleEditProduct(product)
+                <div className="table-fixing">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Message</th>
+                                <th>Phone</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredContacts.map((contact) => (
+                                <tr key={contact.id}>
+                                    <td>
+                                        {editingContact?.id === contact.id ? (
+                                            <input
+                                                type="text"
+                                                value={editingContact.email}
+                                                onChange={(e) =>
+                                                    setEditingContact({
+                                                        ...editingContact,
+                                                        email: e.target.value,
+                                                    })
                                                 }
-                                            >
-                                                Edit
-                                            </button>
+                                            />
+                                        ) : (
+                                            contact.email
+                                        )}
+                                    </td>
+
+                                    <td>
+                                        {editingContact?.id === contact.id ? (
+                                            <input
+                                                type="text"
+                                                value={editingContact.message}
+                                                onChange={(e) =>
+                                                    setEditingContact({
+                                                        ...editingContact,
+                                                        message: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        ) : (
+                                            contact.message
+                                        )}
+                                    </td>
+                                    <td>
+                                        {editingContact?.id === contact.id ? (
+                                            <input
+                                                type="number"
+                                                value={editingContact.phone}
+                                                onChange={(e) =>
+                                                    setEditingContact({
+                                                        ...editingContact,
+                                                        phone: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        ) : (
+                                            contact.phone
+                                        )}
+                                    </td>
+                                    <td>
+                                        {editingContact?.id === contact.id ? (
                                             <button
                                                 onClick={() =>
-                                                    handleDeleteProduct(
-                                                        product.id
+                                                    handleSaveContact(
+                                                        editingContact
                                                     )
                                                 }
                                             >
-                                                Delete
+                                                Save
                                             </button>
-                                        </>
-                                    )}
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-                <Pagination defaultCurrent={1} total={50} />
+                                        ) : (
+                                            <>
+                                                <button
+                                                    onClick={() =>
+                                                        handleEditContact(
+                                                            contact
+                                                        )
+                                                    }
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    onClick={() =>
+                                                        handleDeleteContact(
+                                                            contact.id
+                                                        )
+                                                    }
+                                                >
+                                                    Delete
+                                                </button>
+                                            </>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                    <Pagination defaultCurrent={1} total={50} />
+                </div>
             </div>
         </>
     );

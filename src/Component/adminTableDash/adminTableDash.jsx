@@ -214,12 +214,7 @@ function AdminTable() {
                         </div>
                     </Modal>
 
-                    <input
-                        type="text"
-                        placeholder="Search by name, email or role"
-                        value={filter}
-                        onChange={(e) => setFilter(e.target.value)}
-                    />
+                   
                 </div>
                 <div className="table-fixing">
                     <table>
