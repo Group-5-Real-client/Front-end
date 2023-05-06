@@ -12,14 +12,13 @@ function NavBar({ dashboardName, adminName, adminAvatar }) {
                 </div>
                 <div className="navbar-end">
                     <div className="admin-details">
-                        <img src={adminAvatar} alt="Admin Avatar" />
-                        <span>{adminName}</span>
+                        <span>{adminName}adminName</span>
                     </div>
                 </div>
             </div>
             <div className="trying-table">
                 <Sidebar />
-                <Outlet/>
+                <Outlet />
             </div>
         </>
     );

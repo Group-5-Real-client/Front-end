@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { Pagination, Button, Modal } from "antd";
 
@@ -134,8 +135,12 @@ function AdminTable() {
                         Add Admin
                     </Button>
                     <Modal
-                        title={editingAdmin ? "Edit Admin" : "Add Admin"}
-                        visible={open}
+                        title={
+                            editingAdmin
+                                ? `Editing ${editingAdmin.name}`
+                                : "Add Admin"
+                        }
+                        open={open}
                         onOk={handleOk}
                         onCancel={handleCancel}
                     >
@@ -196,7 +201,7 @@ function AdminTable() {
                                 }
                             />
                         </div>
-                        <div>
+                        <div className="issuper-div">
                             <label>Is Super:</label>
                             <Button
                                 type={newAdminIsSuper ? "primary" : "default"}
@@ -216,91 +221,96 @@ function AdminTable() {
                         onChange={(e) => setFilter(e.target.value)}
                     />
                 </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredAdmins.map((admin) => (
-                            <tr key={admin.id}>
-                                <td>
-                                    {editingAdmin?.id === admin.id ? (
-                                        <input
-                                            type="text"
-                                            value={editingAdmin.name}
-                                            onChange={(e) =>
-                                                setEditingAdmin({
-                                                    ...editingAdmin,
-                                                    name: e.target.value,
-                                                })
-                                            }
-                                        />
-                                    ) : (
-                                        admin.name
-                                    )}
-                                </td>
-                                <td>
-                                    {editingAdmin?.id === admin.id ? (
-                                        <input
-                                            type="email"
-                                            value={editingAdmin.email}
-                                            onChange={(e) =>
-                                                setEditingAdmin({
-                                                    ...editingAdmin,
-                                                    email: e.target.value,
-                                                })
-                                            }
-                                        />
-                                    ) : (
-                                        admin.email
-                                    )}
-                                </td>
-                                <td>
-                                    {editingAdmin?.id === admin.id ? (
-                                        <input
-                                            type="text"
-                                            value={editingAdmin.admin}
-                                            onChange={(e) =>
-                                                setEditingAdmin({
-                                                    ...editingAdmin,
-                                                    role: e.target.value,
-                                                })
-                                            }
-                                        />
-                                    ) : (
-                                        admin.role
-                                    )}
-                                </td>
-                                <td>
-                                    {editingAdmin?.id === admin.id ? null : (
-                                        <>
-                                            <button
-                                                onClick={() =>
-                                                    handleEditAdmin(admin)
-                                                }
-                                            >
-                                                Edit
-                                            </button>
-                                            <button
-                                                onClick={() =>
-                                                    handleDeleteAdmin(admin.id)
-                                                }
-                                            >
-                                                Delete
-                                            </button>
-                                        </>
-                                    )}
-                                </td>
+                <div className="table-fixing">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Action</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-                <Pagination defaultCurrent={1} total={50} />
+                        </thead>
+                        <tbody>
+                            {filteredAdmins.map((admin) => (
+                                <tr key={admin.id}>
+                                    <td>
+                                        {editingAdmin?.id === admin.id ? (
+                                            <input
+                                                type="text"
+                                                value={editingAdmin.name}
+                                                onChange={(e) =>
+                                                    setEditingAdmin({
+                                                        ...editingAdmin,
+                                                        name: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        ) : (
+                                            admin.name
+                                        )}
+                                    </td>
+                                    <td>
+                                        {editingAdmin?.id === admin.id ? (
+                                            <input
+                                                type="email"
+                                                value={editingAdmin.email}
+                                                onChange={(e) =>
+                                                    setEditingAdmin({
+                                                        ...editingAdmin,
+                                                        email: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        ) : (
+                                            admin.email
+                                        )}
+                                    </td>
+                                    <td>
+                                        {editingAdmin?.id === admin.id ? (
+                                            <input
+                                                type="text"
+                                                value={editingAdmin.admin}
+                                                onChange={(e) =>
+                                                    setEditingAdmin({
+                                                        ...editingAdmin,
+                                                        role: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        ) : (
+                                            admin.role
+                                        )}
+                                    </td>
+                                    <td>
+                                        {editingAdmin?.id ===
+                                        admin.id ? null : (
+                                            <>
+                                                <button
+                                                    onClick={() =>
+                                                        handleEditAdmin(admin)
+                                                    }
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    onClick={() =>
+                                                        handleDeleteAdmin(
+                                                            admin.id
+                                                        )
+                                                    }
+                                                >
+                                                    Delete
+                                                </button>
+                                            </>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                    <Pagination defaultCurrent={1} total={50} />
+                </div>
             </div>
         </>
     );

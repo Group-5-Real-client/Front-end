@@ -75,10 +75,13 @@ tbody tr:nth-child(even) {
 
 .ant-btn-primary {
     background-color: var(--button);
+    height: 40px;
 }
 
 .ant-btn-primary:hover {
-    background-color: var(--button) !important;
+    background-color: white !important;
+    color: var(--button) !important;
+    border-color: var(--button) !important;
 }
 
 .ant-modal .ant-modal-content {
@@ -107,9 +110,26 @@ tbody tr:nth-child(even) {
 .ant-btn-default {
     color: var(--button);
     background-color: white;
+    border-color: var(--button);
+    height: 37px;
 }
 
 .ant-btn-default:hover {
-    color: var(--button) !important;
-    background-color: white !important;
+    color: white !important;
+    background-color: var(--button) !important;
+    border-color: var(--button) !important;
+}
+
+.table-fixing {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 69vh;
+}
+
+.issuper-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
 }
