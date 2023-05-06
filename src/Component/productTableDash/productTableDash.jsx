@@ -9,6 +9,7 @@ function ProductTable() {
         {
             id: 1,
             name: "Product 1",
+            description: "example2",
             image: "example",
             category: "Category 1",
             price: 10,
@@ -16,6 +17,7 @@ function ProductTable() {
         },
         {
             id: 2,
+            description: "example2",
             name: "Product 2",
             image: "example",
             category: "Category 2",
@@ -24,6 +26,7 @@ function ProductTable() {
         },
         {
             id: 3,
+            description: "example2",
             name: "Product 3",
             image: "example",
             category: "Category 1",
@@ -35,6 +38,7 @@ function ProductTable() {
     const [open, setOpen] = useState(false);
     const [editingProduct, setEditingProduct] = useState(null);
     const [newProductName, setNewProductName] = useState("");
+    const [newProductDescription, setNewProductDescription] = useState("");
     const [newProductImage, setNewProductImage] = useState("");
     const [newProductCategory, setNewProductCategory] = useState("");
     const [newProductPrice, setNewProductPrice] = useState("");
@@ -57,7 +61,7 @@ function ProductTable() {
 
     const filteredProducts = products
         ? products.filter((product) =>
-              `${product.name} ${product.image}${product.category}${product.price}`
+              `${product.name} ${product.image}${product.category}${product.price}${product.description}`
                   .toLowerCase()
                   .includes(filter.toLowerCase())
           )
@@ -80,6 +84,7 @@ function ProductTable() {
                           name: editingProduct.name,
                           category: editingProduct.category,
                           price: editingProduct.price,
+                          description: editingProduct.description,
                           image: newProductImage
                               ? getObjectUrl(newProductImage)
                               : editingProduct.image,
@@ -91,6 +96,7 @@ function ProductTable() {
             setNewProductImage("");
             setNewProductCategory("");
             setNewProductPrice("");
+            setNewProductDescription("");
             updateProducts(updatedProducts);
             setPreviewImage("");
         } else {
@@ -100,6 +106,7 @@ function ProductTable() {
                 name: newProductName,
                 image: newProductImage ? getObjectUrl(newProductImage) : "",
                 category: newProductCategory,
+                description: newProductDescription,
                 price: newProductPrice,
             };
             updateProducts([...products, newProduct]);
@@ -107,6 +114,7 @@ function ProductTable() {
             setNewProductCategory("");
             setNewProductPrice("");
             setNewProductImage("");
+            setNewProductDescription("");
         }
         setOpen(false);
     };
@@ -118,6 +126,7 @@ function ProductTable() {
         setNewProductImage("");
         setNewProductCategory("");
         setNewProductPrice("");
+        setNewProductDescription("");
         setPreviewImage("");
     };
 
@@ -126,6 +135,7 @@ function ProductTable() {
         setNewProductName("");
         setNewProductPrice("");
         setNewProductImage("");
+        setNewProductDescription("");
         showModal();
     };
 
@@ -188,6 +198,27 @@ function ProductTable() {
                                                   name: e.target.value,
                                               })
                                             : setNewProductName(e.target.value)
+                                    }
+                                />
+                            </div>
+                            <div>
+                                <label>Description:</label>
+                                <input
+                                    type="text"
+                                    value={
+                                        editingProduct
+                                            ? editingProduct.description
+                                            : newProductName
+                                    }
+                                    onChange={(e) =>
+                                        editingProduct
+                                            ? setEditingProduct({
+                                                  ...editingProduct,
+                                                  description: e.target.value,
+                                              })
+                                            : setNewProductDescription(
+                                                  e.target.value
+                                              )
                                     }
                                 />
                             </div>
@@ -269,6 +300,7 @@ function ProductTable() {
                             <thead>
                                 <tr>
                                     <th>Name</th>
+                                    <th>Description</th>
                                     <th>Image</th>
                                     <th>Category</th>
                                     <th>Price</th>
@@ -294,6 +326,26 @@ function ProductTable() {
                                                 />
                                             ) : (
                                                 products.name
+                                            )}
+                                        </td>
+                                        <td>
+                                            {editingProduct?.id ===
+                                            products.id ? (
+                                                <input
+                                                    type="text"
+                                                    value={
+                                                        editingProduct.description
+                                                    }
+                                                    onChange={(e) =>
+                                                        setEditingProduct({
+                                                            ...editingProduct,
+                                                            description:
+                                                                e.target.value,
+                                                        })
+                                                    }
+                                                />
+                                            ) : (
+                                                products.description
                                             )}
                                         </td>
                                         <td>
