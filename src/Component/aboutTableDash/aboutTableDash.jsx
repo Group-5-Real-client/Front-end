@@ -102,7 +102,7 @@ function AboutTable({ adminName }) {
     return (
         <>
             <div className="dash-main">
-                <h2>Abouts</h2>
+                <h2>AboutUs List</h2>
                 <div className="add-button">
                     <Button type="primary" onClick={showModal}>
                         Add About
