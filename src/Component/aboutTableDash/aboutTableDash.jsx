@@ -1,202 +1,261 @@
-import React, { useState } from "react";
-import { Pagination } from "antd";
+/* eslint-disable jsx-a11y/img-redundant-alt */
+import { useState } from "react";
+import { Button, Modal, Pagination } from "antd";
 
-function AboutTable() {
-    const [products, setProducts] = useState([
+function AboutTable({ adminName }) {
+    const [abouts, setAbouts] = useState([
         {
             id: 1,
-            name: "Product 1",
-            category: "Category 1",
-            price: 10,
-            adminName: "",
+            description: "Admin 1",
+            image: "admin1@example.com",
         },
         {
             id: 2,
-            name: "Product 2",
-            category: "Category 2",
-            price: 20,
-            adminName: "",
+            description: "Admin 2",
+            image: "admin2@example.com",
         },
         {
             id: 3,
-            name: "Product 3",
-            category: "Category 1",
-            price: 15,
-            adminName: "",
+            description: "Admin 3",
+            image: "admin3@example.com",
         },
     ]);
 
-    const [editingProduct, setEditingProduct] = useState(null);
+    const [open, setOpen] = useState(false);
+    const [editingAbout, setEditingAbout] = useState(null);
+    const [newAboutDescription, setNewAboutDescription] = useState("");
+    const [newAboutImage, setNewAboutImage] = useState("");
     const [filter, setFilter] = useState("");
+    const [previewImage, setPreviewImage] = useState("");
 
-    const handleAddProduct = () => {
-        const newProduct = {
-            id: products.length + 1,
-            name: "New Product",
-            category: "New Category",
-            price: 0,
-            adminName: "Admin Name", // Replace "Admin Name" with the actual admin name
-        };
-        setProducts([...products, newProduct]);
+    const filteredAbouts = abouts
+        ? abouts.filter((about) =>
+              `${about.description} ${about.image}`
+                  .toLowerCase()
+                  .includes(filter.toLowerCase())
+          )
+        : [];
+
+    const showModal = () => {
+        setOpen(true);
     };
+    function getObjectUrl(file) {
+        return URL.createObjectURL(file);
+    }
 
-    const handleEditProduct = (product) => {
-        if (product) {
-            setEditingProduct(product);
+    const handleOk = () => {
+        if (editingAbout) {
+            // Editing an existing about
+            const updatedAbouts = abouts.map((about) =>
+                about.id === editingAbout.id
+                    ? {
+                          ...about,
+                          description: editingAbout.description,
+                          image: newAboutImage
+                              ? getObjectUrl(newAboutImage)
+                              : editingAbout.image,
+                      }
+                    : about
+            );
+            setEditingAbout(null);
+            setNewAboutDescription("");
+            setNewAboutImage("");
+            updateAbouts(updatedAbouts);
+            setPreviewImage("");
         } else {
-            setEditingProduct(null);
+            // Adding a new about
+            const newAbout = {
+                id: abouts.length + 1,
+                description: newAboutDescription,
+                image: newAboutImage ? getObjectUrl(newAboutImage) : "",
+            };
+            updateAbouts([...abouts, newAbout]);
+            setNewAboutDescription("");
+            setNewAboutImage("");
         }
+        setOpen(false);
     };
 
-    const handleSaveProduct = (editedProduct) => {
-        setProducts(
-            products.map((product) =>
-                product.id === editedProduct.id ? editedProduct : product
-            )
-        );
-        setEditingProduct(null);
-        setFilter("");
+    const handleCancel = () => {
+        setOpen(false);
+        setEditingAbout(null);
+        setNewAboutDescription("");
+        setNewAboutImage("");
     };
 
-    const handleDeleteProduct = (productId) => {
-        setProducts(products.filter((product) => product.id !== productId));
+    const handleEditAbout = (about) => {
+        setEditingAbout(about);
+        setNewAboutDescription("");
+        setNewAboutImage("");
+        showModal();
     };
 
-    const filteredProducts = products.filter((product) => {
-        if (
-            filter &&
-            !(
-                product.name.toLowerCase().includes(filter.toLowerCase()) ||
-                product.category.toLowerCase().includes(filter.toLowerCase()) ||
-                product.price
-                    .toString()
-                    .toLowerCase()
-                    .includes(filter.toLowerCase())
-            )
-        ) {
-            return false;
-        }
+    const handleDeleteAbout = (id) => {
+        const updatedAbouts = abouts.filter((about) => about.id !== id);
+        updateAbouts(updatedAbouts);
+    };
 
-        return true;
-    });
+    const updateAbouts = (updatedAbouts) => {
+        setAbouts(updatedAbouts);
+    };
 
     return (
         <>
             <div className="dash-main">
-                <h2>AboutUs List</h2>
-                <div>
-                    <button onClick={handleAddProduct}>Add Product</button>
+                <h2>Abouts</h2>
+                <div className="add-button">
+                    <Button type="primary" onClick={showModal}>
+                        Add About
+                    </Button>
+                    <Modal
+                        title={
+                            editingAbout
+                                ? `Editing ${editingAbout.description} by ${adminName}`
+                                : `Add About by ${adminName}`
+                        }
+                        open={open}
+                        onOk={handleOk}
+                        onCancel={handleCancel}
+                    >
+                        <div>
+                            <label>Description:</label>
+                            <input
+                                type="text"
+                                value={
+                                    editingAbout
+                                        ? editingAbout.description
+                                        : newAboutDescription
+                                }
+                                onChange={(e) =>
+                                    editingAbout
+                                        ? setEditingAbout({
+                                              ...editingAbout,
+                                              description: e.target.value,
+                                          })
+                                        : setNewAboutDescription(e.target.value)
+                                }
+                            />
+                        </div>
+                        <div>
+                            <label>Image:</label>
+                            <input
+                                type="file"
+                                onChange={(e) => {
+                                    if (e.target.files.length > 0) {
+                                        setNewAboutImage(e.target.files[0]);
+                                        setPreviewImage(
+                                            URL.createObjectURL(
+                                                e.target.files[0]
+                                            )
+                                        );
+                                    }
+                                }}
+                            />
+                            {previewImage && (
+                                <img
+                                    src={previewImage}
+                                    alt="about image preview"
+                                    width="200"
+                                />
+                            )}
+                        </div>
+                    </Modal>
                     <input
                         type="text"
-                        placeholder="Search by name, category or price"
+                        placeholder="Search by description or image"
                         value={filter}
                         onChange={(e) => setFilter(e.target.value)}
                     />
                 </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredProducts.map((product) => (
-                            <tr key={product.id}>
-                                <td>
-                                    {editingProduct?.id === product.id ? (
-                                        <input
-                                            type="text"
-                                            value={editingProduct.name}
-                                            onChange={(e) =>
-                                                setEditingProduct({
-                                                    ...editingProduct,
-                                                    name: e.target.value,
-                                                })
-                                            }
-                                        />
-                                    ) : (
-                                        product.name
-                                    )}
-                                    {editingProduct?.id !== product.id &&
-                                        product.adminName !== "" && (
-                                            <span className="admin-name">
-                                                (Added by {product.adminName})
-                                            </span>
-                                        )}
-                                </td>
-
-                                <td>
-                                    {editingProduct?.id === product.id ? (
-                                        <input
-                                            type="text"
-                                            value={editingProduct.category}
-                                            onChange={(e) =>
-                                                setEditingProduct({
-                                                    ...editingProduct,
-                                                    category: e.target.value,
-                                                })
-                                            }
-                                        />
-                                    ) : (
-                                        product.category
-                                    )}
-                                </td>
-                                <td>
-                                    {editingProduct?.id === product.id ? (
-                                        <input
-                                            type="number"
-                                            value={editingProduct.price}
-                                            onChange={(e) =>
-                                                setEditingProduct({
-                                                    ...editingProduct,
-                                                    price: e.target.value,
-                                                })
-                                            }
-                                        />
-                                    ) : (
-                                        `$${product.price}`
-                                    )}
-                                </td>
-                                <td>
-                                    {editingProduct?.id === product.id ? (
-                                        <button
-                                            onClick={() =>
-                                                handleSaveProduct(
-                                                    editingProduct
-                                                )
-                                            }
-                                        >
-                                            Save
-                                        </button>
-                                    ) : (
-                                        <>
-                                            <button
-                                                onClick={() =>
-                                                    handleEditProduct(product)
-                                                }
-                                            >
-                                                Edit
-                                            </button>
-                                            <button
-                                                onClick={() =>
-                                                    handleDeleteProduct(
-                                                        product.id
-                                                    )
-                                                }
-                                            >
-                                                Delete
-                                            </button>
-                                        </>
-                                    )}
-                                </td>
+                <div className="table-fixing">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>Image</th>
+                                <th>Action</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-                <Pagination defaultCurrent={1} total={50} />
+                        </thead>
+                        <tbody>
+                            {filteredAbouts.map((abouts) => (
+                                <tr key={abouts.id}>
+                                    <td>
+                                        {editingAbout?.id === abouts.id ? (
+                                            <input
+                                                type="text"
+                                                value={editingAbout.description}
+                                                onChange={(e) =>
+                                                    setEditingAbout({
+                                                        ...editingAbout,
+                                                        description:
+                                                            e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        ) : (
+                                            abouts.description
+                                        )}
+                                        {editingAbout?.id !== abouts.id &&
+                                            abouts.adminName !== "" && (
+                                                <span className="admin-name">
+                                                    (Added by {abouts.adminName}
+                                                    )
+                                                </span>
+                                            )}
+                                    </td>
+                                    <td>
+                                        {editingAbout?.id === abouts.id ? (
+                                            <input
+                                                type="text"
+                                                value={editingAbout.image}
+                                                onChange={(e) =>
+                                                    setEditingAbout({
+                                                        ...editingAbout,
+                                                        image: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        ) : (
+                                            <img
+                                                src={abouts.image}
+                                                alt="about image"
+                                                style={{
+                                                    width: "100px",
+                                                    height: "100px",
+                                                }}
+                                            />
+                                        )}
+                                    </td>
+
+                                    <td>
+                                        {editingAbout?.id ===
+                                        abouts.id ? null : (
+                                            <>
+                                                <button
+                                                    onClick={() =>
+                                                        handleEditAbout(abouts)
+                                                    }
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    onClick={() =>
+                                                        handleDeleteAbout(
+                                                            abouts.id
+                                                        )
+                                                    }
+                                                >
+                                                    Delete
+                                                </button>
+                                            </>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                    <Pagination defaultCurrent={1} total={50} />
+                </div>
             </div>
         </>
     );
