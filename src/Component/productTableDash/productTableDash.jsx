@@ -131,7 +131,7 @@ function ProductTable() {
                 <h2>AboutUs List</h2>
                 <div className="add-button">
                     <Button type="primary" onClick={showModal}>
-                        Add About
+                        Add Product
                     </Button>
                     <Modal
                         title={
