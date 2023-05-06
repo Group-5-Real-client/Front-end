@@ -131,18 +131,32 @@ function AdminTable() {
             <div className="dash-main">
                 <h2>Admins List</h2>
                 <div className="add-button">
-                    <Button type="primary" onClick={showModal}>
+                    <Button type="primary" onClick={() => showModal()}>
                         Add Admin
                     </Button>
+
                     <Modal
                         title={
                             editingAdmin
-                                ? `Editing ${editingAdmin.name}`
+                                ? `Editing Admin ${
+                                      editingAdmin.id || "New Admin"
+                                  }`
                                 : "Add Admin"
                         }
                         open={open}
-                        onOk={handleOk}
                         onCancel={handleCancel}
+                        footer={[
+                            <Button key="cancel" onClick={handleCancel}>
+                                Cancel
+                            </Button>,
+                            <Button
+                                key="save"
+                                type="primary"
+                                onClick={handleOk}
+                            >
+                                Save
+                            </Button>,
+                        ]}
                     >
                         <div>
                             <label>Username:</label>
@@ -214,7 +228,12 @@ function AdminTable() {
                         </div>
                     </Modal>
 
-                   
+                    <input
+                        type="text"
+                        placeholder="Search by name, email or role"
+                        value={filter}
+                        onChange={(e) => setFilter(e.target.value)}
+                    />
                 </div>
                 <div className="table-fixing">
                     <table>

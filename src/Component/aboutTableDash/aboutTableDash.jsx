@@ -81,6 +81,7 @@ function AboutTable({ adminName }) {
         setEditingAbout(null);
         setNewAboutDescription("");
         setNewAboutImage("");
+        setPreviewImage("");
     };
 
     const handleEditAbout = (about) => {
@@ -110,12 +111,25 @@ function AboutTable({ adminName }) {
                     <Modal
                         title={
                             editingAbout
-                                ? `Editing ${editingAbout.description} by ${adminName}`
-                                : `Add About by ${adminName}`
+                                ? `Editing About ${
+                                      editingAbout.id || "New About"
+                                  }`
+                                : "Add About"
                         }
                         open={open}
-                        onOk={handleOk}
                         onCancel={handleCancel}
+                        footer={[
+                            <Button key="cancel" onClick={handleCancel}>
+                                Cancel
+                            </Button>,
+                            <Button
+                                key="save"
+                                type="primary"
+                                onClick={handleOk}
+                            >
+                                Save
+                            </Button>,
+                        ]}
                     >
                         <div>
                             <label>Description:</label>
@@ -195,13 +209,13 @@ function AboutTable({ adminName }) {
                                         ) : (
                                             abouts.description
                                         )}
-                                        {editingAbout?.id !== abouts.id &&
+                                        {/* {editingAbout?.id !== abouts.id &&
                                             abouts.adminName !== "" && (
                                                 <span className="admin-name">
                                                     (Added by {abouts.adminName}
                                                     )
                                                 </span>
-                                            )}
+                                            )} */}
                                     </td>
                                     <td>
                                         {editingAbout?.id === abouts.id ? (

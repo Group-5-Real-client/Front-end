@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal, Pagination } from "antd";
+import { Pagination, Modal, Button } from "antd";
 
 function ContactTable() {
     const [contacts, setContacts] = useState([
@@ -26,27 +26,28 @@ function ContactTable() {
     const [editingContact, setEditingContact] = useState(null);
     const [filter, setFilter] = useState("");
 
-    const handleAddContact = () => {
-        const newContact = {
-            id: contacts.length + 1,
-            email: "",
-            message: "",
-            phone: null,
-        };
-        setContacts([...contacts, newContact]);
-        setEditingContact(newContact);
-    };
-
     const handleEditContact = (contact) => {
         setEditingContact(contact);
     };
 
     const handleSaveContact = (editedContact) => {
-        setContacts(
-            contacts.map((contact) =>
-                contact.id === editedContact.id ? editedContact : contact
-            )
-        );
+        if (!editedContact.id) {
+            // New contact
+            const newContact = {
+                id: contacts.length + 1,
+                email: editedContact.email,
+                message: editedContact.message,
+                phone: editedContact.phone,
+            };
+            setContacts([...contacts, newContact]);
+        } else {
+            // Existing contact
+            setContacts(
+                contacts.map((contact) =>
+                    contact.id === editedContact.id ? editedContact : contact
+                )
+            );
+        }
         setEditingContact(null);
     };
 
@@ -74,13 +75,24 @@ function ContactTable() {
             <div className="dash-main">
                 <h2>Contact List</h2>
                 <div className="add-button">
-                    <Button type="primary" onClick={handleAddContact}>
+                    <Button
+                        type="primary"
+                        onClick={() =>
+                            setEditingContact({
+                                email: "",
+                                message: "",
+                                phone: null,
+                            })
+                        }
+                    >
                         Add Contact
                     </Button>
                     <Modal
                         title={
                             editingContact
-                                ? `Editing Contact ${editingContact.id}`
+                                ? `Editing Contact ${
+                                      editingContact.id || "New Contact"
+                                  }`
                                 : "Add Contact"
                         }
                         open={!!editingContact}
@@ -213,17 +225,8 @@ function ContactTable() {
                                         )}
                                     </td>
                                     <td>
-                                        {editingContact?.id === contact.id ? (
-                                            <button
-                                                onClick={() =>
-                                                    handleSaveContact(
-                                                        editingContact
-                                                    )
-                                                }
-                                            >
-                                                Save
-                                            </button>
-                                        ) : (
+                                        {editingContact?.id ===
+                                        contact.id ? null : (
                                             <>
                                                 <button
                                                     onClick={() =>

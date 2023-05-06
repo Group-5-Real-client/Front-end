@@ -1,74 +1,83 @@
 import React, { useState } from "react";
-import { Pagination } from "antd";
+import { Pagination, Button, Modal } from "antd";
 
 function ReviewTable() {
-    const [products, setProducts] = useState([
+    const [reviews, setReviews] = useState([
         {
             id: 1,
-            name: "Product 1",
-            category: "Category 1",
-            price: 10,
-            adminName: "",
+            rating: "3",
+            comment: "Avergae",
+            product: "coffee",
         },
         {
             id: 2,
-            name: "Product 2",
-            category: "Category 2",
-            price: 20,
-            adminName: "",
+            rating: "3.5",
+            comment: "Not bad",
+            product: "Sugar",
         },
         {
             id: 3,
-            name: "Product 3",
-            category: "Category 1",
-            price: 15,
-            adminName: "",
+            rating: "5",
+            comment: "Great",
+            product: "Salt",
         },
     ]);
 
-    const [editingProduct, setEditingProduct] = useState(null);
+    const [editingReview, setEditingReview] = useState(null);
     const [filter, setFilter] = useState("");
+    const [showModal, setShowModal] = useState(false);
+    const [modalMode, setModalMode] = useState("Add");
 
-    const handleAddProduct = () => {
-        const newProduct = {
-            id: products.length + 1,
-            name: "New Product",
-            category: "New Category",
-            price: 0,
-            adminName: "Admin Name", // Replace "Admin Name" with the actual admin name
-        };
-        setProducts([...products, newProduct]);
+    const handleAddReview = () => {
+        setModalMode("Add");
+        setShowModal(true);
     };
 
-    const handleEditProduct = (product) => {
-        if (product) {
-            setEditingProduct(product);
+    const handleEditReview = (review) => {
+        if (review) {
+            setEditingReview(review);
+            setModalMode("Edit");
+            setShowModal(true);
         } else {
-            setEditingProduct(null);
+            setEditingReview(null);
+            setShowModal(false);
         }
     };
 
-    const handleSaveProduct = (editedProduct) => {
-        setProducts(
-            products.map((product) =>
-                product.id === editedProduct.id ? editedProduct : product
-            )
-        );
-        setEditingProduct(null);
+    const handleSaveReview = (editedProduct) => {
+        if (modalMode === "Edit") {
+            // editing an existing review
+            setReviews(
+                reviews.map((review) =>
+                    review.id === editedProduct.id ? editedProduct : review
+                )
+            );
+        } else {
+            // adding a new review
+            const newReview = {
+                id: reviews.length + 1,
+                rating: editedProduct.rating,
+                comment: editedProduct.comment,
+                product: editedProduct.product,
+            };
+            setReviews([...reviews, newReview]);
+        }
+        setEditingReview(null);
         setFilter("");
+        setShowModal(false);
     };
 
-    const handleDeleteProduct = (productId) => {
-        setProducts(products.filter((product) => product.id !== productId));
+    const handleDeleteReview = (reviewId) => {
+        setReviews(reviews.filter((review) => review.id !== reviewId));
     };
 
-    const filteredProducts = products.filter((product) => {
+    const filteredReviews = reviews.filter((review) => {
         if (
             filter &&
             !(
-                product.name.toLowerCase().includes(filter.toLowerCase()) ||
-                product.category.toLowerCase().includes(filter.toLowerCase()) ||
-                product.price
+                review.rating.toLowerCase().includes(filter.toLowerCase()) ||
+                review.comment.toLowerCase().includes(filter.toLowerCase()) ||
+                review.product
                     .toString()
                     .toLowerCase()
                     .includes(filter.toLowerCase())
@@ -84,119 +93,170 @@ function ReviewTable() {
         <>
             <div className="dash-main">
                 <h2>Reviews List</h2>
-                <div>
-                    <button onClick={handleAddProduct}>Add Product</button>
+                <div className="add-button">
+                    <Button type="primary" onClick={handleAddReview}>
+                        Add Review
+                    </Button>
+                    <Modal
+                        title={
+                            modalMode === "Add" ? "Add Review" : "Edit Review"
+                        }
+                        open={showModal}
+                        onCancel={() => handleEditReview(null)}
+                        footer={[
+                            <Button
+                                key="cancel"
+                                onClick={() => handleEditReview(null)}
+                            >
+                                Cancel
+                            </Button>,
+                            <Button
+                                key="save"
+                                type="primary"
+                                onClick={() => handleSaveReview(editingReview)}
+                            >
+                                Save
+                            </Button>,
+                        ]}
+                    >
+                        <div>
+                            <label>Rating:</label>
+                            <input
+                                type="rating"
+                                value={editingReview?.rating || ""}
+                                onChange={(e) =>
+                                    setEditingReview({
+                                        ...editingReview,
+                                        rating: e.target.value,
+                                    })
+                                }
+                            />
+                        </div>
+                        <div>
+                            <label>Comment:</label>
+                            <input
+                                type="text"
+                                value={editingReview?.comment || ""}
+                                onChange={(e) =>
+                                    setEditingReview({
+                                        ...editingReview,
+                                        comment: e.target.value,
+                                    })
+                                }
+                            />
+                        </div>
+                        <div>
+                            <label>Product:</label>
+                            <input
+                                type="tel"
+                                value={editingReview?.product || ""}
+                                onChange={(e) =>
+                                    setEditingReview({
+                                        ...editingReview,
+                                        product: e.target.value,
+                                    })
+                                }
+                            />
+                        </div>
+                    </Modal>
                     <input
                         type="text"
-                        placeholder="Search by name, category or price"
+                        placeholder="Search by rating, comment or product"
                         value={filter}
                         onChange={(e) => setFilter(e.target.value)}
                     />
                 </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredProducts.map((product) => (
-                            <tr key={product.id}>
-                                <td>
-                                    {editingProduct?.id === product.id ? (
-                                        <input
-                                            type="text"
-                                            value={editingProduct.name}
-                                            onChange={(e) =>
-                                                setEditingProduct({
-                                                    ...editingProduct,
-                                                    name: e.target.value,
-                                                })
-                                            }
-                                        />
-                                    ) : (
-                                        product.name
-                                    )}
-                                    {editingProduct?.id !== product.id &&
-                                        product.adminName !== "" && (
-                                            <span className="admin-name">
-                                                (Added by {product.adminName})
-                                            </span>
-                                        )}
-                                </td>
-
-                                <td>
-                                    {editingProduct?.id === product.id ? (
-                                        <input
-                                            type="text"
-                                            value={editingProduct.category}
-                                            onChange={(e) =>
-                                                setEditingProduct({
-                                                    ...editingProduct,
-                                                    category: e.target.value,
-                                                })
-                                            }
-                                        />
-                                    ) : (
-                                        product.category
-                                    )}
-                                </td>
-                                <td>
-                                    {editingProduct?.id === product.id ? (
-                                        <input
-                                            type="number"
-                                            value={editingProduct.price}
-                                            onChange={(e) =>
-                                                setEditingProduct({
-                                                    ...editingProduct,
-                                                    price: e.target.value,
-                                                })
-                                            }
-                                        />
-                                    ) : (
-                                        `$${product.price}`
-                                    )}
-                                </td>
-                                <td>
-                                    {editingProduct?.id === product.id ? (
-                                        <button
-                                            onClick={() =>
-                                                handleSaveProduct(
-                                                    editingProduct
-                                                )
-                                            }
-                                        >
-                                            Save
-                                        </button>
-                                    ) : (
-                                        <>
-                                            <button
-                                                onClick={() =>
-                                                    handleEditProduct(product)
-                                                }
-                                            >
-                                                Edit
-                                            </button>
-                                            <button
-                                                onClick={() =>
-                                                    handleDeleteProduct(
-                                                        product.id
-                                                    )
-                                                }
-                                            >
-                                                Delete
-                                            </button>
-                                        </>
-                                    )}
-                                </td>
+                <div className="table-fixing">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rating</th>
+                                <th>Comment</th>
+                                <th>Product</th>
+                                <th>Action</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-                <Pagination defaultCurrent={1} total={50} />
+                        </thead>
+                        <tbody>
+                            {filteredReviews.map((review) => (
+                                <tr key={review.id}>
+                                    <td>
+                                        {editingReview?.id === review.id ? (
+                                            <input
+                                                type="text"
+                                                value={editingReview.rating}
+                                                onChange={(e) =>
+                                                    setEditingReview({
+                                                        ...editingReview,
+                                                        rating: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        ) : (
+                                            review.rating
+                                        )}
+                                    </td>
+
+                                    <td>
+                                        {editingReview?.id === review.id ? (
+                                            <input
+                                                type="text"
+                                                value={editingReview.comment}
+                                                onChange={(e) =>
+                                                    setEditingReview({
+                                                        ...editingReview,
+                                                        comment: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        ) : (
+                                            review.comment
+                                        )}
+                                    </td>
+                                    <td>
+                                        {editingReview?.id === review.id ? (
+                                            <input
+                                                type="number"
+                                                value={editingReview.product}
+                                                onChange={(e) =>
+                                                    setEditingReview({
+                                                        ...editingReview,
+                                                        product: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        ) : (
+                                            review.product
+                                        )}
+                                    </td>
+                                    <td>
+                                        {editingReview?.id ===
+                                        review.id ? null : (
+                                            <>
+                                                <button
+                                                    onClick={() =>
+                                                        handleEditReview(review)
+                                                    }
+                                                >
+                                                    Edit
+                                                </button>
+                                                <button
+                                                    onClick={() =>
+                                                        handleDeleteReview(
+                                                            review.id
+                                                        )
+                                                    }
+                                                >
+                                                    Delete
+                                                </button>
+                                            </>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                    <Pagination defaultCurrent={1} total={50} />
+                </div>
             </div>
         </>
     );
