@@ -16,7 +16,7 @@ const images = [
     },
     {
       imgURL:
-        "https://img.freepik.com/free-photo/beauty-concept-with-different-products_23-2147817660.jpg?w=2000",
+        "https://lh3.googleusercontent.com/p/AF1QipPgvNrnxoDE7nqWYvEvXPgzkzcM5fv1MsxySaT2=w1080-h608-p-no-v0",
       imgAlt: "img-4"
     }
   ];
