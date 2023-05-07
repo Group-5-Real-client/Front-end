@@ -22,7 +22,7 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
-  padding: 50px 10%;
+  padding: 30px 10%;
   width: 100%;
   border-bottom: 1px solid var(--accent-colors);
   z-index: 1;
@@ -141,6 +141,7 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    padding: 20px;
     box-shadow: 0px 5px 15px 0px rgba(10, 10, 10, 0.1);
     -webkit-box-shadow: 0px 5px 15px 0px rgba(10, 10, 10, 0.1);
     -moz-box-shadow: 0px 5px 15px 0px rgba(10, 10, 10, 0.1);

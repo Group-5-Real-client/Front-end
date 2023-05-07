@@ -6,15 +6,18 @@ import {
   faMinus,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 import "./index.css";
 
-function AddToCart() {
+function AddToCart({ product }) {
   const [showBox, setShowBox] = useState(false);
   const [isCardOpen, setIsCardOpen] = useState(false);
   const [items, setItems] = useState(() => {
     const storedItems = localStorage.getItem("cartItems");
     return storedItems ? JSON.parse(storedItems) : [];
   });
+  const [products, setProducts] = useState([]);  // Define products state
+  const [loading, setLoading] = useState(false); // Define loading state
 
   // const [items, setItems] = useState([
   //   {
@@ -122,6 +125,23 @@ function AddToCart() {
     });
     return totalPrice;
   };
+
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get("https://api.escuelajs.co/api/v1/products")
+      .then(({ data }) => {
+        console.log(data);
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
+  }, [products, loading]); // Add missing dependencies
+
 
   return (
     <>
