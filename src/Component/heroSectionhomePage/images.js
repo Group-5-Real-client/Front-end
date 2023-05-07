@@ -1,7 +1,7 @@
 const images = [
     {
       imgURL:
-        "https://wallpapercave.com/wp/wp3510561.jpg",
+        "https://www.99precycling.com/wp-content/uploads/2019/06/AdobeStock_256293457-1000x640.jpeg",
       imgAlt: "img-1"
     },
     {
@@ -11,12 +11,12 @@ const images = [
     },
     {
       imgURL:
-        "https://u.profitroom.pl/2021-hotelstok-pl/thumb/2560x1440/uploads/HOTELSPAWISA.jpg",
+        "https://images.squarespace-cdn.com/content/v1/5a02d84564b05fdf01faca0a/4c4b15ca-b998-4825-9d5b-1f0997761938/Zero+Waste+Saves+Money+How+to+be+thrifty+Reusable+Nation.jpg",
       imgAlt: "img-3"
     },
     {
       imgURL:
-        "https://lh3.googleusercontent.com/p/AF1QipPgvNrnxoDE7nqWYvEvXPgzkzcM5fv1MsxySaT2=w1080-h608-p-no-v0",
+        "https://ceenergynews.com/wp-content/uploads/2020/06/zero-waste-4221633_1280.jpg",
       imgAlt: "img-4"
     }
   ];
