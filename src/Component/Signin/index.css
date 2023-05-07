@@ -2,3 +2,17 @@
   color: var(--primary-color);
 
 }
+.signin-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 65vh;
+  margin: auto 5%;
+  flex-direction: column;
+}
+
+.error-message{
+color: red;
+  font-size: medium;
+  margin-bottom: 20px;
+}
