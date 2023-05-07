@@ -162,10 +162,10 @@ function ProductTable() {
                         <Modal
                             title={
                                 editingProduct
-                                    ? `Editing About ${
-                                          editingProduct.id || "New About"
+                                    ? `Editing Product ${
+                                          editingProduct.id || "New Product"
                                       }`
-                                    : "Add About"
+                                    : "Add Product"
                             }
                             open={open}
                             onCancel={handleCancel}
@@ -208,7 +208,7 @@ function ProductTable() {
                                     value={
                                         editingProduct
                                             ? editingProduct.description
-                                            : newProductName
+                                            : newProductDescription
                                     }
                                     onChange={(e) =>
                                         editingProduct
