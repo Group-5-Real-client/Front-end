@@ -1,86 +1,183 @@
-import React, { useState, useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStore } from "@fortawesome/free-solid-svg-icons";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { faMinus } from "@fortawesome/free-solid-svg-icons";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faStore,
+  faPlus,
+  faMinus,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import "./index.css";
 
-function AddToCard() {
+function AddToCart() {
+  const [showBox, setShowBox] = useState(false);
+  const [isCardOpen, setIsCardOpen] = useState(false);
+  const [items, setItems] = useState(() => {
+    const storedItems = localStorage.getItem("cartItems");
+    return storedItems ? JSON.parse(storedItems) : [];
+  });
+
+  // const [items, setItems] = useState([
+  //   {
+  //     id: 1,
+  //     name: "Product 1",
+  //     price: 10,
+  //     quantity: 1,
+  //     image: "https://placekitten.com/70/70",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Product 2",
+  //     price: 20,
+  //     quantity: 2,
+  //     image: "https://placekitten.com/70/70",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Product 3",
+  //     price: 30,
+  //     quantity: 3,
+  //     image: "https://placekitten.com/70/70",
+  //   },
+  // ]);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleIconClick = () => {
+    setShowBox(!showBox);
+  };
+
+  const handleCloseClick = () => {
+    setShowBox(false);
+  };
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mediaQuery.matches);
+    const handleResize = (e) => {
+      setIsMobile(e.matches);
+    };
+    mediaQuery.addListener(handleResize);
+    return () => {
+      mediaQuery.removeListener(handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (showBox) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [showBox]);
+
+  const handleQuantityChange = (e, item) => {
+    const quantity = parseInt(e.target.value);
+    if (quantity > 0) {
+      setItems(
+        items.map((i) => (i.id === item.id ? { ...i, quantity: quantity } : i))
+      );
+    }
+  };
+
+  const addItem = (item) => {
+    const existingItem = items.find((i) => i.id === item.id);
+    if (existingItem) {
+      setItems(
+        items.map((i) =>
+          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+        )
+      );
+    } else {
+      setItems([...items, { ...item, quantity: 1 }]);
+    }
+  };
+
+  const removeItem = (item) => {
+    const existingItem = items.find((i) => i.id === item.id);
+    if (existingItem.quantity > 1) {
+      setItems(
+        items.map((i) =>
+          i.id === item.id ? { ...i, quantity: i.quantity - 1 } : i
+        )
+      );
+    } else {
+      setItems(items.filter((i) => i.id !== item.id));
+    }
+  };
+
+  const deleteItem = (item) => {
+    setItems(items.filter((i) => i.id !== item.id));
+  };
+
+  const priceFormatter = (price) => {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(price);
+  };
+
+  const getTotalPrice = () => {
+    let totalPrice = 0;
+    items.forEach((item) => {
+      totalPrice += item.price * item.quantity;
+    });
+    return totalPrice;
+  };
+
   return (
     <>
-      <nav className="parent-add-card">
-        {/* <div>
-          <div className="continue-shopping">
-            <FontAwesomeIcon icon={faArrowLeft} className="arrow-icon" />
-            <h3>continue shopping</h3>
+      {isMobile && <div className="mobileBackground" />}
+      <div className="addCardContainer">
+        <FontAwesomeIcon
+          className="addCardIcon"
+          icon={faStore}
+          onClick={handleIconClick}
+        />
+        {showBox && (
+          <div className={`addCardBox ${isMobile ? "mobileBox" : ""}`}>
+             <button className="closeButton" onClick={handleCloseClick}>
+              X
+            </button>
+            <h2>Add to Cart</h2>
+            <ul>
+              {items.map((item) => (
+                <li key={item.id}>
+                  <img src={item.image} alt={item.name} />
+                  <span>
+                    {item.name} ({priceFormatter(item.price)})
+                  </span>
+                  <div className="quantityBox">
+                    <button onClick={() => removeItem(item)}>
+                      <FontAwesomeIcon icon={faMinus} />
+                    </button>
+                    <input
+                      type="number"
+                      className="quantityInput"
+                      value={item.quantity}
+                      onChange={(e) => handleQuantityChange(e, item)}
+                      placeholder={`Quantity: ${item.quantity}`}
+                    />
+                    <button onClick={() => addItem(item)}>
+                      <FontAwesomeIcon icon={faPlus} />
+                    </button>
+                  </div>
+
+                  <button onClick={() => deleteItem(item)}>
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                  <span className="price">
+                    {priceFormatter(item.quantity * item.price)}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p>Total: {priceFormatter(getTotalPrice())}</p>
+            <button className="addCardButton">Add to cart</button>
+            <button className="clearCardButton">Clear cart</button>
           </div>
-
-          <div className="cart-icon">
-            <FontAwesomeIcon className="addCardIcon" icon={faStore} />
-            <p>7</p>
-          </div>
-        </div> */}
-
-        <section className="main-cart-section">
-          <h3>shopping Cart</h3>
-          {/* <p className="total-items">
-            you have <span className="total-items-count">7</span> items in
-            shoppingcart
-          </p> */}
-
-          <div className="cart-items">
-          <FontAwesomeIcon
-                    icon={faStore}
-                    className="fas fa-minus minus"
-                  />
-            <div className="cart-items-container">
-              <div className="items-info">
-                <div className="product-img">
-                  <img src="https://placekitten.com/70/70" alt="cat" />
-                </div>
-
-                <div className="title">
-                  <h2>samsung s21</h2>
-                  <p>black color</p>
-                </div>
-                <div className="add-minus-quanity">
-                  <FontAwesomeIcon
-                    icon={faPlus}
-                    className="fas fa-minus minus"
-                  />
-                  <input type="text" placeholder="2" />
-                  <FontAwesomeIcon icon={faMinus} className="fas fa-plus add" />
-                </div>
-
-                <div className="price">
-                  <h3>2000rs</h3>
-                </div>
-
-                <div className="remove-item">
-                  <FontAwesomeIcon
-                    icon={faTrash}
-                    className="fas fa-trash-alt remove"
-                  />
-                </div>
-              </div>
-
-           
-
-              <div className="card-total">
-                <h3>
-                  Cart Total : <span>2200rs</span>
-                </h3>
-                <button>checkout</button>
-              </div>
-            </div>
-          </div>
-        </section>
-      </nav>
+        )}
+      </div>
     </>
   );
 }
 
-export default AddToCard;
+export default AddToCart;

@@ -15,6 +15,13 @@ import  ProductPage from './Pages/Singleproduct/index'
 import FoodPage from "./Pages/FoodPage";
 import Recycling  from "./Pages/Recycling";
 import Hygienic from "./Pages/Hygienic";
+
+
+
+
+
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -32,6 +39,13 @@ function App() {
         <Route path="FoodProduct" element={<FoodPage />} />
         <Route path="Recycling" element={<Recycling />} />
         <Route path="Hygienic" element={<Hygienic/>} />
+
+
+
+  
+        
+
+        
       </Routes>
       <Footer />
     </BrowserRouter>
