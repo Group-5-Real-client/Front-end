@@ -35,145 +35,107 @@ function Navbar() {
 
   return (
     <section className="parentNavbar">
-      <nav id="nav-whole-nav" className="nav-links-container">
-        <button className="menu-toggle" onClick={handleMenuClick}>
-          {isOpen ? (
-            <FontAwesomeIcon icon={faTimes} className="menu-icon" />
-          ) : (
-            <FontAwesomeIcon icon={faBars} className="menu-icon" />
-          )}
-        </button>
+    <nav id="nav-whole-nav" className="nav-links-container">
+      <button className="menu-toggle" onClick={handleMenuClick}>
+        {isOpen ? (
+          <FontAwesomeIcon icon={faTimes} className="menu-icon" />
+        ) : (
+          <FontAwesomeIcon icon={faBars} className="menu-icon" />
+        )}
+      </button>
 
-          <ul class="menu__box">
-            <li className="">
-              <NavLink className="nav-link ">
-                <DropdownShop className="dropDown-shop    menu__item" />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/About-Us" className="nav-link menu__item">
-                <DropdownAboutUs className="dropDown-about" />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/event" className="nav-link  navEvent menu__item">
-                Events
-              </NavLink>
-            </li>
-            <li>
-              <Link
-                to="/Contact"
-                id="nav-Contact"
-                className="nav-link menu__item">
-                 <DropdownContact className="dropDown-contact" />
-              </Link>
-            </li>
+      <div className="navs__links">
+        <DropdownShop />
+        <DropdownAboutUs />
+        <NavLink
+          to="/event"
+          className="nav__nav nav-link navEvent"
+          onClick={handleLinkClick}>
+          Events
+        </NavLink>
+        <Link
+          to="/Contact"
+          id="nav-Contact"
+          className="nav__nav"
+          onClick={handleLinkClick}>
+          <DropdownContact />
+        </Link>
+      </div>
 
-            <li className="_persone_link_icon">
-              <FontAwesomeIcon icon={faUser} />
+      <div className="nav-logo">
+        <Link className="nav-logo-title" to="/" onClick={handleLinkClick}>
+          <span className="nav-title">Rooted</span>
+        </Link>
+      </div>
 
-              <Link to="/Login" id="nav-Login_mobile" className="nav-link">
-                Login
-              </Link>
-            </li>
-          </ul>
-        </main>
-
-        <section className="navs__links  ">
-          <NavLink className="nav__nav">
-            <DropdownShop className="dropDown-shop" />
-          </NavLink>
-
-          <NavLink className="nav__nav">
-            <DropdownAboutUs className="dropDown-about" />
-          </NavLink>
-
-          <NavLink to="/event" className="nav__nav  nav-link  navEvent">
-            Events
-          </NavLink>
-          <Link
-            to="/Contact"
-            id="nav-Contact"
-            className="nav__nav"
-            onClick={handleLinkClick}>
-            <DropdownContact />
-          </Link>
-        </div>
+      <div className="login-shop-icon">
+        <Link
+          to="/Login"
+          id="nav-Login"
+          className="nav__nav nav-link"
+          onClick={handleLinkClick}>
+          Login
+        </Link>
 
         <div className="nav-logo">
-          <Link className="nav-logo-title" to="/" onClick={handleLinkClick}>
-            <span className="nav-title">Rooted</span>
-          </Link>
+
+          <AddtoCard/>
+
+
+
+    
+
+       
         </div>
 
-        <div className="login-shop-icon">
+        {/* <img
+          className="shop-icon"
+          src={Logo}
+          width="25"
+          height="25"
+          alt="shop icon"
+        /> */}
+      </div>
+    </nav>
+
+    <div className={`mobile-menu ${isOpen ? "open" : ""}`}>
+      <button className="menu-toggle" onClick={handleMenuClick}>
+        {isOpen ? (
+          <FontAwesomeIcon icon={faTimes} className="menu-icon" />
+        ) : (
+          <FontAwesomeIcon icon={faBars} className="menu-icon" />
+        )}
+      </button>
+      <div className={`mobile-menu__items ${isOpen ? "" : "hidden"}`}>
+        <DropdownShop />
+        <DropdownAboutUs />
+        <Link
+          to="/event"
+          className="mobile-menu__item nav-link navEvent"
+          onClick={handleLinkClick}>
+          Events
+        </Link>
+        <Link
+          to="/Contact"
+          id="nav-Contact"
+          className="mobile-menu__item nav-link"
+          onClick={handleLinkClick}>
+          <DropdownContact />
+        </Link>
+        <div className="icon_face_login">
+          <FontAwesomeIcon className="iconFace" icon={faUser} />
+
           <Link
             to="/Login"
-            id="nav-Login"
-            className="nav__nav nav-link"
+            className="mobile-menu__item nav-link   login"
             onClick={handleLinkClick}>
             Login
           </Link>
-
-          <div className="nav-logo">
-
-            <AddtoCard/>
-
-
-
-      
-
-         
-          </div>
-
-          {/* <img
-            className="shop-icon"
-            src={Logo}
-            width="25"
-            height="25"
-            alt="shop icon"
-          /> */}
-        </div>
-      </nav>
-
-      <div className={`mobile-menu ${isOpen ? "open" : ""}`}>
-        <button className="menu-toggle" onClick={handleMenuClick}>
-          {isOpen ? (
-            <FontAwesomeIcon icon={faTimes} className="menu-icon" />
-          ) : (
-            <FontAwesomeIcon icon={faBars} className="menu-icon" />
-          )}
-        </button>
-        <div className={`mobile-menu__items ${isOpen ? "" : "hidden"}`}>
-          <DropdownShop />
-          <DropdownAboutUs />
-          <Link
-            to="/event"
-            className="mobile-menu__item nav-link navEvent"
-            onClick={handleLinkClick}>
-            Events
-          </Link>
-          <Link
-            to="/Contact"
-            id="nav-Contact"
-            className="mobile-menu__item nav-link"
-            onClick={handleLinkClick}>
-            <DropdownContact />
-          </Link>
-          <div className="icon_face_login">
-            <FontAwesomeIcon className="iconFace" icon={faUser} />
-
-            <Link
-              to="/Login"
-              className="mobile-menu__item nav-link   login"
-              onClick={handleLinkClick}>
-              Login
-            </Link>
-          </div>
         </div>
       </div>
-    </section>
-  );
+    </div>
+  </section>
+);
 }
 
 export default Navbar;
