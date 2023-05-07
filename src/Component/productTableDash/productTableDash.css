@@ -52,6 +52,13 @@ select {
     color: var(--accent-colors);
 }
 
+.select-option {
+    background-color: white;
+    border: 1px solid var(--button);
+    color: var(--button);
+    width: 200px;
+}
+
 h2 {
     margin-top: 0;
 }
