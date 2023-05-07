@@ -1,56 +1,51 @@
 
-
-// import React from 'react';
-// import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
-// import '../ContactUs/index1.css';
-// const ContactUs = () => {
-//   return (
-//     <div className="contact-us">
-//       <h1 className="contact-us__title">Contact Us</h1>
-//       <p className="contact-us__content">If you have any questions or feedback about our products or services, please don't hesitate to contact us using the form below.</p>
-//       <div className="contact-us__social">
-//         <a href="https://www.facebook.com" target="_blank" rel="noreferrer"><FaFacebook className="contact-us__icon" /></a>
-//         <a href="https://www.twitter.com" target="_blank" rel="noreferrer"><FaTwitter className="contact-us__icon" /></a>
-//         <a href="https://www.instagram.com" target="_blank" rel="noreferrer"><FaInstagram className="contact-us__icon" /></a>
-//       </div>
-//       <form className="contact-us__form">
-//       <div className="input-group">
-      
-//         <input type="text" id="name" name="name" className="input" required />
-//         <label htmlFor="name"className="input-label">Name:</label>
-//         </div>
-//         <div className="input-group">
-//         <input type="email" id="email" name="email"  className="input" required />
-//         <label htmlFor="email"className="input-label">Email:</label>
-//         </div>
-//         <div className="input-group">
-//         <textarea id="message" name="message" rows="5"  className="input" required></textarea>
-//         <label htmlFor="message"className="input-label">Message:</label>
-//         </div>
-    
-//           <div className="register-buttons">
-//         <button type="submit">Send</button></div>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default ContactUs;
-import React from 'react';
+import React ,{useState} from 'react';
 import { FaFacebook, FaTwitter, FaInstagram, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
 import { AiOutlineMail } from 'react-icons/ai';
 import '../ContactUs/index1.css';
-// import { HiLocationMarker } from "react-icons/hi";
-// import { Hi } from 'react-icons';
+import axios from 'axios';
+
 
 const ContactUs = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // handle form submission logic here
+ const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleSubmit = () => {
+    // e.preventDefault();
+    const sendEmail={
+      name:formData.name,
+      email:formData.email,
+      phone:formData.phone,
+      message:formData.message
+    }
+    axios.post('http://localhost:8080/api/form', sendEmail)
+      .then(res => {
+        console.log(res);
+       setFormData({
+        name: '',
+       email: '',
+       phone: '',
+       message: ''});
+      })
+      .catch(err => {
+        console.log(err);
+        console.error("error fetching");
+      });
   };
+
+  const handleFormChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevState) => ({ ...prevState, [name]: value }));
+  };
+
 
   return (
     <>
+    
     <div className="contact-us">
       <div className='contact-us__left'>
       <h1 className="contact-us__title">Contact Us</h1>
@@ -98,25 +93,25 @@ const ContactUs = () => {
       <div className='contact-us__right'>
       <form className="contact-us__form" onSubmit={handleSubmit}>
         <div className="input-group">
-          <input type="text" id="name" name="name" className="input" required />
+          <input type="text" id="name" name="name" className="input" value={formData.name} required onChange={handleFormChange} />
           <label htmlFor="name" className="input-label">
             Name:
           </label>
         </div>
         <div className="input-group">
-          <input type="email" id="email" name="email" className="input" required />
+          <input type="email" id="email" name="email" className="input" value={formData.email} required onChange={handleFormChange}/>
           <label htmlFor="email" className="input-label">
             Email:
           </label>
         </div>
                 <div className="input-group">
-          <input type="tel" id="phone" name="phone" className="input" required />
+          <input type="tel" id="phone" name="phone" className="input" value={formData.phone} required onChange={handleFormChange}/>
           <label htmlFor="phone" className="input-label">
             Phone:
           </label>
         </div>
         <div className="input-group">
-          <textarea id="message" name="message" rows="5" className="input" required></textarea>
+          <textarea id="message" name="message" rows="5" className="input" value={formData.message} required onChange={handleFormChange}></textarea>
           <label htmlFor="message" className="input-label">
             Message:
           </label>

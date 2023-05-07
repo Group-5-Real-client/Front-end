@@ -44,13 +44,51 @@ function Navbar() {
           )}
         </button>
 
-        <div className="navs__links">
-          <DropdownShop />
-          <DropdownAboutUs />
-          <NavLink
-            to="/event"
-            className="nav__nav nav-link navEvent"
-            onClick={handleLinkClick}>
+          <ul class="menu__box">
+            <li className="">
+              <NavLink className="nav-link ">
+                <DropdownShop className="dropDown-shop    menu__item" />
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/About-Us" className="nav-link menu__item">
+                <DropdownAboutUs className="dropDown-about" />
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/event" className="nav-link  navEvent menu__item">
+                Events
+              </NavLink>
+            </li>
+            <li>
+              <Link
+                to="/Contact"
+                id="nav-Contact"
+                className="nav-link menu__item">
+                 <DropdownContact className="dropDown-contact" />
+              </Link>
+            </li>
+
+            <li className="_persone_link_icon">
+              <FontAwesomeIcon icon={faUser} />
+
+              <Link to="/Login" id="nav-Login_mobile" className="nav-link">
+                Login
+              </Link>
+            </li>
+          </ul>
+        </main>
+
+        <section className="navs__links  ">
+          <NavLink className="nav__nav">
+            <DropdownShop className="dropDown-shop" />
+          </NavLink>
+
+          <NavLink className="nav__nav">
+            <DropdownAboutUs className="dropDown-about" />
+          </NavLink>
+
+          <NavLink to="/event" className="nav__nav  nav-link  navEvent">
             Events
           </NavLink>
           <Link

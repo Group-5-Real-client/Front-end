@@ -1,37 +1,4 @@
-/* Part 1: Full screen image */
-/* *{
-  user-select: none;
-} */
-.aboutUs-fullscreen-image {
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
-   
-  }
-  
-  .aboutUs-fullscreen-image img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    animation: slide-in 1s ease;
-  }
-  
-  @keyframes slide-in {
-    from {
-      transform: translateY(-10%);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-  @media screen and (max-width: 768px) {
-    .aboutUs-fullscreen-image {
-      height: 50vh;
-    }
-  }
-    
+
     /* Part 2: Image with heading and paragraph */
   
     .aboutUs-image-text h2 {
@@ -255,7 +222,7 @@
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    background: linear-gradient(306deg, var(--secondary-color), var(--primary-color));
+    background-color: #f8f8f8;
     border-radius: 20px;
   }
   
