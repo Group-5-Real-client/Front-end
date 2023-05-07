@@ -3,7 +3,7 @@ import Footer from "./Component/Footer/index";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./Component/navbar/navbar";
-import AboutUs from "./Pages/AboutUs/index";
+import AboutUs from "./Pages/AboutUs/AboutUs";
 import ContactUs from "./Pages/ContactUs/index";
 import Event from "./Pages/Event/index";
 import Category from "./Pages/Category/Category";
@@ -20,7 +20,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="About" element={<AboutUs />} />
+        <Route path="Our-story" element={<AboutUs />} />
         <Route path="Event" element={<Event />} />
         <Route path="Contact" element={<ContactUs />} />
         <Route path="Category" element={<Category />} />

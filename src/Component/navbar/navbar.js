@@ -27,7 +27,7 @@ function Navbar() {
               </NavLink>
             </li>
             <li>
-              <NavLink className="nav-link menu__item">
+              <NavLink to="/About-Us" className="nav-link menu__item">
                 <DropdownAboutUs className="dropDown-about" />
               </NavLink>
             </li>

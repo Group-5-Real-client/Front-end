@@ -51,7 +51,7 @@ function Footer() {
         </div>
         <div className="footer-container1   boxReverse">
           <h3>COMPANY</h3>
-          <NavLink to="/About" className="links">About Us</NavLink>
+          <NavLink to="/Our-story" className="links">About Us</NavLink>
           <NavLink to="/Event" className="links">Events</NavLink>
           <NavLink to="/Contact" className="links">Contact Us</NavLink>
         </div>
