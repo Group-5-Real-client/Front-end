@@ -8,7 +8,7 @@
   justify-content: center;
   margin: 40px 0;
   color: var(--button);
-  font-size: 24px;
+  font-size: 36px;
 }
 .slick-arrow {
   background-color: var(--primary-color);
@@ -93,6 +93,16 @@
   justify-content: space-between;
   padding: 5px;
   color: #aaa;
+}
+@media screen and (max-width:1000px) {
+  .ourCategory {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+  color: var(--button);
+  font-size: 24px;
+}
 }
 
 @media screen and(max-width:768px) {
