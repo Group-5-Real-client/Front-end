@@ -111,7 +111,7 @@
     width: 125px;
     height: 90px;
     left: -12px;
-    top: -13px;
+    top: -24px;
     padding-bottom: 45px;
     z-index: 2;
   }
@@ -172,7 +172,7 @@
 
   .Home_made__link {
     position: absolute;
-    top: 18px;
+    top: 10px;
     color: var(--buttons);
     font-size: 14px;
     z-index: 2;
@@ -185,7 +185,7 @@
 
   .Recycle__link {
     position: absolute;
-    top: 52px;
+    top: 42px;
     color: var(--buttons);
     font-size: 14px;
     z-index: 2;
@@ -198,7 +198,7 @@
 
   .Hygiene__link {
     position: absolute;
-    top: 88px;
+    top: 78px;
     color: var(--buttons);
     font-size: 14px;
     z-index: 2;

@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import "./navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faTimes, faStore } from "@fortawesome/free-solid-svg-icons";
 import { Link, NavLink } from "react-router-dom";
 // import Logo from "../../images/shopBag.jpg";
 import DropdownShop from "../dropDown-shop/dropDown-shop";
 import DropdownAboutUs from "../dropDown-aboutUs/dropDown-aboutUs";
 import DropdownContact from "../dropDown-contact/dropDown-contact";
-// import Card from "../card/card";
+import AddtoCard from "../card/Card";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
@@ -76,7 +76,18 @@ function Navbar() {
             onClick={handleLinkClick}>
             Login
           </Link>
-          {/* <Card/ */}
+
+          <div className="nav-logo">
+
+            <AddtoCard/>
+
+
+
+      
+
+         
+          </div>
+
           {/* <img
             className="shop-icon"
             src={Logo}

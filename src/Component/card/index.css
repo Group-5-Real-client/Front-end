@@ -1,0 +1,329 @@
+.addCardBox li button.removeButton {
+  background-color: #f44336;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.addCardBox li button.removeButton:hover {
+  background-color: #d32f2f;
+}
+.addCardBox li input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  width: 50px; /* Increase width here */
+  text-align: center;
+}
+
+.styled-input {
+  font-size: 16px;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f2f2f2;
+  color: #333;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.styled-input:focus {
+  outline: none;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.addCardContainer {
+  position: relative;
+}
+
+.addCardIcon {
+  font-size: 2rem;
+  color: #555;
+  cursor: pointer;
+}
+
+.addCardBox {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 300px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  padding: 10px;
+}
+
+.addCardBox h2 {
+  font-size: 1.2rem;
+  margin: 0 0 10px;
+  color: #333;
+}
+
+.addCardBox ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.addCardBox li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.addCardBox li button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.addCardBox li button:hover {
+  color: #333;
+}
+
+.addCardBox li svg {
+  font-size: 1.2rem;
+}
+
+.addCardBox li input {
+  /* border: none; */
+  /* border-bottom: 1px solid #ccc; */
+
+  border: 1px solid var(--button);
+border-radius: 5px;
+  width: 30px;
+  text-align: center;
+  margin-right: 25px;
+}
+
+.addCardBox li input:focus {
+  outline: none;
+  border-color: #333;
+}
+
+.addCardBox li button:last-child {
+  color: #f00;
+}
+
+.addCardBox p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  color: #333;
+}
+
+.addCardBox button.addCardButton {
+  display: block;
+  width: 100%;
+  background-color: var(--button);
+  color: #fff;
+  /* border: none; */
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.addCardBox button.addCardButton:hover {
+  background-color: #222;
+}
+
+.addCardBox button.clearCardButton {
+  display: block;
+  width: 100%;
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.addCardBox button.clearCardButton:hover {
+  background-color: #f7f7f7;
+}
+
+@media only screen and (max-width: 768px) {
+  .addCardBox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    padding: 20px;
+    overflow: hidden;
+  }
+
+  .addCardBox h2 {
+    font-size: 2rem;
+  }
+
+  .addCardBox li {
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .addCardBox li button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* background-color */
+  }
+}
+
+/*  */
+.addCardContainer {
+  position: relative;
+  margin: 20px;
+}
+
+.addCardIcon {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.addCardBox {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: white;
+  width: 445px;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px var(--button);
+}
+
+.addCardBox h2 {
+  font-size: 20px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.addCardBox ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.addCardBox li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 45px;
+}
+
+.addCardBox li img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.addCardBox li button {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
+  color: var(--button);
+}
+
+.addCardBox li input {
+  width: 50px;
+  height: 25px;
+  text-align: center;
+  margin-top: 22px;
+  margin-left: 25px;
+}
+
+.addCardBox li span {
+  flex-grow: 1;
+}
+
+.addCardBox p {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.addCardBox button {
+  background-color: var(--button);
+  color: white;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+
+
+.addCardBox .addCardButton {
+  background-color: green;
+  margin-right: 10px;
+}
+
+.addCardBox .clearCardButton {
+  background-color: red;
+}
+
+/*  */
+
+@media only screen and (max-width: 768px) {
+  .addCardBox {
+    position: fixed;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  .addCardBox h2 {
+    font-size: 2rem;
+  }
+
+  .addCardBox li {
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    margin-right: 10px;
+  }
+
+  .addCardBox li button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* background-color */
+  }
+}
+
+/* .mobileBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+} */
+
+.price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  margin-top: 20px;
+  margin-left: 15px;
+}
+
+.quantityBox{
+  display: flex;
+  justify-content: center;
+  margin: 0 25px;
+}
