@@ -1,42 +1,21 @@
 import React, { createContext, useState, useContext } from "react";
-import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import "./index.css";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../UserProvider";
 
-export const UserContext = createContext();
 
-export const UserProvider = (props) => {
-  const [user, setUser] = useState([]);
-
-  const registerUser = async (userData) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:4000/api/user/register",
-        userData
-      );
-      console.log(response);
-      setUser(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  return (
-    <UserContext.Provider value={{ user, setUser, registerUser }}>
-      {props.children}
-    </UserContext.Provider>
-  );
-};
 
 const Register = () => {
+  const Navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
     phone: "",
-    address: "",
+    Address: "",
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -54,6 +33,7 @@ const Register = () => {
     if (validate()) {
       try {
         await registerUser(formData);
+        Navigate ("/Login"); 
       } catch (error) {
         console.log(error);
       }
@@ -85,7 +65,7 @@ const Register = () => {
       errors.phone = "Phone is invalid";
     }
 
-    if (!formData.address.trim()) {
+    if (!formData.Address.trim()) {
       errors.address = "Address is required";
     }
 
@@ -102,7 +82,7 @@ const Register = () => {
     <div className="register-form">
       <div className="register-links">
         <NavLink to="/login">Sign in</NavLink>
-        <NavLink to="/Register">Sign up</NavLink>
+        <NavLink to="/register">Sign up</NavLink>
       </div>
       <form className="register-inputs" onSubmit={handleSubmit}>
         {errors.username && <p className="error">{errors.username}</p>}
@@ -128,12 +108,14 @@ const Register = () => {
             required={true}
             value={formData.email}
             onChange={handleChange}
+            autoComplete="username"
           />
           <label htmlFor="email" className="input-label">
             Email
           </label>
           {errors.email && <p className="error">{errors.email}</p>}
         </div>
+
         <div className="input-group">
           <input
             className="input"
@@ -142,6 +124,7 @@ const Register = () => {
             required={true}
             value={formData.password}
             onChange={handleChange}
+            autoComplete="current-password"
           />
           <label htmlFor="password" className="input-label">
             Password
@@ -153,6 +136,7 @@ const Register = () => {
           />
           {errors.password && <p className="error">{errors.password}</p>}
         </div>
+
         <div className="input-group">
           <input
             className="input"
@@ -167,13 +151,14 @@ const Register = () => {
           </label>
           {errors.phone && <p className="error">{errors.phone}</p>}
         </div>
+
         <div className="input-group">
           <input
             className="input"
             type="text"
-            name="address"
+            name="Address"
             required
-            value={formData.address}
+            value={formData.Address}
             onChange={handleChange}
           />
           <label htmlFor="address" className="input-label">
@@ -181,6 +166,7 @@ const Register = () => {
           </label>
           {errors.address && <p className="error">{errors.address}</p>}
         </div>
+
         <div className="register-buttons">
           <button type="submit">Sign Up</button>
         </div>
