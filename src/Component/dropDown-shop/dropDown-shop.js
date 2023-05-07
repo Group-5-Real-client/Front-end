@@ -47,36 +47,43 @@ function DropdownShop() {
           setIsCollapsed(true);
         }
       }}
-      onClick={handleClick}>
+      onClick={handleClick}
+    >
       <div className="accordion-header-shop">
-        {selectedOption}
+        <NavLink to="/Product" className="nav__nav nav-link navEvent">
+          {selectedOption}
+        </NavLink>
+
         <span className="accordion-icon-shop">{isCollapsed ? "+" : "-"}</span>
       </div>
       {!isCollapsed && (
         <ul className="accordion-content-shop">
           <li className="accordion-option-shop">
             <NavLink
-              to="/Home_made"
+              to="/Homemade"
               className="shop-nav-link-accordion  Home_made__link"
-              onClick={() => handleOptionChange("Shop")}>
+              onClick={() => handleOptionChange("Shop")}
+            >
               Home-made
             </NavLink>
           </li>
 
           <li className="accordion-option-shop">
             <NavLink
-              to="/Recycle"
+              to="/Recycling"
               className="shop-nav-link-accordion Recycle__link"
-              onClick={() => handleOptionChange("Shop")}>
+              onClick={() => handleOptionChange("Shop")}
+            >
               Recycle
             </NavLink>
           </li>
 
           <li className="accordion-option-shop">
             <NavLink
-              to="/Hygiene"
+              to="Hygienic"
               className="shop-nav-link-accordion  Hygiene__link"
-              onClick={() => handleOptionChange("Shop")}>
+              onClick={() => handleOptionChange("Shop")}
+            >
               Hygiene
             </NavLink>
           </li>

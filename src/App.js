@@ -11,7 +11,7 @@ import Products from "./Pages/Products/Product";
 import Login from "./Pages/Login/Login";
 import Home from "./Pages/Home/Home";
 import Signup from "./Pages/Signup";
-import  ProductPage from './Pages/Singleproduct/index'
+import ProductPage from "./Pages/Singleproduct/index";
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
         <Route path="Login" element={<Login />} />
         <Route path="" element={<Home />} />
         <Route path="Register" element={<Signup />} />
-        <Route path=":category?" element={<Products />}/>
+        <Route path="/:category?" element={<Products />} />
       </Routes>
       <Footer />
     </BrowserRouter>

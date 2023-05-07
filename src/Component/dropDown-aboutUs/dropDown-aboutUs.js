@@ -50,14 +50,16 @@ function DropdownAboutUs() {
       onClick={handleClick}
     >
       <div className="accordion-header-about">
+        <NavLink to="About" className="nav__nav nav-link navEvent">
         {selectedOption}
+        </NavLink>
         <span className="accordion-icon-about">{isCollapsed ? "+" : "-"}</span>
       </div>
       {!isCollapsed && (
         <ul className="accordion-content-about">
           <li className="accordion-option-about">
             <NavLink
-              to="/Our-story"
+              to="/about"
               className="about-nav-link-accordion  Our-story__link"
               onClick={() => handleOptionChange("About-Us")}
             >
