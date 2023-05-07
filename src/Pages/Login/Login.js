@@ -1,10 +1,12 @@
 import Signin from "../../Component/Signin/index.js";
-
+import { UserProvider } from "../../Component/UserProvider";
 
 function Login() {
   return (
     <div>
-      <Signin />
+      <UserProvider>
+        <Signin />
+      </UserProvider>
     </div>
   );
 }
