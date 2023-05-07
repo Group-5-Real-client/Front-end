@@ -68,7 +68,6 @@
   }
   100% {
     width: 21.5ch;
-
   }
 }
 
@@ -131,12 +130,14 @@
 }
 
 @media screen and (max-width: 1000px) {
-
-
-  .about_child_container{
-    margin-top: 30px;
+  .about_img {
+    width: 100px;
+    height: 100px;
   }
 
+  .about_child_container {
+    margin-top: 30px;
+  }
 
   .about_img:hover {
     overflow: hidden;
@@ -160,9 +161,7 @@
     font-weight: bold;
     z-index: 2;
     transition: visibility 0s, opacity 0.5s ease-in-out;
-    }
-
-  
+  }
 
   /* @keyframes bouncing {
     from,
@@ -380,4 +379,9 @@
     font-size: 14px;
     opacity: 1.4;
   }
+}
+
+.about_img {
+  width: 350px;
+  height: 250px;
 }
