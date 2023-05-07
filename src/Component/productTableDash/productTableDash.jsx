@@ -49,14 +49,21 @@ function ProductTable() {
     const [loading, setLoading] = useState(false);
     // const [data, setData] = useState([]);
 
-    useEffect(() => {
+    const fetchProducts = () => {
+        setLoading(true);
         fetch("http://localhost:3000/Product")
             .then((response) => response.json())
             .then((response) => {
                 setProducts(response);
-                setLoading(false);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => setLoading(false));
+    };
+
+    useEffect(() => {
+        fetchProducts();
     }, []);
 
     const filteredProducts = products
