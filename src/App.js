@@ -27,7 +27,9 @@ function App() {
         <Route path="Login" element={<Login />} />
         <Route path="" element={<Home />} />
         <Route path="Register" element={<Signup />} />
-        <Route path="/:category" element={<Products />} />
+        <Route path="/Homemade" element={<Products category="Homemade" />} />
+        <Route path="/Recycling" element={<Products category="Recycling" />} />
+        <Route path="/Hygienic" element={<Products category="Hygienic" />} />
       </Routes>
       <Footer />
     </BrowserRouter>
