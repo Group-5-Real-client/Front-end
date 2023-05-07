@@ -1,22 +1,22 @@
 const images = [
     {
       imgURL:
-        "https://c0.wallpaperflare.com/preview/74/701/282/textures-flatlay-craft-diy-sewing.jpg",
+        "https://wallpapercave.com/wp/wp3510561.jpg",
       imgAlt: "img-1"
     },
     {
       imgURL:
-        "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+        "https://assets.vogue.in/photos/5dc01090825c370008f425bc/16:9/w_1280,c_limit/006-Rothys-How-Sustainable-Are-Clothes-Made-From-Recycled-Plastic-From-The-Oceans-Vogue-Int-31-Oct-2019-Credit-Rothys.jpg",
       imgAlt: "img-2"
     },
     {
       imgURL:
-        "https://images.pexels.com/photos/1128678/pexels-photo-1128678.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+        "https://u.profitroom.pl/2021-hotelstok-pl/thumb/2560x1440/uploads/HOTELSPAWISA.jpg",
       imgAlt: "img-3"
     },
     {
       imgURL:
-        "https://p0.pxfuel.com/preview/565/155/820/soda-clothes-peg-glass-bottle-cork.jpg",
+        "https://lh3.googleusercontent.com/p/AF1QipPgvNrnxoDE7nqWYvEvXPgzkzcM5fv1MsxySaT2=w1080-h608-p-no-v0",
       imgAlt: "img-4"
     }
   ];

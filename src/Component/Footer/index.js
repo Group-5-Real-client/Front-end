@@ -65,6 +65,30 @@ function Footer() {
               <FontAwesomeIcon icon={faWhatsapp} size="2x" />
             </a>
           </div>
+
+
+        </div>
+        <div className="footer-container1">
+          <h3>PRODUCTS</h3>
+          <NavLink to="/HomeMade Food " className="links">HomeMade Food </NavLink>
+          <NavLink to="/" className="links">Recycling </NavLink>
+          <NavLink to="/"  className="links">Hygienic </NavLink>
+        </div>
+        <div className="footer-container1   boxReverse">
+          <h3>COMPANY</h3>
+          <NavLink to="/Our-story" className="links">About Us</NavLink>
+          <NavLink to="/Event" className="links">Events</NavLink>
+          <NavLink to="/Contact" className="links">Contact Us</NavLink>
+        </div>
+        <div className="footer-container1   _location__box">
+          <h3 className="location_"  >LOCATION</h3>
+          <p className="location_">Coming Soon to </p>
+          <p className="location_">
+            Phone: <a href="tel:7129406">7129406</a>
+          </p>
+          <p className="location_  Email">
+            Email: <a href="mailto:shop@gmail.com">shop@gmail.com</a>
+          </p>
         </div>
       </div>
     </footer>

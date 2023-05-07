@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import "./navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faTimes, faStore } from "@fortawesome/free-solid-svg-icons";
 import { Link, NavLink } from "react-router-dom";
 // import Logo from "../../images/shopBag.jpg";
 import DropdownShop from "../dropDown-shop/dropDown-shop";
 import DropdownAboutUs from "../dropDown-aboutUs/dropDown-aboutUs";
 import DropdownContact from "../dropDown-contact/dropDown-contact";
-// import Card from "../card/card";
+import AddtoCard from "../card/Card";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
@@ -35,96 +35,107 @@ function Navbar() {
 
   return (
     <section className="parentNavbar">
-      <nav id="nav-whole-nav" className="nav-links-container">
-        <button className="menu-toggle" onClick={handleMenuClick}>
-          {isOpen ? (
-            <FontAwesomeIcon icon={faTimes} className="menu-icon" />
-          ) : (
-            <FontAwesomeIcon icon={faBars} className="menu-icon" />
-          )}
-        </button>
+    <nav id="nav-whole-nav" className="nav-links-container">
+      <button className="menu-toggle" onClick={handleMenuClick}>
+        {isOpen ? (
+          <FontAwesomeIcon icon={faTimes} className="menu-icon" />
+        ) : (
+          <FontAwesomeIcon icon={faBars} className="menu-icon" />
+        )}
+      </button>
 
-        <div className="navs__links">
-          <DropdownShop />
-          <DropdownAboutUs />
-          <NavLink
-            to="/event"
-            className="nav__nav nav-link navEvent"
-            onClick={handleLinkClick}>
-            Events
-          </NavLink>
-          <Link
-            to="/Contact"
-            id="nav-Contact"
-            className="nav__nav"
-            onClick={handleLinkClick}>
-            <DropdownContact />
-          </Link>
-        </div>
+      <div className="navs__links">
+        <DropdownShop />
+        <DropdownAboutUs />
+        <NavLink
+          to="/event"
+          className="nav__nav nav-link navEvent"
+          onClick={handleLinkClick}>
+          Events
+        </NavLink>
+        <Link
+          to="/Contact"
+          id="nav-Contact"
+          className="nav__nav"
+          onClick={handleLinkClick}>
+          <DropdownContact />
+        </Link>
+      </div>
+
+      <div className="nav-logo">
+        <Link className="nav-logo-title" to="/" onClick={handleLinkClick}>
+          <span className="nav-title">Rooted</span>
+        </Link>
+      </div>
+
+      <div className="login-shop-icon">
+        <Link
+          to="/Login"
+          id="nav-Login"
+          className="nav__nav nav-link"
+          onClick={handleLinkClick}>
+          Login
+        </Link>
 
         <div className="nav-logo">
-          <Link className="nav-logo-title" to="/" onClick={handleLinkClick}>
-            <span className="nav-title">Rooted</span>
-          </Link>
+
+          <AddtoCard/>
+
+
+
+    
+
+       
         </div>
 
-        <div className="login-shop-icon">
+        {/* <img
+          className="shop-icon"
+          src={Logo}
+          width="25"
+          height="25"
+          alt="shop icon"
+        /> */}
+      </div>
+    </nav>
+
+    <div className={`mobile-menu ${isOpen ? "open" : ""}`}>
+      <button className="menu-toggle" onClick={handleMenuClick}>
+        {isOpen ? (
+          <FontAwesomeIcon icon={faTimes} className="menu-icon" />
+        ) : (
+          <FontAwesomeIcon icon={faBars} className="menu-icon" />
+        )}
+      </button>
+      <div className={`mobile-menu__items ${isOpen ? "" : "hidden"}`}>
+        <DropdownShop />
+        <DropdownAboutUs />
+        <Link
+          to="/event"
+          className="mobile-menu__item nav-link navEvent"
+          onClick={handleLinkClick}>
+          Events
+        </Link>
+        <Link
+          to="/Contact"
+          id="nav-Contact"
+          className="mobile-menu__item nav-link"
+          onClick={handleLinkClick}>
+          <DropdownContact />
+        </Link>
+        <div className="icon_face_login">
+          <FontAwesomeIcon className="iconFace" icon={faUser} />
+
           <Link
             to="/Login"
-            id="nav-Login"
-            className="nav__nav nav-link"
+            className="mobile-menu__item nav-link   login"
             onClick={handleLinkClick}>
             Login
           </Link>
-          {/* <Card/ */}
-          {/* <img
-            className="shop-icon"
-            src={Logo}
-            width="25"
-            height="25"
-            alt="shop icon"
-          /> */}
-        </div>
-      </nav>
-
-      <div className={`mobile-menu ${isOpen ? "open" : ""}`}>
-        <button className="menu-toggle" onClick={handleMenuClick}>
-          {isOpen ? (
-            <FontAwesomeIcon icon={faTimes} className="menu-icon" />
-          ) : (
-            <FontAwesomeIcon icon={faBars} className="menu-icon" />
-          )}
-        </button>
-        <div className={`mobile-menu__items ${isOpen ? "" : "hidden"}`}>
-          <DropdownShop />
-          <DropdownAboutUs />
-          <Link
-            to="/event"
-            className="mobile-menu__item nav-link navEvent"
-            onClick={handleLinkClick}>
-            Events
-          </Link>
-          <Link
-            to="/Contact"
-            id="nav-Contact"
-            className="mobile-menu__item nav-link"
-            onClick={handleLinkClick}>
-            <DropdownContact />
-          </Link>
-          <div className="icon_face_login">
-            <FontAwesomeIcon className="iconFace" icon={faUser} />
-
-            <Link
-              to="/Login"
-              className="mobile-menu__item nav-link   login"
-              onClick={handleLinkClick}>
-              Login
-            </Link>
-          </div>
         </div>
       </div>
-    </section>
-  );
+    </div>
+  </section>
+);
 }
 
 export default Navbar;
