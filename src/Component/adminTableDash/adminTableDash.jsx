@@ -1,39 +1,39 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Pagination, Button, Modal } from "antd";
+import Loader from "../loader/loader";
 
 function AdminTable() {
-    const [admins, setAdmins] = useState([
-        {
-            id: 1,
-            name: "Admin 1",
-            email: "admin1@example.com",
-            role: "Manager",
-        },
-        {
-            id: 2,
-            name: "Admin 2",
-            email: "admin2@example.com",
-            role: "Editor",
-        },
-        {
-            id: 3,
-            name: "Admin 3",
-            email: "admin3@example.com",
-            role: "Viewer",
-        },
-    ]);
+    const [admins, setAdmins] = useState([]);
 
     const [newAdminName, setNewAdminName] = useState("");
     const [newAdminRole, setNewAdminRole] = useState("Admin");
     const [newAdminEmail, setNewAdminEmail] = useState("");
     const [newAdminPassword, setNewAdminPassword] = useState("");
     const [newAdminIsSuper, setNewAdminIsSuper] = useState(false);
-
+    const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [editingAdmin, setEditingAdmin] = useState(null);
     const [filter, setFilter] = useState("");
+
+    const fetchAdmins = () => {
+        setLoading(true);
+        fetch("http://localhost:5000/api/admin")
+            .then((response) => response.json())
+            .then((response) => {
+                console.log(response);
+                setAdmins(response.response);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => setLoading(false));
+    };
+
+    useEffect(() => {
+        fetchAdmins();
+    }, []);
 
     const showModal = () => {
         setEditingAdmin(null);
@@ -100,7 +100,7 @@ function AdminTable() {
         };
         setAdmins(
             admins.map((admin) =>
-                admin.id === editedAdmin.id ? updatedAdmin : admin
+                admin?._id === editedAdmin?._id ? updatedAdmin : admin
             )
         );
         setEditingAdmin(null);
@@ -108,7 +108,7 @@ function AdminTable() {
         setFilter("");
     };
     const handleDeleteAdmin = (adminId) => {
-        setAdmins(admins.filter((admin) => admin.id !== adminId));
+        setAdmins(admins.filter((admin) => admin?._id !== adminId));
     };
 
     const filteredAdmins = admins.filter((admin) => {
@@ -128,204 +128,220 @@ function AdminTable() {
 
     return (
         <>
-            <div className="dash-main">
-                <h2>Admins List</h2>
-                <div className="add-button">
-                    <Button type="primary" onClick={() => showModal()}>
-                        Add Admin
-                    </Button>
+            {loading ? (
+                <Loader />
+            ) : (
+                <div className="dash-main">
+                    <h2>Admins List</h2>
+                    <div className="add-button">
+                        <Button type="primary" onClick={() => showModal()}>
+                            Add Admin
+                        </Button>
 
-                    <Modal
-                        title={
-                            editingAdmin
-                                ? `Editing Admin ${
-                                      editingAdmin.id || "New Admin"
-                                  }`
-                                : "Add Admin"
-                        }
-                        open={open}
-                        onCancel={handleCancel}
-                        footer={[
-                            <Button key="cancel" onClick={handleCancel}>
-                                Cancel
-                            </Button>,
-                            <Button
-                                key="save"
-                                type="primary"
-                                onClick={handleOk}
-                            >
-                                Save
-                            </Button>,
-                        ]}
-                    >
-                        <div>
-                            <label>Username:</label>
-                            <input
-                                type="text"
-                                value={
-                                    editingAdmin
-                                        ? editingAdmin.name
-                                        : newAdminName
-                                }
-                                onChange={(e) =>
-                                    editingAdmin
-                                        ? setEditingAdmin({
-                                              ...editingAdmin,
-                                              name: e.target.value,
-                                          })
-                                        : setNewAdminName(e.target.value)
-                                }
-                            />
-                        </div>
-                        <div>
-                            <label>Email:</label>
-                            <input
-                                type="email"
-                                value={
-                                    editingAdmin
-                                        ? editingAdmin.email
-                                        : newAdminEmail
-                                }
-                                onChange={(e) =>
-                                    editingAdmin
-                                        ? setEditingAdmin({
-                                              ...editingAdmin,
-                                              email: e.target.value,
-                                          })
-                                        : setNewAdminEmail(e.target.value)
-                                }
-                            />
-                        </div>
-                        <div>
-                            <label>Password:</label>
-                            <input
-                                type="password"
-                                value={
-                                    editingAdmin
-                                        ? editingAdmin.password
-                                        : newAdminPassword
-                                }
-                                onChange={(e) =>
-                                    editingAdmin
-                                        ? setEditingAdmin({
-                                              ...editingAdmin,
-                                              password: e.target.value,
-                                          })
-                                        : setNewAdminPassword(e.target.value)
-                                }
-                            />
-                        </div>
-                        <div className="issuper-div">
-                            <label>Is Super:</label>
-                            <Button
-                                type={newAdminIsSuper ? "primary" : "default"}
-                                onClick={() =>
-                                    setNewAdminIsSuper(!newAdminIsSuper)
-                                }
-                            >
-                                {newAdminIsSuper ? "Yes" : "No"}
-                            </Button>
-                        </div>
-                    </Modal>
+                        <Modal
+                            title={
+                                editingAdmin
+                                    ? `Editing Admin ${
+                                          editingAdmin?._id || "New Admin"
+                                      }`
+                                    : "Add Admin"
+                            }
+                            open={open}
+                            onCancel={handleCancel}
+                            footer={[
+                                <Button key="cancel" onClick={handleCancel}>
+                                    Cancel
+                                </Button>,
+                                <Button
+                                    key="save"
+                                    type="primary"
+                                    onClick={handleOk}
+                                >
+                                    Save
+                                </Button>,
+                            ]}
+                        >
+                            <div>
+                                <label>Username:</label>
+                                <input
+                                    type="text"
+                                    value={
+                                        editingAdmin
+                                            ? editingAdmin.name
+                                            : newAdminName
+                                    }
+                                    onChange={(e) =>
+                                        editingAdmin
+                                            ? setEditingAdmin({
+                                                  ...editingAdmin,
+                                                  name: e.target.value,
+                                              })
+                                            : setNewAdminName(e.target.value)
+                                    }
+                                />
+                            </div>
+                            <div>
+                                <label>Email:</label>
+                                <input
+                                    type="email"
+                                    value={
+                                        editingAdmin
+                                            ? editingAdmin.email
+                                            : newAdminEmail
+                                    }
+                                    onChange={(e) =>
+                                        editingAdmin
+                                            ? setEditingAdmin({
+                                                  ...editingAdmin,
+                                                  email: e.target.value,
+                                              })
+                                            : setNewAdminEmail(e.target.value)
+                                    }
+                                />
+                            </div>
+                            <div>
+                                <label>Password:</label>
+                                <input
+                                    type="password"
+                                    value={
+                                        editingAdmin
+                                            ? editingAdmin.password
+                                            : newAdminPassword
+                                    }
+                                    onChange={(e) =>
+                                        editingAdmin
+                                            ? setEditingAdmin({
+                                                  ...editingAdmin,
+                                                  password: e.target.value,
+                                              })
+                                            : setNewAdminPassword(
+                                                  e.target.value
+                                              )
+                                    }
+                                />
+                            </div>
+                            <div className="issuper-div">
+                                <label>Is Super:</label>
+                                <Button
+                                    type={
+                                        newAdminIsSuper ? "primary" : "default"
+                                    }
+                                    onClick={() =>
+                                        setNewAdminIsSuper(!newAdminIsSuper)
+                                    }
+                                >
+                                    {newAdminIsSuper ? "Yes" : "No"}
+                                </Button>
+                            </div>
+                        </Modal>
 
-                    <input
-                        type="text"
-                        placeholder="Search by name, email or role"
-                        value={filter}
-                        onChange={(e) => setFilter(e.target.value)}
-                    />
-                </div>
-                <div className="table-fixing">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredAdmins.map((admin) => (
-                                <tr key={admin.id}>
-                                    <td>
-                                        {editingAdmin?.id === admin.id ? (
-                                            <input
-                                                type="text"
-                                                value={editingAdmin.name}
-                                                onChange={(e) =>
-                                                    setEditingAdmin({
-                                                        ...editingAdmin,
-                                                        name: e.target.value,
-                                                    })
-                                                }
-                                            />
-                                        ) : (
-                                            admin.name
-                                        )}
-                                    </td>
-                                    <td>
-                                        {editingAdmin?.id === admin.id ? (
-                                            <input
-                                                type="email"
-                                                value={editingAdmin.email}
-                                                onChange={(e) =>
-                                                    setEditingAdmin({
-                                                        ...editingAdmin,
-                                                        email: e.target.value,
-                                                    })
-                                                }
-                                            />
-                                        ) : (
-                                            admin.email
-                                        )}
-                                    </td>
-                                    <td>
-                                        {editingAdmin?.id === admin.id ? (
-                                            <input
-                                                type="text"
-                                                value={editingAdmin.admin}
-                                                onChange={(e) =>
-                                                    setEditingAdmin({
-                                                        ...editingAdmin,
-                                                        role: e.target.value,
-                                                    })
-                                                }
-                                            />
-                                        ) : (
-                                            admin.role
-                                        )}
-                                    </td>
-                                    <td>
-                                        {editingAdmin?.id ===
-                                        admin.id ? null : (
-                                            <>
-                                                <button
-                                                    onClick={() =>
-                                                        handleEditAdmin(admin)
-                                                    }
-                                                >
-                                                    Edit
-                                                </button>
-                                                <button
-                                                    onClick={() =>
-                                                        handleDeleteAdmin(
-                                                            admin.id
-                                                        )
-                                                    }
-                                                >
-                                                    Delete
-                                                </button>
-                                            </>
-                                        )}
-                                    </td>
+                        <input
+                            type="text"
+                            placeholder="Search by name, email or role"
+                            value={filter}
+                            onChange={(e) => setFilter(e.target.value)}
+                        />
+                    </div>
+                    <div className="table-fixing">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    {/* <th>Role</th> */}
+                                    <th>Action</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                    <Pagination defaultCurrent={1} total={50} />
+                            </thead>
+                            <tbody>
+                                {filteredAdmins.map((admin) => (
+                                    <tr key={admin?._id}>
+                                        <td>
+                                            {editingAdmin?._id ===
+                                            admin?._id ? (
+                                                <input
+                                                    type="text"
+                                                    value={
+                                                        editingAdmin.username
+                                                    }
+                                                    onChange={(e) =>
+                                                        setEditingAdmin({
+                                                            ...editingAdmin,
+                                                            username:
+                                                                e.target.value,
+                                                        })
+                                                    }
+                                                />
+                                            ) : (
+                                                admin.username
+                                            )}
+                                        </td>
+                                        <td>
+                                            {editingAdmin?._id ===
+                                            admin?._id ? (
+                                                <input
+                                                    type="email"
+                                                    value={editingAdmin.email}
+                                                    onChange={(e) =>
+                                                        setEditingAdmin({
+                                                            ...editingAdmin,
+                                                            email: e.target
+                                                                .value,
+                                                        })
+                                                    }
+                                                />
+                                            ) : (
+                                                admin.email
+                                            )}
+                                        </td>
+                                        {/* <td>
+                                    {editingAdmin?._id === admin?._id ? (
+                                        <input
+                                            type="text"
+                                            value={editingAdmin.type}
+                                            onChange={(e) =>
+                                                setEditingAdmin({
+                                                    ...editingAdmin,
+                                                    type: e.target.value,
+                                                })
+                                            }
+                                        />
+                                    ) : (
+                                        admin.type
+                                    )}
+                                </td> */}
+                                        <td>
+                                            {editingAdmin?._id ===
+                                            admin?._id ? null : (
+                                                <>
+                                                    <button
+                                                        onClick={() =>
+                                                            handleEditAdmin(
+                                                                admin
+                                                            )
+                                                        }
+                                                    >
+                                                        Edit
+                                                    </button>
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleDeleteAdmin(
+                                                                admin?._id
+                                                            )
+                                                        }
+                                                    >
+                                                        Delete
+                                                    </Button>
+                                                </>
+                                            )}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <Pagination defaultCurrent={1} />
+                    </div>
                 </div>
-            </div>
+            )}
         </>
     );
 }

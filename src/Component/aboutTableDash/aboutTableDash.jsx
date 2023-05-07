@@ -1,32 +1,36 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Modal, Pagination } from "antd";
+import Loader from "../loader/loader";
 
 function AboutTable({ adminName }) {
-    const [abouts, setAbouts] = useState([
-        {
-            id: 1,
-            description: "Admin 1",
-            image: "admin1@example.com",
-        },
-        {
-            id: 2,
-            description: "Admin 2",
-            image: "admin2@example.com",
-        },
-        {
-            id: 3,
-            description: "Admin 3",
-            image: "admin3@example.com",
-        },
-    ]);
-
+    const [abouts, setAbouts] = useState([]);
     const [open, setOpen] = useState(false);
     const [editingAbout, setEditingAbout] = useState(null);
     const [newAboutDescription, setNewAboutDescription] = useState("");
     const [newAboutImage, setNewAboutImage] = useState("");
     const [filter, setFilter] = useState("");
     const [previewImage, setPreviewImage] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [showFullDescriptions, setShowFullDescriptions] = useState(false);
+
+    const fetchAbout = () => {
+        setLoading(true);
+        fetch("http://localhost:5000/api/aboutUs")
+            .then((response) => response.json())
+            .then((response) => {
+                console.log(response);
+                setAbouts(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => setLoading(false));
+    };
+
+    useEffect(() => {
+        fetchAbout();
+    }, []);
 
     const filteredAbouts = abouts
         ? abouts.filter((about) =>
@@ -47,7 +51,7 @@ function AboutTable({ adminName }) {
         if (editingAbout) {
             // Editing an existing about
             const updatedAbouts = abouts.map((about) =>
-                about.id === editingAbout.id
+                about?._id === editingAbout?._id
                     ? {
                           ...about,
                           description: editingAbout.description,
@@ -92,7 +96,7 @@ function AboutTable({ adminName }) {
     };
 
     const handleDeleteAbout = (id) => {
-        const updatedAbouts = abouts.filter((about) => about.id !== id);
+        const updatedAbouts = abouts.filter((about) => about?._id !== id);
         updateAbouts(updatedAbouts);
     };
 
@@ -102,175 +106,154 @@ function AboutTable({ adminName }) {
 
     return (
         <>
-            <div className="dash-main">
-                <h2>AboutUs List</h2>
-                <div className="add-button">
-                    <Button type="primary" onClick={showModal}>
-                        Add About
-                    </Button>
-                    <Modal
-                        title={
-                            editingAbout
-                                ? `Editing About ${
-                                      editingAbout.id || "New About"
-                                  }`
-                                : "Add About"
-                        }
-                        open={open}
-                        onCancel={handleCancel}
-                        footer={[
-                            <Button key="cancel" onClick={handleCancel}>
-                                Cancel
-                            </Button>,
-                            <Button
-                                key="save"
-                                type="primary"
-                                onClick={handleOk}
-                            >
-                                Save
-                            </Button>,
-                        ]}
-                    >
-                        <div>
-                            <label>Description:</label>
-                            <input
-                                type="text"
-                                value={
-                                    editingAbout
-                                        ? editingAbout.description
-                                        : newAboutDescription
-                                }
-                                onChange={(e) =>
-                                    editingAbout
-                                        ? setEditingAbout({
-                                              ...editingAbout,
-                                              description: e.target.value,
-                                          })
-                                        : setNewAboutDescription(e.target.value)
-                                }
-                            />
-                        </div>
-                        <div>
-                            <label>Image:</label>
-                            <input
-                                type="file"
-                                onChange={(e) => {
-                                    if (e.target.files.length > 0) {
-                                        setNewAboutImage(e.target.files[0]);
-                                        setPreviewImage(
-                                            URL.createObjectURL(
-                                                e.target.files[0]
-                                            )
-                                        );
+            {loading ? (
+                <Loader />
+            ) : (
+                <div className="dash-main">
+                    <h2>AboutUs List</h2>
+                    <div className="add-button">
+                        <Button type="primary" onClick={showModal}>
+                            Add About
+                        </Button>
+                        <Modal
+                            title={
+                                editingAbout
+                                    ? `Editing About ${
+                                          editingAbout?._id || "New About"
+                                      }`
+                                    : "Add About"
+                            }
+                            open={open}
+                            onCancel={handleCancel}
+                            footer={[
+                                <Button key="cancel" onClick={handleCancel}>
+                                    Cancel
+                                </Button>,
+                                <Button
+                                    key="save"
+                                    type="primary"
+                                    onClick={handleOk}
+                                >
+                                    Save
+                                </Button>,
+                            ]}
+                        >
+                            <div>
+                                <label>Description:</label>
+                                <input
+                                    type="text"
+                                    value={
+                                        editingAbout
+                                            ? editingAbout.description
+                                            : newAboutDescription
                                     }
-                                }}
-                            />
-                            {previewImage && (
-                                <img
-                                    src={previewImage}
-                                    alt="about image preview"
-                                    width="200"
+                                    onChange={(e) =>
+                                        editingAbout
+                                            ? setEditingAbout({
+                                                  ...editingAbout,
+                                                  description: e.target.value,
+                                              })
+                                            : setNewAboutDescription(
+                                                  e.target.value
+                                              )
+                                    }
                                 />
-                            )}
-                        </div>
-                    </Modal>
-                    <input
-                        type="text"
-                        placeholder="Search by description or image"
-                        value={filter}
-                        onChange={(e) => setFilter(e.target.value)}
-                    />
-                </div>
-                <div className="table-fixing">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Description</th>
-                                <th>Image</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredAbouts.map((abouts) => (
-                                <tr key={abouts.id}>
-                                    <td>
-                                        {editingAbout?.id === abouts.id ? (
-                                            <input
-                                                type="text"
-                                                value={editingAbout.description}
-                                                onChange={(e) =>
-                                                    setEditingAbout({
-                                                        ...editingAbout,
-                                                        description:
-                                                            e.target.value,
-                                                    })
-                                                }
-                                            />
-                                        ) : (
-                                            abouts.description
-                                        )}
-                                        {/* {editingAbout?.id !== abouts.id &&
-                                            abouts.adminName !== "" && (
-                                                <span className="admin-name">
-                                                    (Added by {abouts.adminName}
-                                                    )
-                                                </span>
-                                            )} */}
-                                    </td>
-                                    <td>
-                                        {editingAbout?.id === abouts.id ? (
-                                            <input
-                                                type="text"
-                                                value={editingAbout.image}
-                                                onChange={(e) =>
-                                                    setEditingAbout({
-                                                        ...editingAbout,
-                                                        image: e.target.value,
-                                                    })
-                                                }
-                                            />
-                                        ) : (
-                                            <img
-                                                src={abouts.image}
-                                                alt="about image"
-                                                style={{
-                                                    width: "100px",
-                                                    height: "100px",
-                                                }}
-                                            />
-                                        )}
-                                    </td>
-
-                                    <td>
-                                        {editingAbout?.id ===
-                                        abouts.id ? null : (
-                                            <>
-                                                <button
+                            </div>
+                            <div>
+                                <label>Image:</label>
+                                <input
+                                    type="file"
+                                    onChange={(e) => {
+                                        if (e.target.files.length > 0) {
+                                            setNewAboutImage(e.target.files[0]);
+                                            setPreviewImage(
+                                                URL.createObjectURL(
+                                                    e.target.files[0]
+                                                )
+                                            );
+                                        }
+                                    }}
+                                />
+                                {previewImage && (
+                                    <img
+                                        src={previewImage}
+                                        alt="about image preview"
+                                        width="200"
+                                    />
+                                )}
+                            </div>
+                        </Modal>
+                        <input
+                            type="text"
+                            placeholder="Search by description or image"
+                            value={filter}
+                            onChange={(e) => setFilter(e.target.value)}
+                        />
+                    </div>
+                    <div className="table-fixing">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Image</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {filteredAbouts.map((about) => (
+                                    <tr key={about?._id}>
+                                        <td>
+                                            {showFullDescriptions ||
+                                            about.description.length < 100
+                                                ? about.description
+                                                : `${about.description.substring(
+                                                      0,
+                                                      100
+                                                  )}...`}
+                                            {about.description.length > 100 && (
+                                                <Button
                                                     onClick={() =>
-                                                        handleEditAbout(abouts)
-                                                    }
-                                                >
-                                                    Edit
-                                                </button>
-                                                <button
-                                                    onClick={() =>
-                                                        handleDeleteAbout(
-                                                            abouts.id
+                                                        setShowFullDescriptions(
+                                                            true
                                                         )
                                                     }
                                                 >
-                                                    Delete
-                                                </button>
-                                            </>
-                                        )}
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                    <Pagination defaultCurrent={1} total={50} />
+                                                    Read More
+                                                </Button>
+                                            )}
+                                        </td>
+                                        <td>
+                                            <img
+                                                src={about.image}
+                                                alt="about image"
+                                                width="100"
+                                                height="100"
+                                            />
+                                        </td>
+                                        <td>
+                                            <button
+                                                onClick={() =>
+                                                    handleEditAbout(about)
+                                                }
+                                            >
+                                                Edit
+                                            </button>
+                                            <Button
+                                                onClick={() =>
+                                                    handleDeleteAbout(about._id)
+                                                }
+                                            >
+                                                Delete
+                                            </Button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <Pagination defaultCurrent={1} total={abouts.length} />
                 </div>
-            </div>
+            )}
         </>
     );
 }

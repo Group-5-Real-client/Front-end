@@ -1,32 +1,11 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Pagination, Modal, Button } from "antd";
 import Loader from "../loader/loader.jsx";
+import axios from "axios";
 
 function CategoryTable() {
-    const [categories, setCategories] = useState([
-        {
-            id: 1,
-            name: "Product 1",
-            description: "Category 1",
-            image: "example",
-            adminName: "",
-        },
-        {
-            id: 2,
-            name: "Product 2",
-            description: "Category 1",
-            image: "example",
-            adminName: "",
-        },
-        {
-            id: 3,
-            name: "Product 3",
-            description: "Category 1",
-            image: "example",
-            adminName: "",
-        },
-    ]);
+    const [categories, setCategories] = useState([]);
 
     const [open, setOpen] = useState(false);
     const [editingCategory, setEditingCategory] = useState(null);
@@ -52,11 +31,29 @@ function CategoryTable() {
         return URL.createObjectURL(file);
     }
 
+    const fetchCategory = () => {
+        setLoading(true);
+        fetch("http://localhost:5000/api/category")
+            .then((response) => response.json())
+            .then((response) => {
+                console.log(response);
+                setCategories(response.response);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => setLoading(false));
+    };
+
+    useEffect(() => {
+        fetchCategory();
+    }, []);
+
     const handleOk = () => {
         if (editingCategory) {
             // Editing an existing product
             const updatedCategories = categories.map((category) =>
-                category.id === editingCategory.id
+                category?._id === editingCategory?._id
                     ? {
                           ...category,
                           name: editingCategory.name,
@@ -76,15 +73,22 @@ function CategoryTable() {
         } else {
             // Adding a new product
             const newCategory = {
-                id: categories.length + 1,
                 name: categoryName,
-                image: newCategoryImage ? getObjectUrl(newCategoryImage) : "",
+                image: newCategoryImage ? newCategoryImage : "",
                 description: newCategoryDescription,
             };
-            updateCategories([...categories, newCategory]);
-            setCategoryName("");
-            setNewCategoryImage("");
-            setNewCategoryDescription("");
+            axios
+                .post("http://localhost:5000/api/category", newCategory, {
+                    headers: { "Content-Type": "multipart/form-data" },
+                })
+                .then((res) => {
+                    console.log(res);
+                    console.log(res.data);
+                    fetchCategory();
+                    setCategoryName("");
+                    setNewCategoryImage("");
+                    setNewCategoryDescription("");
+                });
         }
         setOpen(false);
     };
@@ -108,7 +112,7 @@ function CategoryTable() {
 
     const handleDeleteCategory = (id) => {
         const updatedCategories = categories.filter(
-            (category) => category.id !== id
+            (category) => category?._id !== id
         );
         setCategories(updatedCategories);
     };
@@ -132,7 +136,7 @@ function CategoryTable() {
                             title={
                                 editingCategory
                                     ? `Editing Category ${
-                                          editingCategory.id || "New Category"
+                                          editingCategory?._id || "New Category"
                                       }`
                                     : "Add Category"
                             }
@@ -231,15 +235,16 @@ function CategoryTable() {
                                     <th>Name</th>
                                     <th>Description</th>
                                     <th>Image</th>
+                                    <th>Admin</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {filteredCategories.map((categories) => (
-                                    <tr key={categories.id}>
+                                    <tr key={categories?._id}>
                                         <td>
-                                            {editingCategory?.id ===
-                                            categories.id ? (
+                                            {editingCategory?._id ===
+                                            categories?._id ? (
                                                 <input
                                                     type="text"
                                                     value={editingCategory.name}
@@ -252,12 +257,12 @@ function CategoryTable() {
                                                     }
                                                 />
                                             ) : (
-                                                categories.name
+                                                categories?.name
                                             )}
                                         </td>
                                         <td>
-                                            {editingCategory?.id ===
-                                            categories.id ? (
+                                            {editingCategory?._id ===
+                                            categories?._id ? (
                                                 <input
                                                     type="text"
                                                     value={
@@ -276,8 +281,8 @@ function CategoryTable() {
                                             )}
                                         </td>
                                         <td>
-                                            {editingCategory?.id ===
-                                            categories.id ? (
+                                            {editingCategory?._id ===
+                                            categories?._id ? (
                                                 <input
                                                     type="text"
                                                     value={
@@ -293,7 +298,7 @@ function CategoryTable() {
                                                 />
                                             ) : (
                                                 <img
-                                                    src={categories.image}
+                                                    src={`http://localhost:5000/${categories?.image}`}
                                                     alt="about image"
                                                     style={{
                                                         width: "100px",
@@ -303,8 +308,26 @@ function CategoryTable() {
                                             )}
                                         </td>
                                         <td>
-                                            {editingCategory?.id ===
-                                            categories.id ? null : (
+                                            {editingCategory?._id ===
+                                            categories?._id ? (
+                                                <input
+                                                    type="text"
+                                                    value={editingCategory.adminUsername}
+                                                    onChange={(e) =>
+                                                        setEditingCategory({
+                                                            ...editingCategory,
+                                                            adminUsername: e.target
+                                                                .value,
+                                                        })
+                                                    }
+                                                />
+                                            ) : (
+                                                categories?.adminUsername
+                                            )}
+                                        </td>
+                                        <td>
+                                            {editingCategory?._id ===
+                                            categories?._id ? null : (
                                                 <>
                                                     <button
                                                         onClick={() =>
@@ -315,15 +338,15 @@ function CategoryTable() {
                                                     >
                                                         Edit
                                                     </button>
-                                                    <button
+                                                    <Button
                                                         onClick={() =>
                                                             handleDeleteCategory(
-                                                                categories.id
+                                                                categories?._id
                                                             )
                                                         }
                                                     >
                                                         Delete
-                                                    </button>
+                                                    </Button>
                                                 </>
                                             )}
                                         </td>

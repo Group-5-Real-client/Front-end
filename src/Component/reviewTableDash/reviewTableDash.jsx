@@ -7,7 +7,7 @@ function ReviewTable() {
             id: 1,
             rating: "3",
             comment: "Avergae",
-            product: "coffee",
+            product: "Hat",
         },
         {
             id: 2,
@@ -94,9 +94,9 @@ function ReviewTable() {
             <div className="dash-main">
                 <h2>Reviews List</h2>
                 <div className="add-button">
-                    <Button type="primary" onClick={handleAddReview}>
+                    {/* <Button type="primary" onClick={handleAddReview}>
                         Add Review
-                    </Button>
+                    </Button> */}
                     <Modal
                         title={
                             modalMode === "Add" ? "Add Review" : "Edit Review"
@@ -239,7 +239,7 @@ function ReviewTable() {
                                                 >
                                                     Edit
                                                 </button>
-                                                <button
+                                                <Button
                                                     onClick={() =>
                                                         handleDeleteReview(
                                                             review.id
@@ -247,7 +247,7 @@ function ReviewTable() {
                                                     }
                                                 >
                                                     Delete
-                                                </button>
+                                                </Button>
                                             </>
                                         )}
                                     </td>
@@ -255,7 +255,7 @@ function ReviewTable() {
                             ))}
                         </tbody>
                     </table>
-                    <Pagination defaultCurrent={1} total={50} />
+                    <Pagination defaultCurrent={1} total={10} />
                 </div>
             </div>
         </>

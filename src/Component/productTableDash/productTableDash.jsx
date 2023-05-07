@@ -4,6 +4,7 @@ import "./productTableDash.css";
 import { Pagination, Modal, Button } from "antd";
 import Loader from "../loader/loader.jsx";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function ProductTable() {
     const [categories, setCategories] = useState([]);
@@ -150,16 +151,29 @@ function ProductTable() {
     };
 
     const handleDeleteProduct = async (_id) => {
-        await axios
-            .delete(`http://localhost:5000/api/product/delete/${_id}`)
-            .then((res) => {
-                console.log(res);
-                console.log(res.data);
-                const updatedProducts = products.filter(
-                    (product) => product?._id !== _id
-                );
-                setProducts(updatedProducts);
-            });
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, delete it!",
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                await axios
+                    .delete(`http://localhost:5000/api/product/delete/${_id}`)
+                    .then((res) => {
+                        console.log(res);
+                        console.log(res.data);
+                        const updatedProducts = products.filter(
+                            (product) => product?._id !== _id
+                        );
+                        setProducts(updatedProducts);
+                    });
+                Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            }
+        });
     };
 
     const updateProducts = (updatedProducts) => {
@@ -331,6 +345,7 @@ function ProductTable() {
                                     <th>Image</th>
                                     <th>Category</th>
                                     <th>Price</th>
+                                    <th>Admin</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -443,7 +458,26 @@ function ProductTable() {
                                                 `$${products?.price}`
                                             )}
                                         </td>
-
+                                        <td>
+                                            {editingProduct?.id ===
+                                            products._id ? (
+                                                <input
+                                                    type="text"
+                                                    value={
+                                                        editingProduct?.adminUsername
+                                                    }
+                                                    onChange={(e) =>
+                                                        setEditingProduct({
+                                                            ...editingProduct,
+                                                            adminUsername:
+                                                                e.target.value,
+                                                        })
+                                                    }
+                                                />
+                                            ) : (
+                                                products?.adminUsername
+                                            )}
+                                        </td>
                                         <td>
                                             {editingProduct?.id ===
                                             products._id ? null : (
@@ -457,7 +491,7 @@ function ProductTable() {
                                                     >
                                                         Edit
                                                     </button>
-                                                    <button
+                                                    <Button
                                                         onClick={() =>
                                                             handleDeleteProduct(
                                                                 products?._id
@@ -465,7 +499,7 @@ function ProductTable() {
                                                         }
                                                     >
                                                         Delete
-                                                    </button>
+                                                    </Button>
                                                 </>
                                             )}
                                         </td>
