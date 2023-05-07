@@ -16,7 +16,14 @@ function AddToCart({ product }) {
     const storedItems = localStorage.getItem("cartItems");
     return storedItems ? JSON.parse(storedItems) : [];
   });
-  const [products, setProducts] = useState([]);  // Define products state
+
+  const handleAddToCart = (product) => {
+    setSelectedProduct(product);
+    addItem({ ...product, quantity: 1 });
+  };
+
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [products, setProducts] = useState([]); // Define products state
   const [loading, setLoading] = useState(false); // Define loading state
 
   // const [items, setItems] = useState([
@@ -126,7 +133,6 @@ function AddToCart({ product }) {
     return totalPrice;
   };
 
-
   useEffect(() => {
     setLoading(true);
     axios
@@ -142,7 +148,6 @@ function AddToCart({ product }) {
       });
   }, [products, loading]); // Add missing dependencies
 
-
   return (
     <>
       {isMobile && <div className="mobileBackground" />}
@@ -154,10 +159,17 @@ function AddToCart({ product }) {
         />
         {showBox && (
           <div className={`addCardBox ${isMobile ? "mobileBox" : ""}`}>
-             <button className="closeButton" onClick={handleCloseClick}>
+            <button className="closeButton" onClick={handleCloseClick}>
               X
             </button>
             <h2>Add to Cart</h2>
+            {selectedProduct && (
+              <div className="selectedProduct">
+                <img src={selectedProduct.image} alt={selectedProduct.name} />
+                <h3>{selectedProduct.name}</h3>
+                <p>{priceFormatter(selectedProduct.price)}</p>
+              </div>
+            )}
             <ul>
               {items.map((item) => (
                 <li key={item.id}>
@@ -171,28 +183,26 @@ function AddToCart({ product }) {
                     </button>
                     <input
                       type="number"
-                      className="quantityInput"
+                      min="1"
                       value={item.quantity}
                       onChange={(e) => handleQuantityChange(e, item)}
-                      placeholder={`Quantity: ${item.quantity}`}
                     />
                     <button onClick={() => addItem(item)}>
                       <FontAwesomeIcon icon={faPlus} />
                     </button>
                   </div>
-
-                  <button onClick={() => deleteItem(item)}>
+                  <button
+                    className="deleteButton"
+                    onClick={() => deleteItem(item)}>
                     <FontAwesomeIcon icon={faTrash} />
                   </button>
-                  <span className="price">
-                    {priceFormatter(item.quantity * item.price)}
-                  </span>
                 </li>
               ))}
             </ul>
-            <p>Total: {priceFormatter(getTotalPrice())}</p>
-            <button className="addCardButton">Add to cart</button>
-            <button className="clearCardButton">Clear cart</button>
+            <div className="totalBox">
+              <span>Total:</span>
+              <span>{priceFormatter(getTotalPrice())}</span>
+            </div>
           </div>
         )}
       </div>
