@@ -2,126 +2,47 @@ import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./index.css";
 
 function Product() {
   const [loading, setLoading] = useState(false);
-  // const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
   const [sortOption, setSortOption] = useState("price-asc");
-  // const [searchTerm, setSearchTerm] = useState("");
-  const data = [
-    {
-      id: "1",
-      name: "Homemade",
-      price: "7",
-      Category: "Hygienic",
-      image:
-        "https://static-assets.glossier.com/production/spree/images/attachments/000/003/755/portrait_normal/LashSlick.jpg?1556563261",
-    },
-    {
-      id: "2",
-      name: "Homemade",
-      price: "6",
-      Category: "Hygienic",
-      image:
-        "https://static-assets.glossier.com/production/spree/images/attachments/000/003/755/portrait_normal/LashSlick.jpg?1556563261",
-    },
-    {
-      id: "3",
-      name: "Homemade",
-      price: "6",
-      Category: "Homemade",
-      image:
-        "https://static-assets.glossier.com/production/spree/images/attachments/000/003/755/portrait_normal/LashSlick.jpg?1556563261",
-    },
-    {
-      id: " 4",
-      name: "Homemade",
-      price: "4",
-      Category: "Homemade",
-      image:
-        "https://static-assets.glossier.com/production/spree/images/attachments/000/003/755/portrait_normal/LashSlick.jpg?1556563261",
-    },
-    {
-      id: "5",
-      name: "Homemade",
-      price: "2",
-      Category: "Recycling",
-      image:
-        "https://static-assets.glossier.com/production/spree/images/attachments/000/003/755/portrait_normal/LashSlick.jpg?1556563261",
-    },
-    {
-      id: "6",
-      name: "Homemade",
-      price: "9",
-      Category: "Recycling",
-      image:
-        "https://static-assets.glossier.com/production/spree/images/attachments/000/003/755/portrait_normal/LashSlick.jpg?1559593291",
-    },
-    {
-      id: "7",
-      name: "Homemade",
-      price: "9",
-      Category: "Homemade",
-      image:
-        "https://static-assets.glossier.com/production/spree/images/attachments/000/003/755/portrait_normal/LashSlick.jpg?1559593291",
-    },
-    {
-      id: "8",
-      name: "Homemade",
-      price: "5",
-      Category: "Recycling",
-      image:
-        "https://static-assets.glossier.com/production/spree/images/attachments/000/003/755/portrait_normal/LashSlick.jpg?1556563261",
-    },
-  ];
+  const [selectedCategory, setSelectedCategory] = useState("");
+  // const [category, setCategory] = useState("");
+  const allproduct = [...data];
+  const { category } = useParams();
+  useEffect(() => {
+    axios({
+      method: "GET",
+      baseURL: "http://localhost:4000/api/product",
+    })
+      .then((response) => {
+        setData(response.data);
+        console.log(response.data);
+        setLoading(false);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
-  const [products, setProducts] = useState(data);
-  const getAllData = () => {
-    setProducts(data);
-  };
-  const getHomemadeData = () => {
-    const homemadeData = data.filter((item) => item.Category === "Homemade");
-    setProducts(homemadeData);
-  };
+  const getFilteredProducts = () => {
+    let filteredProducts = [...data];
 
-  const getRecyclingData = () => {
-    const recyclingData = data.filter((item) => item.Category === "Recycling");
-    setProducts(recyclingData);
-  };
+    // filter the data by selected category name
+    if (selectedCategory !== "") {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.category.name === selectedCategory
+      );
+    }
 
-  const getHygienicData = () => {
-    const hygienicData = data.filter((item) => item.Category === "Hygienic");
-    setProducts(hygienicData);
-  };
-  // useEffect(() => {
-  //   axios({
-  //     method: "GET",
-  //     baseURL: "https://api.escuelajs.co/api/v1/products",
-  //   })
-  //     .then(({ data }) => {
-  //       console.log(data);
-  //       setData(data);
-  //       setLoading(true);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
-
-  const handleSortOptionChange = (event) => {
-    setSortOption(event.target.value);
-  };
-
-  // // const handleSearchChange = (event) => {
-  // //   setSearchTerm(event.target.value);
-  // // };
-  const handleCategoryChange = (event) => {
-    const selectedValue = event.target.value;
-    window.location.href = selectedValue;
+    return filteredProducts;
   };
 
   const getSortedProducts = () => {
-    let sortedProducts = [...data];
+    let sortedProducts = [...getFilteredProducts()];
 
     switch (sortOption) {
       case "price-asc":
@@ -131,22 +52,35 @@ function Product() {
         sortedProducts.sort((a, b) => b.price - a.price);
         break;
       case "title-asc":
-        sortedProducts.sort((a, b) => a.title.localeCompare(b.title));
+        sortedProducts.sort((a, b) => {
+          if (a.title && b.title) {
+            return a.title.localeCompare(b.title);
+          } else {
+            return 0;
+          }
+        });
         break;
       case "title-desc":
-        sortedProducts.sort((a, b) => b.title.localeCompare(a.title));
-        break;
-      default:
+        sortedProducts.sort((a, b) => {
+          if (b.title && a.title) {
+            return b.title.localeCompare(a.title);
+          } else {
+            return 0;
+          }
+        });
         break;
     }
 
-    // if (searchTerm) {
-    //   sortedProducts = sortedProducts.filter((product) => {
-    //     return product.title.toLowerCase().includes(searchTerm.toLowerCase());
-    //   });
-    // }
-
     return sortedProducts;
+  };
+
+  const handleSortOptionChange = (event) => {
+    setSortOption(event.target.value);
+  };
+
+  const handleCategoryChange = (event) => {
+    const selectedValue = event.target.value;
+    setSelectedCategory(selectedValue);
   };
 
   return (
@@ -155,29 +89,48 @@ function Product() {
         <h1>Products</h1>
         <div className="categories-sort">
           <div className="Categories-links">
-            <NavLink to="/Product" onClick={getAllData}>
-              {" "}
-              All Products
-            </NavLink>
-            <NavLink to="/FoodProduct" onClick={getHomemadeData}>
-              HomeMade
-            </NavLink>
-            <NavLink to="/Recycling" onClick={getRecyclingData}>
-              Recycling
-            </NavLink>
-            <NavLink to="/Hygienic" onClick={getHygienicData}>
-              Hygienic
-            </NavLink>
+            <nav>
+              <NavLink to="/Product" onClick={() => setSelectedCategory("")}>
+                All Products
+              </NavLink>
+              <NavLink
+                to="/Homemade"
+                onClick={() => setSelectedCategory("Homemade")}
+              >
+                Homemade
+              </NavLink>
+              <NavLink
+                to="/Recycling"
+                onClick={() => setSelectedCategory("Recycling")}
+              >
+                Recycling
+              </NavLink>
+              <NavLink
+                to="/Hygienic"
+                onClick={() => setSelectedCategory("Hygienic")}
+              >
+                Hygienic
+              </NavLink>
+            </nav>
           </div>
+          {/* <ul>
+  {getFilteredProducts().map((product) => (
+    <li key={product.id}>
+      {product.name} - {product.category.name}
+    </li>
+  ))}
+</ul> */}
+
           <div className="Categories-dropdown">
-            <select id="categorySelect" onChange={handleCategoryChange}>
-              <option value="/Product" style={{ display: "none" }}>
-                Categories
-              </option>
-              <option value="/Product">All Products</option>
-              <option value="/FoodProduct">HomeMade</option>
-              <option value="/Recycling">Recycling</option>
-              <option value="/Hygienic">Hygienic</option>
+            <select
+              id="categorySelect"
+              value={selectedCategory}
+              onChange={handleCategoryChange}
+            >
+              <option value="">All Products</option>
+              <option value="Homemade">Homemade</option>
+              <option value="Recycling">Recycling</option>
+              <option value="Hygienic">Hygienic</option>
             </select>
           </div>
 
@@ -201,24 +154,58 @@ function Product() {
 
         <div className="product-container">
           <div className="product-gallery">
-            {getSortedProducts().map((product) => (
-              <div className="item" key={product.id}>
+            {getSortedProducts().map((item) => (
+              <div className="item" key={item._id}>
                 <div className="thumbnail">
                   <img
                     className="group"
-                    src={product.image}
-                    alt={product.name}
-                    width="363"
+                    src={"http://localhost:4000/" + item.image}
+                    alt={item.name}
+                    width="100%"
                     height="363"
                   />
                   <div className="caption">
-                    <h4 className="group-inner">{product.name}</h4>
-                    <p className="lead">${product.price}</p>
+                    <h4 className="group-inner">{item.name}</h4>
+                    <p className="lead">${item.price}</p>
                   </div>
+                  <div className="product-rate">
+                    {item.reviews && item.reviews.length > 0 ? (
+                      <div className="rating-and-reviews">
+                        <div className="rating">
+                          {[...Array(5)].map((_, index) => (
+                            <span
+                              className={`star ${
+                                index < Math.floor(item.reviews[0].rating)
+                                  ? "filled"
+                                  : ""
+                              }`}
+                              key={index}
+                            >
+                              <FontAwesomeIcon icon={faStar} />
+                            </span>
+                          ))}
+                        </div>
+                        <div className="rate-number">
+                          <p>{`${item.reviews.length} review(s)`}</p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="no-review">No reviews </div>
+                    )}
+                  </div>
+
+                  {/* </div> */}
                   <div className="btn-group">
-                    <NavLink to="/OneProduct" className="btn btn-details">
+                    <NavLink
+                      to={{
+                        pathname: `/OneProduct/${item._id}`,
+                        // search: `?allproduct=${JSON.stringify(allproduct)}`,
+                      }}
+                      className="btn btn-details"
+                    >
                       View
                     </NavLink>
+
                     <NavLink to="/" className="btn btn-success">
                       Add to Cart
                     </NavLink>
