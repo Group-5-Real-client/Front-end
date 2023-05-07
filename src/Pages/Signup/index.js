@@ -1,14 +1,13 @@
+import { UserProvider } from "../../Component/UserProvider";
 
-import Register, { UserProvider } from '../../Component/Register/index'
-
-
-function Signin(){
-    return(
-        <div className="signin">
-            <UserProvider>
-        <Register/>
-        </UserProvider>
-        </div>
-    )
+import Register from "../../Component/Register/index";
+function Signup() {
+  return (
+    <div className="signin">
+      <UserProvider>
+        <Register />
+      </UserProvider>
+    </div>
+  );
 }
-export default Signin
+export default Signup;
