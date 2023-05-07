@@ -154,7 +154,7 @@ function ProductTable() {
                 <Loader />
             ) : (
                 <div className="dash-main">
-                    <h2>AboutUs List</h2>
+                    <h2>Products List</h2>
                     <div className="add-button">
                         <Button type="primary" onClick={showModal}>
                             Add Product
