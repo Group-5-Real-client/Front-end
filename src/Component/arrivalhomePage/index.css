@@ -129,6 +129,11 @@
   font-weight: bold;
 }
 
+.about_img_parent{
+  width: 600px;
+  height: 450px;
+}
+
 @media screen and (max-width: 1000px) {
   .about_img {
     width: 100px;

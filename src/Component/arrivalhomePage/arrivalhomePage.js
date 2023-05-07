@@ -121,7 +121,7 @@ function ArrivalhomePage() {
               {" "}
               <img
                 className="about_img_parent"
-                src="https://placekitten.com/550/400"
+                src="https://www.greenqueen.com.hk/wp-content/uploads/2020/09/zero-waste-life-freepik.jpg"
                 alt="cat"
               />
             </div>
