@@ -3,43 +3,22 @@ import { Pagination, Modal, Button } from "antd";
 import Loader from "../loader/loader";
 
 function ContactTable() {
-    const [contacts, setContacts] = useState([
-        // {
-        //     id: 1,
-        //     email: "example1@gmail.com",
-        //     message: "Message 1",
-        //     phone: 1234567890,
-        // },
-        // {
-        //     id: 2,
-        //     email: "example2@gmail.com",
-        //     message: "Message 2",
-        //     phone: 2345678901,
-        // },
-        // {
-        //     id: 3,
-        //     email: "example3@gmail.com",
-        //     message: "Message 3",
-        //     phone: 3456789012,
-        // },
-    ]);
-
+    const [contacts, setContacts] = useState([]);
     const [editingContact, setEditingContact] = useState(null);
     const [filter, setFilter] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const fetchForm = () => {
+    const fetchForm = async () => {
         setLoading(true);
-        fetch("http://localhost:5000/api/form")
-            .then((response) => response.json())
-            .then((response) => {
-                console.log(response);
-                setContacts(response.response);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-            .finally(() => setLoading(false));
+        try {
+            const response = await fetch("http://localhost:5000/api/form");
+            const data = await response.json();
+            setContacts(data.response);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     useEffect(() => {
@@ -54,7 +33,6 @@ function ContactTable() {
         if (!editedContact._id) {
             // New contact
             const newContact = {
-                id: contacts.length + 1,
                 email: editedContact.email,
                 message: editedContact.message,
                 phone: editedContact.phone,
@@ -76,12 +54,22 @@ function ContactTable() {
     };
 
     const filteredContacts = contacts.filter((contact) => {
+        const numericPhone = contact.phone
+            ?.toString()
+            .replace(/\D/g, "")
+            ?.toLowerCase();
+        const email = contact.email?.toLowerCase() ?? "";
+        const message = contact.message?.toLowerCase() ?? "";
+
         if (
             filter &&
             !(
-                contact.email.toLowerCase().includes(filter.toLowerCase()) ||
-                contact.message.toLowerCase().includes(filter.toLowerCase()) ||
-                contact.phone.toString().includes(filter.toLowerCase())
+                (numericPhone &&
+                    numericPhone.includes(
+                        filter.replace(/\D/g, "").toLowerCase()
+                    )) ||
+                email.trim().includes(filter.trim().toLowerCase()) ||
+                message.trim().includes(filter.trim().toLowerCase())
             )
         ) {
             return false;
@@ -98,18 +86,6 @@ function ContactTable() {
                 <div className="dash-main">
                     <h2>Contact List</h2>
                     <div className="add-button">
-                        {/* <Button
-                    type="primary"
-                    onClick={() =>
-                        setEditingContact({
-                            email: "",
-                            message: "",
-                            phone: null,
-                        })
-                    }
-                >
-                    Add Contact
-                </Button> */}
                         <Modal
                             title={
                                 editingContact
@@ -125,7 +101,8 @@ function ContactTable() {
                                     key="cancel"
                                     onClick={() => setEditingContact(null)}
                                 >
-                                    Cancel
+                                    {" "}
+                                    Cancel{" "}
                                 </Button>,
                                 <Button
                                     key="save"
@@ -134,7 +111,8 @@ function ContactTable() {
                                         handleSaveContact(editingContact)
                                     }
                                 >
-                                    Save
+                                    {" "}
+                                    Save{" "}
                                 </Button>,
                             ]}
                         >
