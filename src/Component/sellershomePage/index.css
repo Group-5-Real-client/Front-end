@@ -169,7 +169,7 @@
   }
 
   .about_mission_container-seller > * {
-    flex-basis: 46%;
+    flex-basis: 99%;
   }
 
   .about_paragraph-seller {
@@ -285,9 +285,9 @@
     z-index: 1;
   }
 
-  .percentage-value-seller {
+  /* .percentage-value-seller {
     display: none;
-  }
+  } */
 
   .percentage-value-seller {
     background-color: var(--button);
