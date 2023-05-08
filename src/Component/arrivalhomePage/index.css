@@ -129,7 +129,7 @@
   font-weight: bold;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 768px) {
   .about_img {
     width: 100px;
     height: 100px;
@@ -207,7 +207,7 @@
   }
 
   .about_mission_container > * {
-    flex-basis: 46%;
+    flex-basis: 99%;
   }
   .about_title {
     overflow: hidden;
@@ -327,9 +327,9 @@
     box-shadow: rgba(0, 0, 0, 0.5) 20px 20px 30px;
     /* transform: scale(1.2); */
     transition: 0.3s;
-    z-index: 1;
+    /* z-index: 1; */
   }
-  .about_img:hover + .pay-value {
+  /* .about_img:hover + .pay-value {
     background-color: var(--button);
     transform: translateX(-20%);
     color: white;
@@ -344,7 +344,7 @@
     font-weight: bold;
     z-index: 2;
     overflow: hidden;
-  }
+  } */
 
   /* @keyframes bouncing {
     from,
