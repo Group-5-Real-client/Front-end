@@ -129,7 +129,7 @@
   font-weight: bold;
 }
 
-@media screen and (max-width: 768px) {
+
   .about_img {
     width: 100px;
     height: 100px;
