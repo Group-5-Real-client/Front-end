@@ -6,9 +6,8 @@ import Header from "../../Component/navbar/navbar";
 function Home() {
   return (
     <div>
-      <HeroSectionHome>
-        <Header />
-      </HeroSectionHome>
+      <HeroSectionHome> </HeroSectionHome>
+      {/* <Header /> */}
 
       <ArrivalhomePage />
       <Category />

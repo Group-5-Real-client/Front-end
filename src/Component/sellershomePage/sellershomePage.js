@@ -112,7 +112,6 @@
 // }
 // export default SellershomePage;
 
-
 import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import axios from "axios";
@@ -166,20 +165,14 @@ function SellershomePage() {
   };
   return (
     <>
-      {" "}
       <main className="about_parent-seller">
-        {" "}
-        <hr className="about_hr-seller" />{" "}
+        <hr className="about_hr-seller" />
         <div className="about_container-seller">
-          {" "}
           <section className="about_our_blog_container-seller">
-            {" "}
             <div className="about_title_blog-seller">
-              {" "}
-              <h2 className="ourBloc_title-seller">Best Sellers</h2>{" "}
-            </div>{" "}
+              <h2 className="ourBloc_title-seller">Best Sellers</h2>
+            </div>
             <div className="about_mission_container-seller">
-              {" "}
               {arraySeller.map((product, index) => (
                 <div className="mission_box-seller" key={index}>
                   {" "}
@@ -206,9 +199,9 @@ function SellershomePage() {
                     </span>{" "}
                     <span className="percentage-value-seller value___for_two">
                       {" "}
-                      {product.percent}{" "}
-                    </span>{" "}
-                  </div>{" "}
+                      {product.percent}
+                    </span>
+                  </div>
                 </div>
               ))}{" "}
             </div>{" "}

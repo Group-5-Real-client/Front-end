@@ -49,10 +49,7 @@
   top: 10px;
 }
 
-
-
 @media screen and (min-width: 769px) {
-
   .accordion-icon-shop {
     display: none;
   }
@@ -72,46 +69,39 @@
     color: var(--buttons);
     font-weight: bold;
   }
-
 }
 
-
-
-
-
 @media screen and (min-width: 769px) {
-
   .accordion-content-shop {
     position: relative;
   }
 
-
-
-  .accordion-header-shop:hover{
+  .accordion-header-shop:hover {
     border-bottom: 1px solid var(--accent-colors);
-      transition: all 5s ease 0s;
-      opacity: 0.7;
+    transition: all 5s ease 0s;
+    opacity: 0.7;
   }
 
   .accordion-content-shop::before {
     content: "";
     position: absolute;
     background-color: transparent;
-    width: 100px;
+    width: 50px;
     height: 140px;
-    left: -25%;
-    top: -85px;
+    left: 50%;
+    top: -95px;
     padding-bottom: 45px;
-    z-index: -1;
+    z-index: 1;
   }
   .accordion-content-shop::after {
     content: "";
     position: absolute;
     background-color: white;
+    border-top: 1px solid #eee;
     width: 125px;
     height: 90px;
-    left: -12px;
-    top: -24px;
+    left: -5px;
+    top: -45px;
     padding-bottom: 45px;
     z-index: 2;
   }
@@ -165,14 +155,14 @@
     color: #bf681b;
   }
 
-
   .accordion-header-shop {
     margin-top: -4px;
+    margin-right: 1pc;
   }
 
   .Home_made__link {
     position: absolute;
-    top: 10px;
+    top: -15px;
     color: var(--buttons);
     font-size: 14px;
     z-index: 2;
@@ -185,7 +175,7 @@
 
   .Recycle__link {
     position: absolute;
-    top: 42px;
+    top: 22px;
     color: var(--buttons);
     font-size: 14px;
     z-index: 2;
@@ -193,12 +183,11 @@
   .Recycle__link:hover {
     opacity: 0.7;
     transition: all 0.3s ease 0s;
-
   }
 
   .Hygiene__link {
     position: absolute;
-    top: 78px;
+    top: 58px;
     color: var(--buttons);
     font-size: 14px;
     z-index: 2;
@@ -207,7 +196,6 @@
   .Hygiene__link:hover {
     opacity: 0.7;
     transition: all 0.3s ease 0s;
-
   }
 }
 
@@ -215,14 +203,16 @@
   .accordion-header-shop {
     margin-top: 50px;
     margin-left: -12px;
+ 
   }
 
   .accordion-option-shop {
     margin-top: 15px;
+
   }
 
   .accordion-container-shop {
-    margin-left: 20px;
+    /* margin-left: 20px; */
     list-style: none;
     text-decoration: none;
   }
@@ -241,7 +231,7 @@
   .Our-Commitment__link:hover {
     opacity: 0.7;
   } */
-/* 
+  /* 
   .FAQ__link:hover {
     opacity: 0.7;
   } */
@@ -263,8 +253,6 @@
     z-index: 2;
   }
 
- 
-
   .accordion-icon-shop {
     position: absolute;
     right: 11%;
@@ -274,7 +262,6 @@
     font-weight: bold;
   }
 
- 
   .shop-nav-link-accordion {
     text-decoration: none;
     color: var(--buttons);
@@ -282,13 +269,6 @@
     margin-left: 15px;
   }
 }
-
-
-
-
-
-
-
 
 /* .dropdown-container-shop {
   position: relative;
